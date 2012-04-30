@@ -13,7 +13,7 @@ done
 source "`brew --prefix grc`/etc/grc.bashrc"
 
 # Load RVM into a shell session *as a function*
-[[ -s "~/.rvm/scripts/rvm" ]] && source "~/.rvm/scripts/rvm"
+[[ -s ~/.rvm/scripts/rvm ]] && source ~/.rvm/scripts/rvm
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # exports
