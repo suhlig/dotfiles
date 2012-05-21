@@ -1,1 +1,7 @@
+log(){
+  echo -e "$(date +%Y-%m-%d\ %H:%M:%S) - $1"
+}
+
+log "Starting sync"
 rsync -av --exclude Dropbox/.dropbox.cache ~/Dropbox ~/Backup/Google\ Drive/Dropbox-Backup/
+log "Ended sync"
