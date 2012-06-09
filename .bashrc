@@ -21,6 +21,7 @@ export VISUAL=vi
 export GEM_EDITOR='vi'
 export HISTSIZE=1000000
 export HISTFILESIZE=1000000000
+export PATH=~/bin:$PATH
 
 # teach git about GitHub
 eval "$(hub alias -s)"
