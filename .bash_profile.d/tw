@@ -1,1 +1,2 @@
 alias tw=task
+complete -o nospace -F _task tw
