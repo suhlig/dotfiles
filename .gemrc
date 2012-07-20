@@ -1,1 +1,3 @@
-gem: --no-ri --no-rdoc
+# http://stackoverflow.com/a/7662245
+install: --no-rdoc --no-ri 
+update:  --no-rdoc --no-ri
