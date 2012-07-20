@@ -8,7 +8,7 @@
 #
 git clone http://github.com/nerab/dotfiles.git
 cd dotfiles
-mv $(find . -maxdepth 1 ! -name '.') .
+mv $(find . -maxdepth 1 ! -name '.') ..
 cd ..
 rmdir dotfiles
 echo '*' >> .git/info/exclude
