@@ -2,15 +2,17 @@
 # Global scripts
 #
 for local_dir in ~/.{bash_completion.d,bash_profile.d}; do
-	if [ -d "$local_dir" ]; then
-		for local_file in "$local_dir"/*; do
-		  source "$local_file"
-		done
-	fi
+  if [ -d "$local_dir" ]; then
+    for local_file in "$local_dir"/*; do
+      source "$local_file"
+    done
+  fi
 done
 
 # Source other misc. scripts
-source "`brew --prefix grc`/etc/grc.bashrc"
+if which brew 2>&1 >/dev/null; then
+  source "`brew --prefix grc`/etc/grc.bashrc"
+fi
 
 # Load RVM into a shell session *as a function*
 [[ -s ~/.rvm/scripts/rvm ]] && source ~/.rvm/scripts/rvm
@@ -24,26 +26,28 @@ export HISTFILESIZE=1000000000
 export PATH=~/bin:$PATH
 
 # teach git about GitHub
-eval "$(hub alias -s)"
+if which hub 2>&1 >/dev/null; then
+  eval "$(hub alias -s)"
+fi
 
 # TMUX
 if which tmux 2>&1 >/dev/null; then
-	# if no session is started, start a new session
-	test -z ${TMUX} && tmux
+  # if no session is started, start a new session
+  test -z ${TMUX} && tmux
 
-	# when quitting tmux, try to attach
-	while test -z ${TMUX}; do
-	  tmux attach || break
-	done
+  # when quitting tmux, try to attach
+  while test -z ${TMUX}; do
+    tmux attach || break
+  done
 fi
 
 # load local overrides and additions
 for local_dir in ~/.local/.{bash_completion.d,bash_profile.d}; do
-	if [ -d "$local_dir" ]; then
-		for local_file in "$local_dir"/*; do
-			source "$local_file"
-		done
-	fi
+  if [ -d "$local_dir" ]; then
+    for local_file in "$local_dir"/*; do
+      source "$local_file"
+    done
+  fi
 done
 
 #
@@ -65,7 +69,3 @@ export LANG="en_US"
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
-
-#
-# EOF
-#
