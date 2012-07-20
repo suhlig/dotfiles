@@ -1,0 +1,12 @@
+# Bootstrap a new machine with dotfiles:
+#
+#   source <( curl -L https://raw.github.com/nerab/dotfiles/master/bootstrap )
+# or
+#   curl -L https://raw.github.com/nerab/dotfiles/master/bootstrap | bash
+#
+# TODO Shorten above URL
+#
+git clone http://github.com/nerab/dotfiles.git
+mv $(find dotfiles -maxdepth 1 ! -name '.') .
+rmdir dotfiles
+echo '*' >> .git/info/exclude
