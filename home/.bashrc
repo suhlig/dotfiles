@@ -1,33 +1,15 @@
+# exports
+export VISUAL=vi
+export GEM_EDITOR='vi'
+
 #
-# Global scripts
+# Option 3 of http://unix.stackexchange.com/a/18443
 #
-
-# Source misc. scripts
-if which brew 2>&1 >/dev/null; then
-  # grc - frontend for generic colouriser grcat(1)
-  source "`brew --prefix grc`/etc/grc.bashrc"
-fi
-
-# Other exports
-VISUAL=vi
-GEM_EDITOR='vi'
-PATH=$HOME/.local/bin:$HOME/bin:$PATH
-
-# teach git about GitHub
-if which hub 2>&1 >/dev/null; then
-  eval "$(hub alias -s)"
-fi
-
-# TMUX
-# if which tmux 2>&1 >/dev/null; then
-#   # if no session is started, start a new session
-#   test -z ${TMUX} && tmux
-
-#   # when quitting tmux, try to attach
-#   while test -z ${TMUX}; do
-#     tmux attach || break
-#   done
-# fi
+export HISTSIZE=1000000
+export HISTFILESIZE=1000000000
+HISTCONTROL=ignoredups:erasedups
+shopt -s histappend
+PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 
 # load local overrides and additions
 for local_dir in ~/.local/.{bash_completion.d,bash_profile.d}; do
@@ -37,6 +19,9 @@ for local_dir in ~/.local/.{bash_completion.d,bash_profile.d}; do
     done
   fi
 done
+
+# Add local bin folder to PATH
+[[ -s ~/.local/bin ]] && export PATH=$PATH:~/.local/bin
 
 #
 # This section from https://github.com/mathiasbynens/dotfiles/
@@ -48,6 +33,10 @@ shopt -s nocaseglob
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell
 
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
 # Prefer US English and use UTF-8
 LC_ALL="en_US.UTF-8"
 LANG="en_US"
@@ -55,16 +44,17 @@ LANG="en_US"
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
 
-#
-# Option 3 of http://unix.stackexchange.com/a/18443
-#
-HISTSIZE=1000000
-HISTFILESIZE=1000000000
-HISTCONTROL=ignoredups:erasedups
-shopt -s histappend
-PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-if which rvm 2>&1 >/dev/null; then
-  PATH=$PATH:/usr/local/rvm/bin # Add RVM to PATH for scripting
+# Source misc. scripts
+if which brew 2>&1 >/dev/null; then
+  # grc - frontend for generic colouriser grcat(1)
+  source "`brew --prefix grc`/etc/grc.bashrc"
+fi
+
+# teach git about GitHub
+if which hub 2>&1 >/dev/null; then
+  eval "$(hub alias -s)"
 fi
 
