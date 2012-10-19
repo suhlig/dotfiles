@@ -16,14 +16,12 @@ fi
 
 # Load RVM into a shell session *as a function*
 [[ -s ~/.rvm/scripts/rvm ]] && source ~/.rvm/scripts/rvm
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-# exports
-export VISUAL=vi
-export GEM_EDITOR='vi'
-export HISTSIZE=1000000
-export HISTFILESIZE=1000000000
-export PATH=~/bin:$PATH
+# Other exports
+VISUAL=vi
+GEM_EDITOR='vi'
+PATH=$HOME/.local/bin:$HOME/bin:$PATH
 
 # teach git about GitHub
 if which hub 2>&1 >/dev/null; then
@@ -57,15 +55,21 @@ done
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
 
-# Append to the Bash history file, rather than overwriting it
-shopt -s histappend
-
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell
 
 # Prefer US English and use UTF-8
-export LC_ALL="en_US.UTF-8"
-export LANG="en_US"
+LC_ALL="en_US.UTF-8"
+LANG="en_US"
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
+
+#
+# Option 3 of http://unix.stackexchange.com/a/18443
+#
+HISTSIZE=1000000
+HISTFILESIZE=1000000000
+HISTCONTROL=ignoredups:erasedups
+shopt -s histappend
+PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
