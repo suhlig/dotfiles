@@ -1,0 +1,1 @@
+alias serve='ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => 3000, :DocumentRoot => ARGV[0] || Dir.pwd); trap(\"INT\") { s.shutdown }; s.start"'
