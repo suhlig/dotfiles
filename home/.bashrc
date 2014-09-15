@@ -1,22 +1,12 @@
 #
 # Global scripts
 #
-for local_dir in ~/.{bash_completion.d,bash_profile.d}; do
-  if [ -d "$local_dir" ]; then
-    for local_file in "$local_dir"/*; do
-      source "$local_file"
-    done
-  fi
-done
 
-# Source other misc. scripts
+# Source misc. scripts
 if which brew 2>&1 >/dev/null; then
+  # grc - frontend for generic colouriser grcat(1)
   source "`brew --prefix grc`/etc/grc.bashrc"
 fi
-
-# Load RVM into a shell session *as a function*
-[[ -s ~/.rvm/scripts/rvm ]] && source ~/.rvm/scripts/rvm
-#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # Other exports
 VISUAL=vi
@@ -29,15 +19,15 @@ if which hub 2>&1 >/dev/null; then
 fi
 
 # TMUX
-if which tmux 2>&1 >/dev/null; then
-  # if no session is started, start a new session
-  test -z ${TMUX} && tmux
+# if which tmux 2>&1 >/dev/null; then
+#   # if no session is started, start a new session
+#   test -z ${TMUX} && tmux
 
-  # when quitting tmux, try to attach
-  while test -z ${TMUX}; do
-    tmux attach || break
-  done
-fi
+#   # when quitting tmux, try to attach
+#   while test -z ${TMUX}; do
+#     tmux attach || break
+#   done
+# fi
 
 # load local overrides and additions
 for local_dir in ~/.local/.{bash_completion.d,bash_profile.d}; do
@@ -73,3 +63,8 @@ HISTFILESIZE=1000000000
 HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
 PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+
+if which rvm 2>&1 >/dev/null; then
+  PATH=$PATH:/usr/local/rvm/bin # Add RVM to PATH for scripting
+fi
+
