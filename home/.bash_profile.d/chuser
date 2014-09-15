@@ -1,0 +1,7 @@
+chuser(){
+  if [ -z "$1" ]; then
+    echo "Error: No user name supplied." 1>&2
+  else
+    /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -switchToUserID $(id -u $1)
+  fi
+}
