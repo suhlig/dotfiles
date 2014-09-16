@@ -1,3 +1,5 @@
 [user]
 	email = nerab@gmx.at
 	name = Nicholas E. Rabenau
+[credential]
+	helper = cache --timeout=3600
