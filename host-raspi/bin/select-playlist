@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# select playlist via 'select' builtin
+OLD_IFS=${IFS}; IFS="
+"
+
+select LIST in $(mpc lsplaylists); do
+  # echo "You picked $LIST"
+  mpc clear
+  mpc load "$LIST"
+  mpc play
+  break
+done
+
+IFS=${OLD_IFS}
+
