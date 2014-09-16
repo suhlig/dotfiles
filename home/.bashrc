@@ -11,6 +11,15 @@ HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
 PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 
+# load bash profile additions and completions
+for bash_dir in ~/.{bash_completion.d,bash_profile.d}; do
+  if [ -d "$bash_dir" ]; then
+    for local_file in "$bash_dir"/*; do
+      source "$local_file"
+    done
+  fi
+done
+
 # load local overrides and additions
 for local_dir in ~/.local/.{bash_completion.d,bash_profile.d}; do
   if [ -d "$local_dir" ]; then
