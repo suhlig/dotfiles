@@ -1,21 +1,19 @@
-#!/usr/bin/env bash
-set -e
+#!/bin/bash
 
 task-rest(){
   if [ -z "$1" ]; then
     echo "No task id supplied"
     exit 1
   fi
-  
+
   local task_id="$1"
   shift
   local reason="${*}"
-  
+
   if [ -z "$reason" ]; then
     reason="No longer applicable"
   fi
-    
+
   task "$task_id" annot "$reason"
   task "$task_id" done
 }
-
