@@ -57,13 +57,12 @@ LANG="en_US"
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # Source misc. scripts
-if which brew 2>&1 >/dev/null; then
+if type brew 2>&1 >/dev/null; then
   # grc - frontend for generic colouriser grcat(1)
   source "`brew --prefix grc`/etc/grc.bashrc"
 fi
 
 # teach git about GitHub
-if which hub 2>&1 >/dev/null; then
+if type hub 2>&1 >/dev/null; then
   eval "$(hub alias -s)"
 fi
-
