@@ -1,1 +1,1 @@
-# [[ -r ~/.rvm/scripts/completion ]] && . ~/.rvm/scripts/completion
+[[ -r ~/.rvm/scripts/completion ]] && . ~/.rvm/scripts/completion
