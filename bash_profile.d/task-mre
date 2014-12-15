@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Print UUID of most recently entered task
+#
+# Requires the following report (e.g. in $TASKRC):
+#
+# report.mre.description=UUID of most recently entered task
+# report.mre.columns=uuid
+# report.mre.labels=UUID
+# report.mre.sort=entry-
+# report.mre.limit=1
+
+task-mre(){
+  task mre | grep -o '[0-9a-fA-F]\{8\}-[0-9a-fA-F]\{4\}-[0-9a-fA-F]\{4\}-[0-9a-fA-F]\{4\}-[0-9a-fA-F]\{12\}'
+}
