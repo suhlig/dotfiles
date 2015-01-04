@@ -30,7 +30,7 @@ shopt -s checkwinsize
 
 # Prefer US English and use UTF-8
 LC_ALL="en_US.UTF-8"
-LANG="en_US"
+LANG="en_US.UTF-8"
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
@@ -39,13 +39,13 @@ LANG="en_US"
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # Source misc. scripts
-if type brew 2>&1 >/dev/null; then
+if type -t brew 2>&1 >/dev/null; then
   # grc - frontend for generic colouriser grcat(1)
   source "`brew --prefix grc`/etc/grc.bashrc"
 fi
 
 # teach git about GitHub
-if type hub 2>&1 >/dev/null; then
+if type -t hub 2>&1 >/dev/null; then
   eval "$(hub alias -s)"
 fi
 
