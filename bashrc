@@ -66,3 +66,6 @@ for local_dir in ~/.local/.{bash_completion.d,bash_profile.d}; do
     done
   fi
 done
+
+export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
+source ~/.rvm/scripts/rvm
