@@ -3,5 +3,5 @@ log(){
 }
 
 log "Starting sync"
-rsync -av --exclude Dropbox/.dropbox.cache ~/Dropbox ~/Backup/Google\ Drive/Dropbox-Backup/
+rsync -av --exclude Dropbox/.dropbox.cache ~/Dropbox ~/Google\ Drive/Dropbox-Backup/
 log "Ended sync"
