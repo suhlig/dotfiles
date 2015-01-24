@@ -1,6 +1,0 @@
-# Re-read the inputrc file with C-x C-r.
-# systemwide bindings and variable assignments from /etc/Inputrc
-# $include /etc/Inputrc
-
-# Kill the word behind point, using white space as a word boundary. The killed text is saved on the kill-ring.
-C-w unix-filename-rubout
