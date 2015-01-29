@@ -1,0 +1,7 @@
+ #!/bin/bash
+#
+# Ensure all git-dirty files have a trailing newline
+#
+for f in $(git status --porcelain | ruby -e 'puts ARGF.read.lines.map{|l| %r{\\s+\\w+ (.*)}.match(l)[1]}'); do
+  trailing-newline $f
+done
