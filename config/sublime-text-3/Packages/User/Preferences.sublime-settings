@@ -1,14 +1,28 @@
-{    
+{
 	// Set to true to removing trailing white space on save
-    "trim_trailing_white_space_on_save": true,
+  "trim_trailing_white_space_on_save": true,
 
-    // Set to true to ensure the last line of the file ends in a newline
-    // character when saving
-    "ensure_newline_at_eof_on_save": true,
+  // Set to true to ensure the last line of the file ends in a newline
+  // character when saving
+  "ensure_newline_at_eof_on_save": true,
 
-    // The number of spaces a tab is considered equal to
-    "tab_size": 2,
+  // The number of spaces a tab is considered equal to
+  "tab_size": 2,
 
-    // Set to true to insert spaces when tab is pressed
-    "translate_tabs_to_spaces": true,
+  // Set to true to insert spaces when tab is pressed
+  "translate_tabs_to_spaces": true,
+
+  "color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+
+  "ensure_newline_at_eof_on_save": true,
+
+  "font_size": 10,
+
+  "highlight_line": true,
+
+  "ignored_packages":
+  [
+    "Vintage"
+  ],
+  "use_tab_stops": false
 }
