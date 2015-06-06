@@ -1,0 +1,6 @@
+# http://golang.org/doc/install#tarball
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
+
+# http://golang.org/doc/code.html#GOPATH
+export GOPATH=$HOME/Projects/go
+export PATH=$GOPATH/bin:$PATH
