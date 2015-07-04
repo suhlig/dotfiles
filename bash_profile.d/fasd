@@ -1,2 +1,6 @@
 # https://github.com/clvv/fasd
-eval "$(fasd --init auto)"
+
+if type -t fasd 2>&1 >/dev/null; then
+  eval "$(fasd --init auto)"
+fi
+
