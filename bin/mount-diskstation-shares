@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# http://stackoverflow.com/a/13372744/3212907
+
+mkdir -p ~/diskstation/pix
+mount -t smbfs //$USER@diskstation/pix ~/diskstation/pix
+
+mkdir -p ~/diskstation/mp3
+mount -t smbfs //$USER@diskstation/mp3 ~/diskstation/mp3
+
+mkdir -p ~/diskstation/videos
+mount -t smbfs //$USER@diskstation/videos ~/diskstation/videos
+
+mkdir -p ~/diskstation/backup
+mount -t smbfs //$USER@diskstation/backup ~/diskstation/backup
