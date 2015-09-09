@@ -1,2 +1,1 @@
-#!/bin/sh
-open -a "Sublime Text" "$@"
+/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl
