@@ -5,7 +5,7 @@ function git-show-dirty(){
   local dir=$1
   : ${dir:="."}
 
-  for d in $(find "$dir" -type d -name .git -printf '%h\n'); do
+  for d in $(find "$dir" -type d -name .git -printf '%h\0'); do
     (
       cd "$d"
       test -z "$(git status --porcelain)" || pwd
