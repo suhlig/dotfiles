@@ -1,0 +1,43 @@
+[
+  {
+    "keys": [
+      "ctrl+7"
+    ],
+    "command": "toggle_comment",
+    "args": {
+      "block": false
+    }
+  },
+  {
+    "keys": [
+      "ctrl+shift+7"
+    ],
+    "command": "toggle_comment",
+    "args": {
+      "block": true
+    }
+  },
+  {
+    "keys": [
+      "ctrl+shift+d"
+    ],
+    "command": "dev_docs_search_selection"
+  },
+  {
+    "keys": [
+      "ctrl+v"
+    ],
+    "command": "paste_and_indent"
+  },
+  {
+    "keys": ["ctrl+d", "ctrl+d"],
+    "command": "open_file",
+    "args": { "file": "/home/suhlig/.dotfiles-ibm/bash_profile.d/go" }
+  },
+  {
+    "keys": [
+      "ctrl+shift+v"
+    ],
+    "command": "paste"
+  }
+]

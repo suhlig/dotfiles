@@ -1,0 +1,14 @@
+#
+# Print subdirectories under git control that are dirty
+#
+function git-show-dirty(){
+  local dir=$1
+  : ${dir:="."}
+
+  for d in $(find "$dir" -type d -name .git -printf '%h\0'); do
+    (
+      cd "$d"
+      test -z "$(git status --porcelain)" || pwd
+    )
+  done
+}
