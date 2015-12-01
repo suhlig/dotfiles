@@ -50,7 +50,7 @@ if type -t hub 2>&1 >/dev/null; then
 fi
 
 # load bash profile additions and completions
-for bash_dir in ~/.{bash_completion.d,bash_profile.d}; do
+for bash_dir in /usr/local/etc/bash_completion.d ~/.{bash_completion.d,bash_profile.d}; do
   if [ -d "$bash_dir" ]; then
     for local_file in "$bash_dir"/*; do
       source "$local_file"
