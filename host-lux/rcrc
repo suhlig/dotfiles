@@ -1,2 +1,3 @@
 EXCLUDES="README.*"
 HOSTNAME=lux
+UNDOTTED="Brewfile"
