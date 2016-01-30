@@ -1,0 +1,1 @@
+alias go-tdd="fswatch -o *.go|xargs -n1 -I{} go test"
