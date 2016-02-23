@@ -1,2 +1,0 @@
-# TODO Handle the case where no dangling images are present
-alias docker-gc-images="docker rmi \$(docker images -q --filter 'dangling=true')"
