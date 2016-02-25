@@ -1,0 +1,2 @@
+# http://stackoverflow.com/questions/17236796/how-to-remove-old-docker-containers#comment37420167_17237701
+alias docker-gc-containers="docker ps -a | awk 'NR > 1 {print $1}' | xargs docker rm"
