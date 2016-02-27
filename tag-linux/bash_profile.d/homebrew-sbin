@@ -1,0 +1,2 @@
+[[ -s ~/.linuxbrew/sbin ]] && export PATH=$PATH:~/.linuxbrew/sbin
+
