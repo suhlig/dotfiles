@@ -2,32 +2,6 @@
 export VISUAL=vi
 export GEM_EDITOR='vi'
 
-#
-# Option 3 of http://unix.stackexchange.com/a/18443
-#
-export HISTSIZE=1000000
-export HISTFILESIZE=1000000000
-HISTCONTROL=ignoredups:erasedups
-shopt -s histappend
-PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
-
-# Add local bin folder to PATH
-[[ -s ~/.local/bin ]] && export PATH=$PATH:~/.local/bin
-
-#
-# This section from https://github.com/mathiasbynens/dotfiles/
-#
-
-# Case-insensitive globbing (used in pathname expansion)
-shopt -s nocaseglob
-
-# Autocorrect typos in path names when using `cd`
-shopt -s cdspell
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
 # Prefer US English and use UTF-8
 LC_ALL="en_US.UTF-8"
 LANG="en_US.UTF-8"

@@ -1,0 +1,37 @@
+#
+# Case-insensitive globbing (used in pathname expansion)
+# https://github.com/mathiasbynens/dotfiles/
+#
+shopt -s nocaseglob
+
+# This section from http://www.cyberciti.biz/howto/shell-primer-configuring-your-linux-unix-osx-environment/
+
+# Correct dir spellings
+shopt -q -s cdspell
+
+# Make sure display get updated when terminal window get resized
+shopt -q -s checkwinsize
+
+# Turn on the extended pattern matching features
+shopt -q -s extglob
+
+# Append rather than overwrite history on exit
+shopt -s histappend
+
+# Make multi-line commandsline in history
+shopt -q -s cmdhist
+
+# Get immediate notification of background job termination
+set -o notify
+
+# Disable [CTRL-D] which is used to exit the shell
+set -o ignoreeof
+
+#
+# History -> Option 3 of http://unix.stackexchange.com/a/18443
+#
+export HISTSIZE=1000000
+export HISTFILESIZE=1000000000
+HISTCONTROL=ignoredups:erasedups
+shopt -s histappend
+PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
