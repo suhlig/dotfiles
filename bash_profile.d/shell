@@ -25,7 +25,7 @@ shopt -q -s cmdhist
 set -o notify
 
 # Disable [CTRL-D] which is used to exit the shell
-set -o ignoreeof
+# set -o ignoreeof
 
 #
 # History -> Option 3 of http://unix.stackexchange.com/a/18443

@@ -1,6 +1,0 @@
-# load local bash profile additions
-if [ -d ~/.bash_profile.d ]; then
-  for local_file in ~/.bash_profile.d/*; do
-    source "$local_file"
-  done
-fi
