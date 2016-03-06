@@ -12,12 +12,6 @@ LANG="en_US.UTF-8"
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# Source misc. scripts
-if type -t brew 2>&1 >/dev/null; then
-  # grc - frontend for generic colouriser grcat(1)
-  source "`brew --prefix grc`/etc/grc.bashrc"
-fi
-
 # teach git about GitHub
 if type -t hub 2>&1 >/dev/null; then
   eval "$(hub alias -s)"
