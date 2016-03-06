@@ -1,0 +1,11 @@
+# Add local bin folder to PATH
+[[ -s ~/.local/bin ]] && export PATH=$PATH:~/.local/bin
+
+# load local overrides and additions
+for local_dir in ~/.local/.{bash_completion.d,bash_profile.d}; do
+  if [ -d "$local_dir" ]; then
+    for local_file in "$local_dir"/*; do
+      source "$local_file"
+    done
+  fi
+done

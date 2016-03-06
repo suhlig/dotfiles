@@ -16,21 +16,3 @@ LANG="en_US.UTF-8"
 if type -t hub 2>&1 >/dev/null; then
   eval "$(hub alias -s)"
 fi
-
-# load bash profile additions and completions
-for bash_dir in /usr/local/etc/bash_completion.d ~/.{bash_completion.d,bash_profile.d}; do
-  if [ -d "$bash_dir" ]; then
-    for local_file in "$bash_dir"/*; do
-      source "$local_file"
-    done
-  fi
-done
-
-# load local overrides and additions
-for local_dir in ~/.local/.{bash_completion.d,bash_profile.d}; do
-  if [ -d "$local_dir" ]; then
-    for local_file in "$local_dir"/*; do
-      source "$local_file"
-    done
-  fi
-done

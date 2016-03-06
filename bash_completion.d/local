@@ -1,0 +1,6 @@
+# load local bash completions
+if [ -d ~/.bash_completion.d ]; then
+  for local_file in ~/.bash_completion.d/*; do
+    source "$local_file"
+  done
+fi
