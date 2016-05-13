@@ -12,4 +12,4 @@
 #
 curl --netrc https://rubytapas.dpdcart.com/feed \
   | nokogiri -e '$_.xpath("//rss/channel/item/enclosure").each{|n| puts n["url"]}' \
-  | xargs -P 8 -n 1 wget --continue --no-clobber
+  | xargs -P 8 -n 1 wget --continue
