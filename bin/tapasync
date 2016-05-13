@@ -1,15 +1,44 @@
-#!/bin/bash +x
+#!/usr/bin/env ruby
 
-#
-# Sync Ruby Tapas eposides
-#
-# Subscribe at http://www.rubytapas.com/ and create an entry in ~/.netrc with
-# the the chosen login and password:
-#
-# machine rubytapas.dpdcart.com
-#   login me@example.com
-#   password passw0rd
-#
-curl --netrc https://rubytapas.dpdcart.com/feed \
-  | nokogiri -e '$_.xpath("//rss/channel/item/enclosure").each{|n| puts n["url"]}' \
-  | xargs -P 8 -n 1 wget --continue
+require 'nokogiri'
+require 'thread'
+require 'pathname'
+
+MAX_PANE_COUNT = 24
+MAX_FEED_AGE = 60 * 60 # seconds
+FEED_URL = 'https://rubytapas.dpdcart.com/feed'.freeze
+
+feed_file = Pathname('~/.rubytapas.xml').expand_path
+
+# is the file older than MAX_FEED_AGE?
+def expired?(file)
+  (Time.now - file.mtime) > MAX_FEED_AGE
+end
+
+# are at the limit?
+def maxed_out?
+  pane_count = `tmux list-panes`.lines.size
+  pane_count >= MAX_PANE_COUNT
+end
+
+# fetch feed if too old
+if !feed_file.exist? || expired?(feed_file)
+  `wget --continue #{FEED_URL} --output-document #{feed_file}`
+  feed_file.utime(Time.now, Time.now)
+end
+
+queue = Queue.new
+
+urls = Nokogiri::XML(feed_file.read).xpath('//rss/channel/item/enclosure')
+urls.map { |n| n['url'] }.shuffle.each do |url|
+  queue << url
+end
+
+Thread.new do
+  until queue.empty?
+    sleep(1) while maxed_out?
+    url = queue.pop
+    `tmux split-window -l 2 -v -d wget --continue #{url}`
+    `tmux resize-pane -y 9999` # max ourselves
+  end
+end.join
