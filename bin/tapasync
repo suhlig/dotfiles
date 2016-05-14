@@ -1,10 +1,10 @@
 #!/usr/bin/env ruby
 
 require 'nokogiri'
-require 'thread'
 require 'pathname'
+require 'uri'
 
-MAX_PANE_COUNT = 24
+MAX_PANE_COUNT = 10
 MAX_FEED_AGE = 60 * 60 # seconds
 FEED_URL = 'https://rubytapas.dpdcart.com/feed'.freeze
 
@@ -27,18 +27,18 @@ if !feed_file.exist? || expired?(feed_file)
   feed_file.utime(Time.now, Time.now)
 end
 
-queue = Queue.new
+queue = []
 
 urls = Nokogiri::XML(feed_file.read).xpath('//rss/channel/item/enclosure')
 urls.map { |n| n['url'] }.shuffle.each do |url|
   queue << url
 end
 
-Thread.new do
-  until queue.empty?
-    sleep(1) while maxed_out?
-    url = queue.pop
-    `tmux split-window -l 2 -v -d wget --continue #{url}`
-    `tmux resize-pane -y 9999` # max ourselves
-  end
-end.join
+until queue.empty?
+  sleep(1) while maxed_out?
+  url = queue.pop
+  logfile = Pathname(URI(url).path).split.last.sub_ext('.log')
+  wget = "wget --continue --append-output=#{logfile} --show-progress #{url}"
+  `tmux split-window -l 2 -v -d #{wget}`
+  `tmux resize-pane -y 9999` # max ourselves
+end
