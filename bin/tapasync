@@ -23,7 +23,7 @@ end
 
 # fetch feed if too old
 if !feed_file.exist? || expired?(feed_file)
-  `wget --continue #{FEED_URL} --output-document #{feed_file}`
+  `wget #{FEED_URL} --output-document #{feed_file}`
   feed_file.utime(Time.now, Time.now)
 end
 
