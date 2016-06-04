@@ -1,0 +1,12 @@
+#
+# Adds parameters to .gitignore.
+# Creates .gitignore if it doesn't exist.
+# Sorts .gitignore and removes any duplicates.
+#
+function git-ignore() {
+  for f in "$@"; do
+    echo "$f" >> .gitignore
+  done
+
+  sort -u -o .gitignore .gitignore
+}
