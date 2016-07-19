@@ -3,4 +3,3 @@
 if type -t fasd 2>&1 >/dev/null; then
   eval "$(fasd --init auto)"
 fi
-
