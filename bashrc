@@ -17,13 +17,6 @@ if type -t hub 2>&1 >/dev/null; then
   eval "$(hub alias -s)"
 fi
 
-# use homebrew's bash completions
-if [ -d $(brew --prefix)/etc/bash_completion.d/ ]; then
-  for local_file in $(brew --prefix)/etc/bash_completion.d/*; do
-    source "$local_file"
-  done
-fi
-
 # load local bash completions
 if [ -d ~/.bash_completion.d ]; then
   for local_file in ~/.bash_completion.d/*; do
