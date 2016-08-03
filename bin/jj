@@ -1,6 +1,0 @@
-#!/usr/bin/env ruby
-# jj - pretty print JSON from file or standard input
-
-require 'json'
-
-jj JSON[ARGF.read]

@@ -1,8 +1,0 @@
-#
-# Set PATH so it includes user's private .bin if it exists
-# Uses .bin instead of ~/bin until rcm understands UNDOTTED
-# See https://github.com/thoughtbot/rcm/pull/97
-#
-if [ -d "$HOME/.bin" ] ; then
-    PATH="$HOME/.bin:$PATH"
-fi
