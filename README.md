@@ -2,14 +2,15 @@
 
 ## Bootstrap
 
-1. Install [RCM](https://github.com/thoughtbot/rcm)
-1. `git clone https://github.com/nerab/dotfiles.git ~/.dotfiles && cd ~/.dotfiles`
-1. `rcup -t osx` or `rcup -t linux`
+```
+{yum|brew} install stow
+git clone git@github.com:suhlig/dotfiles.git .dotfiles
+cd  ~/.dotfiles
+stow common {linux|osx}
+```
 
-## Post-install steps
+# Issues
 
-* Link sublime preferences
+* `Bad owner or permissions on ~/.ssh/config`
 
-  `rcrc` cannot cope with files that do not start with a dot.
-
-        ln -s ~/.dotfiles/config/sublime-text-3/Packages/User/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/
+  git doesn't care about permissions except the `x` flag. `chmod 700 ~/.ssh/config` helps.
