@@ -1,0 +1,8 @@
+# https://www.virag.si/2012/01/web-video-encoding-tutorial-with-ffmpeg-0-9/
+function recode(){
+  local input=$1
+  local output=$2
+
+  # "-codec:a libfdk_aac" is not in homebrew's ffmpeg
+  ffmpeg -i "$input" -codec:v libx264 -profile:v high -preset slower -b:v 1000k -vf scale=-1:576 -threads 0 -b:a 196k "$output"
+}
