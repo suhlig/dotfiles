@@ -1,11 +1,13 @@
-CHRUBY=/usr/local/Cellar/chruby/0.3.9/share/chruby/chruby.sh
+if type -t brew 2>&1 >/dev/null; then
+  CHRUBY="$(brew --prefix)/share/chruby/chruby.sh"
 
-if [ -e $CHRUBY ]; then
-  source $CHRUBY
-fi
+  if [[ -f "$CHRUBY" ]]; then
+  source "$CHRUBY"
+  fi
 
-CHRUBY_AUTO=/usr/local/Cellar/chruby/0.3.9/share/chruby/auto.sh
+  CHRUBY_AUTO="$(brew --prefix)/share/chruby/auto.sh"
 
-if [ -e $CHRUBY_AUTO ]; then
-  source $CHRUBY_AUTO
+  if [[ -f "$CHRUBY_AUTO" ]]; then
+  source "$CHRUBY_AUTO"
+  fi
 fi
