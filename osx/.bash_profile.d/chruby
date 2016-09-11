@@ -2,12 +2,12 @@ if type -t brew 2>&1 >/dev/null; then
   CHRUBY="$(brew --prefix)/share/chruby/chruby.sh"
 
   if [[ -f "$CHRUBY" ]]; then
-  source "$CHRUBY"
+    source "$CHRUBY"
   fi
 
   CHRUBY_AUTO="$(brew --prefix)/share/chruby/auto.sh"
 
   if [[ -f "$CHRUBY_AUTO" ]]; then
-  source "$CHRUBY_AUTO"
+    source "$CHRUBY_AUTO"
   fi
 fi
