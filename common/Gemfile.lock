@@ -2,6 +2,9 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.2.0)
+    bitbar-thyme (0.1.0)
+      terminal-notifier
+      thyme
     byebug (8.2.4)
     coderay (1.1.1)
     method_source (0.8.2)
@@ -27,12 +30,16 @@ GEM
     ruby-progressbar (1.7.5)
     sequel (4.35.0)
     slop (3.6.0)
+    terminal-notifier (1.6.3)
+    thyme (0.0.15)
+      ruby-progressbar (~> 1.0)
     unicode-display_width (1.0.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  bitbar-thyme
   bundler
   pg
   pry
@@ -40,6 +47,8 @@ DEPENDENCIES
   rake
   rubocop
   sequel
+  terminal-notifier
+  thyme
 
 BUNDLED WITH
    1.12.4
