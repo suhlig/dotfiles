@@ -1,5 +1,10 @@
 authors:
   su: Steffen Uhlig;steffen
+  ibm: Steffen Uhlig,ibm
   fpu: Felix Paul Uhlig;felix
+  nerab: Nicholas E. Rabenau; nerab
 email:
   domain: familie-uhlig.net
+email_addresses:
+  nerab: nerab@gmx.at
+  ibm: Steffen.Uhlig@de.ibm.com
