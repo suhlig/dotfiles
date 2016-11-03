@@ -1,3 +1,5 @@
 alias be='bundle exec'
 alias bi='bundle install'
+
 alias bake='bundle exec rake'
+complete -o default -o nospace -F _rakecomplete bake
