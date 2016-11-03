@@ -1,2 +1,1 @@
-# Travis
-[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
