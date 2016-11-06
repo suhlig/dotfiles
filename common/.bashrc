@@ -1,5 +1,6 @@
 # exports
 export VISUAL=vi
+export EDITOR=vi
 export GEM_EDITOR='vi'
 
 # Prefer US English and use UTF-8
