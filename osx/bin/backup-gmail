@@ -1,0 +1,6 @@
+#!/bin/bash
+# see http://henrik.sommerfeld.nu/automatically-backup-your-gmail-account-on-a-schedule-with-gmvault-and-mac-os-x-launchd/
+
+logger -t gmvault "Starting"
+/usr/local/bin/gmvault sync -t quick steffen@familie-uhlig.net | logger -t gmvault
+logger -t gmvault "Finished"
