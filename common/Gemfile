@@ -10,3 +10,5 @@ gem 'pg'
 gem 'thyme'
 gem 'terminal-notifier'
 gem 'rb-readline'
+gem 'travis'
+
