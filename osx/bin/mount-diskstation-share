@@ -1,0 +1,5 @@
+#!/usr/bin/osascript
+
+tell application "Finder"
+  mount volume "smb://diskstation/videos" as user name "suhlig"
+end tell
