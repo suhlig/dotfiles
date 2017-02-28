@@ -14,5 +14,3 @@
 	default = simple
 [core]
 	excludesfile = ~/.gitignore
-[user]
-	useConfigOnly = true
