@@ -1,0 +1,4 @@
+# run a command in each subdirectory, if it has a git repository
+each-git-dir() {
+  find . -type d -name .git -maxdepth 2 -execdir sh -c "$*" \;
+}
