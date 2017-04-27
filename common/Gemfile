@@ -11,4 +11,5 @@ gem 'thyme'
 gem 'terminal-notifier'
 gem 'rb-readline'
 gem 'travis'
+gem 'bitbar_thyme'
 
