@@ -1,5 +1,2 @@
 # open ETN.fm with QuickTime
-# Update the URL with the following command:
-# curl http://etn.fm/playlists/etn1beta.m3u 2>/dev/null|tail -n 1
-# alias etn.fm="open -a '/Applications/QuickTime Player.app' http://129.241.93.106:8111"
-alias etn.fm="open -a '/Applications/QuickTime Player.app' http://toronto.etn.fm:8130"
+alias etn.fm="open -a '/Applications/QuickTime Player.app' http://ch1relay1.etn.fm:8130/listen.pls?sid=1"
