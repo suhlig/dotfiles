@@ -1,0 +1,56 @@
+#!/usr/bin/env ruby
+
+require 'thor'
+require 'json'
+require 'pathname'
+
+def cid(deployment)
+  files = Pathname.glob("/Users/suhlig/deployments/#{deployment}/" '*state.json')
+
+  case files.size
+  when 0
+    raise "Could not find state file for deployment '#{deployment}'"
+  when 1
+    JSON.parse(files.first.read)['current_vm_cid']
+  else
+    raise "Could not find unique match for state files between #{files}."
+  end
+end
+
+def controlvm(deployment, command)
+  %x(VBoxManage controlvm #{cid(deployment)} #{command})
+end
+
+class VMInfo
+  def initialize(cid)
+    %x(VBoxManage showvminfo #{cid} --machinereadable).lines.each do |line|
+      k,v = line.split('=')
+      self.class.class_exec do
+        define_method(k.downcase){v.tr('"', '')}
+      end
+    end
+  end
+end
+
+Class.new(Thor) do
+  desc 'start DEPLOYMENT', 'Start the VM that contains the given DEPLOYMENT'
+  def start(deployment)
+    puts %x(VBoxHeadless startvm --type headless #{cid(deployment)})
+  end
+
+  desc 'pause DEPLOYMENT', 'Pause the VM that contains the given DEPLOYMENT'
+  def pause(deployment)
+    puts controlvm(deployment, 'pause')
+  end
+
+  desc 'resume DEPLOYMENT', 'Resume the VM that contains the given DEPLOYMENT'
+  def resume(deployment)
+    puts controlvm(deployment, 'resume')
+  end
+
+  desc 'status DEPLOYMENT', 'Print the status of the VM that contains the given DEPLOYMENT'
+  def status(deployment)
+    cid = cid(deployment)
+    puts VMInfo.new(cid).vmstate
+  end
+end.start(ARGV)
