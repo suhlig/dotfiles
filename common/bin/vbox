@@ -35,7 +35,12 @@ end
 Class.new(Thor) do
   desc 'start DEPLOYMENT', 'Start the VM that contains the given DEPLOYMENT'
   def start(deployment)
-    puts %x(VBoxHeadless startvm --type headless #{cid(deployment)})
+    puts %x(VBoxManage startvm #{cid(deployment)} --type headless)
+  end
+
+  desc 'stop DEPLOYMENT', 'Stop the VM (saving state) that contains the given DEPLOYMENT'
+  def stop(deployment)
+    puts controlvm(deployment, 'savestate')
   end
 
   desc 'pause DEPLOYMENT', 'Pause the VM that contains the given DEPLOYMENT'
