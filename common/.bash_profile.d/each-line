@@ -1,0 +1,27 @@
+#
+# Run a command in each of the directories given as $1
+# If the line contains a file, it's directory is used.
+#
+# Example:
+#
+#   # Show the author of the most recent commit for the directory
+#   # listed in each line of /tmp/dockerfiles.txt
+#   each-line /tmp/dockerfiles.txt git log --format="%aN" -1
+#
+# This is partially based on https://unix.stackexchange.com/a/7012
+#
+each-line() {
+  while IFS= read -r line; do
+    (
+      if [[ -f $line ]]; then
+        cd $(dirname "$line")
+      else
+        cd "$line"
+      fi
+
+      pwd
+      ${@:2}
+      echo
+    )
+  done < "$1"
+}
