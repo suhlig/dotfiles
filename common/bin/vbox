@@ -3,6 +3,7 @@
 require 'thor'
 require 'json'
 require 'pathname'
+require 'shellwords'
 
 def cid(deployment)
   files = Pathname.glob("/Users/suhlig/deployments/#{deployment}/" '*state.json')
@@ -58,4 +59,10 @@ Class.new(Thor) do
     cid = cid(deployment)
     puts VMInfo.new(cid).vmstate
   end
+
+  desc 'snapshot DEPLOYMENT SNAPSHOT_NAME [DESCRIPTION]', 'Create a new snapshot of the VM that contains the given DEPLOYMENT'
+  def snapshot(deployment, name, description = nil)
+    puts %x(VBoxManage snapshot #{cid(deployment)} take #{name} --description #{Shellwords.escape(description)})
+  end
+
 end.start(ARGV)
