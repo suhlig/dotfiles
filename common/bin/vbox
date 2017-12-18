@@ -6,7 +6,7 @@ require 'pathname'
 require 'shellwords'
 
 def cid(deployment)
-  files = Pathname.glob("/Users/suhlig/deployments/#{deployment}/" '*state.json')
+  files = Pathname("~/deployments/vbox").expand_path.children.select{|c| c.fnmatch('*state.json')}
 
   case files.size
   when 0
