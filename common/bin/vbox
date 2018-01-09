@@ -30,6 +30,8 @@ class VMInfo
         define_method(k.downcase){v.tr('"', '')}
       end
     end
+
+    raise "Could not find information for VM with cid #{cid}" unless $?.success?
   end
 end
 
@@ -58,11 +60,12 @@ Class.new(Thor) do
   def status(deployment)
     cid = cid(deployment)
     puts VMInfo.new(cid).vmstate
+  rescue
+    warn "Error: #{$!.message}"
   end
 
   desc 'snapshot DEPLOYMENT SNAPSHOT_NAME [DESCRIPTION]', 'Create a new snapshot of the VM that contains the given DEPLOYMENT'
   def snapshot(deployment, name, description = nil)
     puts %x(VBoxManage snapshot #{cid(deployment)} take #{name} --description #{Shellwords.escape(description)})
   end
-
 end.start(ARGV)
