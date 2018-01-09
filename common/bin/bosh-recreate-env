@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eou pipefail
 
-state_file=~/deployments/vbox/state.json
+state_file=~/deployments/lite/state.json
 director_ip=192.168.50.6
 
 if [ -f "$state_file" ]; then
@@ -11,7 +11,7 @@ fi
 
 bosh create-env ~/workspace/bosh-deployment/bosh.yml \
   --state "$state_file" \
-  --vars-store ~/deployments/vbox/creds.yml \
+  --vars-store ~/deployments/lite/creds.yml \
   --ops-file ~/workspace/bosh-deployment/virtualbox/cpi.yml \
   --ops-file ~/workspace/bosh-deployment/virtualbox/outbound-network.yml \
   --ops-file ~/workspace/bosh-deployment/bosh-lite.yml \
@@ -23,8 +23,8 @@ bosh create-env ~/workspace/bosh-deployment/bosh.yml \
   --var internal_cidr=192.168.50.0/24 \
   --var outbound_network_name=NatNetwork
 
-bosh alias-env vbox -e https://192.168.50.6:25555/ --ca-cert <(bosh int ~/deployments/vbox/creds.yml --path /director_ssl/ca)
-bosh -e vbox login --client=admin --client-secret $(bosh int ~/deployments/vbox/creds.yml --path /admin_password)
+bosh alias-env lite -e https://192.168.50.6:25555/ --ca-cert <(bosh int ~/deployments/lite/creds.yml --path /director_ssl/ca)
+bosh -e lite login --client=admin --client-secret $(bosh int ~/deployments/lite/creds.yml --path /admin_password)
 
 echo "Adding route (requires sudo)"
 sudo route add -net 10.244.0.0/16 "$director_ip"
