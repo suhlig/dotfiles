@@ -24,6 +24,8 @@ end
 
 class VMInfo
   def initialize(cid)
+    raise 'Missing cid' if cid.to_s.empty?
+
     %x(VBoxManage showvminfo #{cid} --machinereadable).lines.each do |line|
       k,v = line.split('=')
       self.class.class_exec do
@@ -59,7 +61,12 @@ Class.new(Thor) do
   desc 'status DEPLOYMENT', 'Print the status of the VM that contains the given DEPLOYMENT'
   def status(deployment)
     cid = cid(deployment)
-    puts VMInfo.new(cid).vmstate
+
+    if cid.empty?
+      warn "Could not find a VM for deployment #{deployment}"
+    else
+      puts VMInfo.new(cid).vmstate
+    end
   rescue
     warn "Error: #{$!.message}"
   end
