@@ -23,8 +23,19 @@ bosh create-env ~/workspace/bosh-deployment/bosh.yml \
   --var internal_cidr=192.168.50.0/24 \
   --var outbound_network_name=NatNetwork
 
-bosh alias-env lite -e https://192.168.50.6:25555/ --ca-cert <(bosh int ~/deployments/lite/creds.yml --path /director_ssl/ca)
+bosh alias-env lite -e https://$director_ip:25555/ --ca-cert <(bosh int ~/deployments/lite/creds.yml --path /director_ssl/ca)
 bosh -e lite login --client=admin --client-secret $(bosh int ~/deployments/lite/creds.yml --path /admin_password)
 
 echo "Adding route (requires sudo)"
-sudo route add -net 10.244.0.0/16 "$director_ip"
+
+case "$OSTYPE" in
+  linux*)
+    sudo ip route add 10.244.0.0/16 via "$director_ip"
+    ;;
+  darwin*)
+    sudo route add -net 10.244.0.0/16 "$director_ip"
+    ;;
+  *)
+    echo "Error: Cannot set route due to unknown OS $OSTYPE."
+    ;;
+esac
