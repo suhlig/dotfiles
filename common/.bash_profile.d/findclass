@@ -1,0 +1,4 @@
+# find a class in all jars under the given directory (defaults to .)
+function findclass() {
+	find ${2:-.} -name '*.jar' -print0 |  xargs -0 -I '{}' sh -c 'jar tf {} | grep "${1?'"'"'Error: Missing class name'"'"'}".class && echo {}'
+}
