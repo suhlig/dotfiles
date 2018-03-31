@@ -1,0 +1,13 @@
+prefix=/usr/local
+
+CHRUBY="$prefix/share/chruby/chruby.sh"
+
+if [[ -f "$CHRUBY" ]]; then
+  source "$CHRUBY"
+fi
+
+CHRUBY_AUTO="$prefix/share/chruby/auto.sh"
+
+if [[ -f "$CHRUBY_AUTO" ]]; then
+  source "$CHRUBY_AUTO"
+fi
