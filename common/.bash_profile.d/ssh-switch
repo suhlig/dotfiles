@@ -1,8 +1,10 @@
 function ssh-switch() {
-  cd ~/.ssh/identities
-  stow --override id_rsa ${1:?Error: Missing identity (one of $(ls -m ~/.ssh/identities))}
-  ssh-add -D
-  ssh-add
-  echo Active identity is:
-  ssh-add -l
+  (
+    cd ~/.ssh/identities
+    stow --override id_rsa ${1:?Error: Missing identity (one of $(ls -m ~/.ssh/identities))}
+    ssh-add -D
+    ssh-add
+    echo Active identity is:
+    ssh-add -l
+  )
 }
