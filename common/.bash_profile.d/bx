@@ -1,0 +1,3 @@
+# IBM Cloud CLI (bx)
+
+[ -f /usr/local/Bluemix/bx/bash_autocomplete ] && source /usr/local/Bluemix/bx/bash_autocomplete
