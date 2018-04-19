@@ -1,3 +1,4 @@
 alias gd='git diff'
 alias gdc='git diff --cached'
 alias g='git status'
+alias gpr='git pull --rebase'
