@@ -1,6 +1,9 @@
 # What I usually install on a fresh box
 
+Using `apt`:
+
 ```
+autokey-gtk
 build-essential
 curl
 direnv
@@ -23,6 +26,11 @@ vim
 vlc
 xclip
 ```
+
+Using other means:
+
+* https://launchpad.net/diodon
+* Slack (google how to get it; snap seems to work fine)
 
 # Additional settings
 
