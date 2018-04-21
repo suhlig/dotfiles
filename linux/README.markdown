@@ -24,7 +24,7 @@ tmux
 unattended-upgrades
 vim
 vlc
-xclip
+xsel
 ```
 
 Using other means:
