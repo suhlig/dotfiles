@@ -1,0 +1,16 @@
+# For a complete list of hooks, see:
+# https://github.com/brigade/overcommit/tree/master/lib/overcommit/hook
+
+PreCommit:
+  TrailingWhitespace:
+    enabled: true
+
+  ReStow:
+    enabled: true
+    description: 'Re-stow all files'
+
+BundleInstall:
+    enabled: true
+
+BundleCheck:
+    enabled: true
