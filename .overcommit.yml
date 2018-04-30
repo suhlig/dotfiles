@@ -5,6 +5,7 @@ PreCommit:
   TrailingWhitespace:
     enabled: true
 
+PostCheckout:
   ReStow:
     enabled: true
     description: 'Re-stow all files'
