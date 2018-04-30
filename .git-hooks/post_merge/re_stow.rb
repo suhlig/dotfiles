@@ -1,4 +1,4 @@
-module Overcommit::Hook::PostCheckout
+module Overcommit::Hook::PostMerge
   class ReStow < Base
     def run
       result = execute("stow --restow common #{platform}")
