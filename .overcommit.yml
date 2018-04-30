@@ -8,6 +8,7 @@ PreCommit:
   ReStow:
     enabled: true
     description: 'Re-stow all files'
+    required_executable: 'stow'
 
 BundleInstall:
     enabled: true

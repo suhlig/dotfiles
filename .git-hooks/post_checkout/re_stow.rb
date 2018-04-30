@@ -1,12 +1,21 @@
 module Overcommit::Hook::PostCheckout
   class ReStow < Base
     def run
-      warn "Running #{self.class}"
-      warn applicable_files
-
-      # result = execute(command)
-      # return :fail, result.stdout unless result.success?
+      result = execute("stow --restow common #{platform}")
+      return :fail, result.stdout unless result.success?
       :pass
+    end
+
+    private
+
+    def platform
+      if Overcommit::OS.linux?
+        'linux'
+      elsif Overcommit::OS.mac?
+        'osx'
+      else
+        raise "Unsupported platform. Must be either 'osx' or 'linux'."
+      end
     end
   end
 end
