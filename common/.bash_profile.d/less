@@ -12,11 +12,10 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
 # brew install lesspipe
 if type lesspipe.sh >/dev/null 2>&1; then
-  export LESSOPEN="|/usr/local/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
+  export LESSOPEN="|$(which lesspipe.sh) %s" LESS_ADVANCED_PREPROCESSOR=1
 fi
 
 # pip2 install Pygments
 if type pygmentize >/dev/null 2>&1; then
   export LESSCOLORIZER='pygmentize'
 fi
-
