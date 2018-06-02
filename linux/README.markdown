@@ -6,6 +6,7 @@
    atom
    autokey-gtk
    build-essential
+   curl
    dropbox
    nvidia-352
    nvidia-settings
