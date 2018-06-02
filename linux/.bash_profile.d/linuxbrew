@@ -1,3 +1,4 @@
+# http://linuxbrew.sh/
 BREW_HOME=/home/linuxbrew
 
 if [ -d "$BREW_HOME" ]; then

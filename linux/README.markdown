@@ -11,7 +11,10 @@ nvidia-settings
 software-properties-common
 unattended-upgrades
 vlc
+xsel
 ```
+
+I also had `libxml2-dev`, but this may be overridden by the one in the Brewfile.
 
 * Using `linuxbrew`:
 
