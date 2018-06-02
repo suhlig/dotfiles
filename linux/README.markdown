@@ -1,34 +1,35 @@
 # What I usually install on a fresh box
 
-* Using `apt`:
+1. Using `apt`:
 
-```
-autokey-gtk
-build-essential
-dropbox
-nvidia-352
-nvidia-settings
-software-properties-common
-unattended-upgrades
-vlc
-xsel
-```
+   ```
+   atom
+   autokey-gtk
+   build-essential
+   dropbox
+   nvidia-352
+   nvidia-settings
+   software-properties-common
+   unattended-upgrades
+   vlc
+   xsel
+   ```
 
-I also had `libxml2-dev`, but this may be overridden by the one in the Brewfile.
+   I also had `libxml2-dev`, but the one in the Brewfile may be sufficient.
 
-* Using `linuxbrew`:
+1. Using `linuxbrew`:
 
-Assuming that `stow` already ran and linked the `Brewfile`:
+  Assuming that `stow` already ran and linked the `Brewfile`:
 
-```bash
-cd
-brew bundle
-```
+  ```bash
+  cd
+  brew bundle
+  ```
 
-Using other means:
+1. Using other means:
 
-* https://launchpad.net/diodon
-* Slack (google how to get it; snap seems to work fine)
+   * https://launchpad.net/diodon
+   * Slack (google how to get it; snap seems to work fine)
 
 # Additional settings
 
