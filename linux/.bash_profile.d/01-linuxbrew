@@ -1,0 +1,8 @@
+# http://linuxbrew.sh/
+BREW_HOME="$HOME/.linuxbrew"
+
+if [ -d "$BREW_HOME" ]; then
+  export PATH="$BREW_HOME/bin:$PATH"
+  export MANPATH="$BREW_HOME/share/man:$MANPATH"
+  export INFOPATH="$BREW_HOME/share/info:$INFOPATH"
+fi
