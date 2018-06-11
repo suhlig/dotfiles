@@ -3,4 +3,3 @@ if type -t brew 2>&1 >/dev/null; then
   grc_file="`brew --prefix`/etc/grc.bashrc"
   [[ -f "$grc_file" ]] && source "$grc_file"
 fi
-
