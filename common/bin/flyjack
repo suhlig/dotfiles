@@ -6,6 +6,8 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+fly "$@" status # exits the script if not logged in
+
 # We keep the following two lines separate so that pressing escape in peco cancels the whole thing
 build_number=$(fly "$@" builds | peco --on-cancel error --prompt build | cut -d ' ' -f 1)
 fly "$@" intercept -b "$build_number"
