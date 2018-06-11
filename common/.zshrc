@@ -53,13 +53,37 @@ ZSH_THEME="spaceship"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
+  battery
+  boot2docker
   bundler
+  chruby
+  colored-man-pages
+  colorize
+  docker
+  docker-compose
+  docker-machine
+  git
+  git-prompt
+  github
+  golang
+  gpg-agent
+  jsontools
+  kube-ps1
+  kubectl
+  minikube
+  npm
   osx
   pass
+  postgres
+  python
   rake
-  chruby
   ruby
+  thor
+  tmux
+  tmuxinator
+  vagrant
+  z
+  zsh_reload
 )
 
 source $ZSH/oh-my-zsh.sh
