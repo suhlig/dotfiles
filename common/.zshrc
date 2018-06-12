@@ -55,20 +55,18 @@ ZSH_THEME="spaceship"
 plugins=(
   battery
   boot2docker
-  bundler
   chruby
   colored-man-pages
   colorize
   docker
   docker-compose
   docker-machine
-  git
+  fasd
   git-prompt
   github
   golang
   gpg-agent
   jsontools
-  kube-ps1
   kubectl
   minikube
   npm
@@ -82,7 +80,6 @@ plugins=(
   tmux
   tmuxinator
   vagrant
-  z
   zsh_reload
 )
 
@@ -123,4 +120,29 @@ source /usr/local/Bluemix/bx/zsh_autocomplete
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
 eval "$(direnv hook zsh)"
+eval "$(fasd --init posix-alias zsh-hook)"
+
+# git
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias g='git status'
+alias gpr='git pull --rebase'
+
+# ruby
+alias be='bundle exec'
+alias bi='bundle install'
+alias bake='bundle exec rake'
+
+# docker
+alias docker-gc-containers="docker ps -a | awk 'NR > 1 {print $1}' | xargs docker rm"
+alias ctop='docker run --name ctop -it --rm -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
+
+# misc
+alias urlencode="ruby -r cgi -e 'puts CGI.escape ARGF.read'"
+alias urldecode="ruby -r cgi -e 'puts CGI.unescape ARGF.read'"
+alias yaml_pp='ruby -r yaml -r pp -e "pp YAML::load(ARGF.read)"'
+alias yaml2json='ruby -r yaml -r json -e "puts YAML::load(ARGF.read).to_json"'
+alias wsk='bx wsk'
+alias serve='ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => 3000, :DocumentRoot => ARGV[0] || Dir.pwd); trap(\"INT\") { s.shutdown }; s.start"'
+alias now='date "+%Y-%m-%d_%H%M"'
 
