@@ -116,11 +116,11 @@ alias ohmyzsh="vim ~/.oh-my-zsh"
 
 # IBM Cloud CLI
 source /usr/local/Bluemix/bx/zsh_autocomplete
+alias wsk='bx wsk'
 
+# Ruby
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
-eval "$(direnv hook zsh)"
-eval "$(fasd --init posix-alias zsh-hook)"
 
 # git
 alias gd='git diff'
@@ -142,7 +142,8 @@ alias urlencode="ruby -r cgi -e 'puts CGI.escape ARGF.read'"
 alias urldecode="ruby -r cgi -e 'puts CGI.unescape ARGF.read'"
 alias yaml_pp='ruby -r yaml -r pp -e "pp YAML::load(ARGF.read)"'
 alias yaml2json='ruby -r yaml -r json -e "puts YAML::load(ARGF.read).to_json"'
-alias wsk='bx wsk'
 alias serve='ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => 3000, :DocumentRoot => ARGV[0] || Dir.pwd); trap(\"INT\") { s.shutdown }; s.start"'
 alias now='date "+%Y-%m-%d_%H%M"'
+eval "$(direnv hook zsh)"
+eval "$(fasd --init posix-alias zsh-hook)"
 
