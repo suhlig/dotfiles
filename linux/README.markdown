@@ -11,6 +11,7 @@
    nvidia-352
    nvidia-settings
    software-properties-common
+   stow
    unattended-upgrades
    vlc
    xsel
