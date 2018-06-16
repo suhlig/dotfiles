@@ -1,9 +1,13 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-if [[ -d $HOME/.linuxbrew/bin ]]; then
-  export PATH=$HOME/.linuxbrew/bin:$PATH
-fi
+for brew_home in "$HOME/.linuxbrew" /home/linuxbrew/.linuxbrew; do
+  if [[ -d "$brew_home" ]]; then
+    export PATH="$brew_home/bin:$PATH"
+    export MANPATH="$brew_home/share/man:$MANPATH"
+    export INFOPATH="$brew_home/share/info:$INFOPATH"
+  fi
+done
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
