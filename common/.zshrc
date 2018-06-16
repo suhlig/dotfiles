@@ -124,10 +124,6 @@ alias ohmyzsh="vim ~/.oh-my-zsh"
 source /usr/local/Bluemix/bx/zsh_autocomplete
 alias wsk='bx wsk'
 
-# Ruby
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
-
 # git
 alias gd='git diff'
 alias gdc='git diff --cached'
@@ -152,4 +148,3 @@ alias serve='ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => 3000, :Doc
 alias now='date "+%Y-%m-%d_%H%M"'
 eval "$(direnv hook zsh)"
 eval "$(fasd --init posix-alias zsh-hook)"
-
