@@ -1,8 +1,13 @@
 # http://linuxbrew.sh/
-BREW_HOME="$HOME/.linuxbrew"
+BREW_HOMES=(
+  "$HOME/.linuxbrew"
+  /home/linuxbrew/.linuxbrew
+)
 
-if [ -d "$BREW_HOME" ]; then
-  export PATH="$BREW_HOME/bin:$PATH"
-  export MANPATH="$BREW_HOME/share/man:$MANPATH"
-  export INFOPATH="$BREW_HOME/share/info:$INFOPATH"
-fi
+for BREW_HOME in ${BREW_HOMES[@]}; do
+  if [ -d "$BREW_HOME" ]; then
+    export PATH="$BREW_HOME/bin:$PATH"
+    export MANPATH="$BREW_HOME/share/man:$MANPATH"
+    export INFOPATH="$BREW_HOME/share/info:$INFOPATH"
+  fi
+done
