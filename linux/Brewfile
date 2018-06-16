@@ -1,19 +1,24 @@
-tap "git-duet/tap"
-tap "jthomas/tools"
 brew "chruby"
 brew "curl"
 brew "direnv"
 brew "fasd"
 brew "git"
-brew "git-duet/tap/git-duet"
 brew "graphviz"
 brew "htop"
 brew "libxml2"
 brew "ruby-install"
-brew "the_silver_searcher"
+brew "the_silver_searcher" # ag
 brew "openssh"
+brew "ripgrep"
 brew "stow"
 brew "task"
 brew "tmux"
 brew "vim"
-# brew "wsk" # TODO Needs update for Linux
+brew "zsh"
+
+tap "git-duet/tap"
+brew "git-duet/tap/git-duet"
+
+# TODO Needs update for Linux
+# tap "jthomas/tools"
+# brew "wsk"
