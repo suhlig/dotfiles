@@ -21,6 +21,8 @@ export PATH=$GOPATH/bin:$PATH
 # ZSH_THEME="robbyrussell"
 ZSH_THEME="spaceship"
 
+SPACESHIP_KUBECONTEXT_SHOW=false
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
