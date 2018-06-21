@@ -1,0 +1,15 @@
+[submodule "common/.vim/bundle/vim-sensible"]
+	path = common/.vim/bundle/vim-sensible
+	url = https://github.com/tpope/vim-sensible
+[submodule "common/.vim/bundle/ack.vim"]
+	path = common/.vim/bundle/ack.vim
+	url = https://github.com/mileszs/ack.vim
+[submodule "common/.vim/bundle/fzf.vim"]
+	path = common/.vim/bundle/fzf.vim
+	url = https://github.com/junegunn/fzf.vim
+[submodule "common/.vim/bundle/vim-go"]
+	path = common/.vim/bundle/vim-go
+	url = https://github.com/fatih/vim-go
+[submodule "common/.vim/bundle/vim-ruby"]
+	path = common/.vim/bundle/vim-ruby
+	url = https://github.com/vim-ruby/vim-ruby
