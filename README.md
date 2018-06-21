@@ -2,11 +2,21 @@
 
 ## Bootstrap
 
-```
-{yum|brew} install stow
-git clone git@github.com:suhlig/dotfiles.git .dotfiles
-cd  ~/.dotfiles
+```bash
+brew install stow
+cd # the target directory needs to be directly underneath $HOME
+git clone --recurse-submodules -j8 git@github.com:suhlig/dotfiles.git .dotfiles
+cd  .dotfiles
 stow common {linux|osx}
+```
+
+## Updating
+
+```bash
+cd ~/.dotfiles
+git pull
+git submodule update --init --remote --merge
+stow --restow common osx
 ```
 
 ## Switch SSH identities
