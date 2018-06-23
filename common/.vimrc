@@ -21,3 +21,6 @@ set backspace=indent,eol,start
 " delete trailing blanks for the given filetypes
 autocmd FileType javascript,python,ruby,java,go autocmd BufWritePre * :%s/\s\+$//e
 
+" https://github.com/junegunn/fzf#as-vim-plugin
+set rtp+=/usr/local/opt/fzf
+
