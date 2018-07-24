@@ -1,0 +1,17 @@
+#!/bin/bash
+# Converts tabs to spaces in all files in the current
+# and all subdirectories. Does not modify .git.
+#
+# See https://stackoverflow.com/a/43523362 for a discussion.
+
+set -euo pipefail
+IFS=$'\n\t'
+
+for tool in bash find expand sponge; do
+  if ! type -t "$tool" 2>&1 >/dev/null; then
+    echo "Missing required tool $tool"
+    exit 1
+  fi
+done
+
+find . -not -path '*/.git/*' -type f -exec bash -c 'expand -t 2 "$0" | sponge "$0"' {} \;
