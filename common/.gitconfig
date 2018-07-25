@@ -1,6 +1,12 @@
 [user]
+  name = Steffen Uhlig
+
 [credential]
-	helper = cache --timeout=86400
+  helper = cache --timeout=86400
+
+[color]
+  ui = auto
+
 [alias]
   co = checkout
   ci = duet-commit
@@ -11,7 +17,16 @@
   type = cat-file -t
   dump = cat-file -p
   logtree = log --graph --oneline --all --decorate
+
 [push]
-	default = simple
+  default = simple
+
+[pull]
+  rebase = true
+
+[rebase]
+  autoStash = true
+
 [core]
-	excludesfile = ~/.gitignore
+  excludesfile = ~/.gitignore
+
