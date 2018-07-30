@@ -157,3 +157,10 @@ alias serve='ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => 3000, :Doc
 alias now='date "+%Y-%m-%d_%H%M"'
 eval "$(direnv hook zsh)"
 eval "$(fasd --init posix-alias zsh-hook)"
+
+search-and-replace() {
+    local keyword=${1?Keyword not present}
+    local replacement=${2?Replacement not present}
+
+    rg -l $keyword -g '!vendor/' | xargs -L 1 -o vim -c "%s/$keyword\C/$replacement/gc"
+}
