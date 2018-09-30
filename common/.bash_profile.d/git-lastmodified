@@ -1,0 +1,10 @@
+#!/bin/bash
+# git-lastmodified
+# https://serverfault.com/a/401450
+
+set -euo pipefail
+IFS=$'\n\t'
+
+git ls-tree -r --name-only HEAD | while read filename; do
+  echo "$(git --no-pager log -1 --format="%ai" -- "$filename") $filename"
+done | sort
