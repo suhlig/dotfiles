@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+#
+# Print subdirectories under git control that are dirty
+#
+readonly dir=$1
+: ${dir:="."}
+
+for d in $(find "$dir" -type d -name .git -printf '%h\0'); do
+  (
+    cd "$d"
+    test -z "$(git status --porcelain)" || pwd
+  )
+done

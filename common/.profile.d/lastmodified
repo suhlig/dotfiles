@@ -1,5 +1,5 @@
 # Adapted from https://stackoverflow.com/a/7448828/3212907
-lastmodified(){
+lastmodified() {
   if [[ $# -eq "0" ]]; then
     find . -type f -print0 | xargs -0 gstat --format '%Y :%y %n' | sort -n | cut -d: -f2-
   else

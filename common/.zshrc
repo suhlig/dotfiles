@@ -131,36 +131,11 @@ alias ohmyzsh="vim ~/.oh-my-zsh"
 
 # IBM Cloud CLI
 source /usr/local/Bluemix/bx/zsh_autocomplete
-alias wsk='bx wsk'
 
-# git
-alias gd='git diff'
-alias gdc='git diff --cached'
-alias g='git status'
-alias gpr='git pull --rebase'
-
-# ruby
-alias be='bundle exec'
-alias bi='bundle install'
-alias bake='bundle exec rake'
-
-# docker
-alias docker-gc-containers="docker ps -a | awk 'NR > 1 {print $1}' | xargs docker rm"
-alias ctop='docker run --name ctop -it --rm -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
-
-# misc
-alias urlencode="ruby -r cgi -e 'puts CGI.escape ARGF.read'"
-alias urldecode="ruby -r cgi -e 'puts CGI.unescape ARGF.read'"
-alias yaml_pp='ruby -r yaml -r pp -e "pp YAML::load(ARGF.read)"'
-alias yaml2json='ruby -r yaml -r json -e "puts YAML::load(ARGF.read).to_json"'
-alias serve='ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => 3000, :DocumentRoot => ARGV[0] || Dir.pwd); trap(\"INT\") { s.shutdown }; s.start"'
-alias now='date "+%Y-%m-%d_%H%M"'
 eval "$(direnv hook zsh)"
 eval "$(fasd --init posix-alias zsh-hook)"
 
-search-and-replace() {
-    local keyword=${1?Keyword not present}
-    local replacement=${2?Replacement not present}
-
-    rg -l $keyword -g '!vendor/' | xargs -L 1 -o vim -c "%s/$keyword\C/$replacement/gc"
-}
+# load common and zsh-specific profile settings
+find -L ~/.profile.d ~/.zsh_profile.d ~/.completion.d ~/.zsh_completion.d -type f | while read file; do
+  source "$file"
+done

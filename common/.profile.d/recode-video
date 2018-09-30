@@ -1,5 +1,5 @@
 # https://www.virag.si/2012/01/web-video-encoding-tutorial-with-ffmpeg-0-9/
-function recode(){
+recode() {
   local input=$1
   local output=$2
 

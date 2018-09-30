@@ -1,12 +1,15 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
 #
 # Adds parameters to .gitignore.
 # Creates .gitignore if it doesn't exist.
 # Sorts .gitignore and removes any duplicates.
 #
-function git-ignore() {
-  for f in "$@"; do
-    echo "$f" >> .gitignore
-  done
+for f in "$@"; do
+  echo "$f" >> .gitignore
+done
 
-  sort -u -o .gitignore .gitignore
-}
+sort -u -o .gitignore .gitignore

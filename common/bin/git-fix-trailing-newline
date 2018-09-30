@@ -1,4 +1,8 @@
- #!/bin/bash
+#!/bin/bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
 #
 # Ensure all git-dirty files have a trailing newline
 #

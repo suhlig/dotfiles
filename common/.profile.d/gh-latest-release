@@ -2,7 +2,7 @@
 # Fetch the latest release of a github repo
 # https://www.starkandwayne.com/blog/how-to-download-the-latest-release-from-github/#comment-2495056152
 #
-function gh-latest-release(){
+gh-latest-release() {
   local repo="$1"
 	[[ -z $repo ]] && { echo "${FUNCNAME}: Error - repo not specified"; return 1; }
 	echo "Fetching latest release of $repo"

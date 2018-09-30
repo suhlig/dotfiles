@@ -1,4 +1,4 @@
 # http://www.cyberciti.biz/faq/bsd-appleosx-linux-bash-shell-run-command-n-times/#comment-60204
 # Call like
 # repeat 3 echo Hello World
-repeat() { local i n; n=$1; shift; for ((i=1; i<=n; i++)); do "$@"; done; }
+repeat () { local i n; n=$1; shift; for ((i=1; i<=n; i++)); do "$@"; done; }
