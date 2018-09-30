@@ -24,3 +24,4 @@ autocmd FileType javascript,python,ruby,java,go autocmd BufWritePre * :%s/\s\+$/
 " https://github.com/junegunn/fzf#as-vim-plugin
 set rtp+=/usr/local/opt/fzf
 
+" https://github.com/ElmCast/elm-vim
