@@ -7,7 +7,7 @@ IFS=$'\n\t'
 # All args get passed to all fly invocations as global fly params (which
 # unfortunately prevents us from passing build- or intercept-specific parameters)
 
-fly "$@" status > /dev/null  2>&1 # exits the script if not logged in
+fly "$@" status > /dev/null 2>&1 # exits the script if not logged in
 
 # We keep the following two lines separate so that pressing escape in peco cancels the whole thing
 build_number=$(fly "$@" builds | peco --on-cancel error --prompt build | cut -d ' ' -f 1)

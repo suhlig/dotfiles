@@ -1,0 +1,1 @@
+[ -f /usr/local/ibmcloud/autocomplete/zsh_autocomplete ] && source /usr/local/ibmcloud/autocomplete/zsh_autocomplete

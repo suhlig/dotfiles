@@ -1,0 +1,11 @@
+for brew_home in "$HOME/.linuxbrew" /home/linuxbrew/.linuxbrew; do
+  if [[ -d "$brew_home" ]]; then
+    export PATH="$brew_home/bin:$PATH"
+    export MANPATH="$brew_home/share/man:$MANPATH"
+    export INFOPATH="$brew_home/share/info:$INFOPATH"
+  fi
+done
+
+if type brew 2>&1 >/dev/null && test -d "$(brew --prefix)/sbin"; then
+  export PATH=$PATH:"$(brew --prefix)/sbin"
+fi

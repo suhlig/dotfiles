@@ -1,0 +1,1 @@
+[ -f /usr/local/ibmcloud/autocomplete/bash_autocomplete ] && source /usr/local/ibmcloud/autocomplete/bash_autocomplete

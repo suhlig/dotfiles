@@ -1,19 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-for brew_home in "$HOME/.linuxbrew" /home/linuxbrew/.linuxbrew; do
-  if [[ -d "$brew_home" ]]; then
-    export PATH="$brew_home/bin:$PATH"
-    export MANPATH="$brew_home/share/man:$MANPATH"
-    export INFOPATH="$brew_home/share/info:$INFOPATH"
-  fi
-done
-
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-
-export GOPATH=$HOME/workspace/go
-export PATH=$GOPATH/bin:$PATH
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -74,15 +63,12 @@ plugins=(
   docker
   docker-compose
   docker-machine
-  fasd
   git-prompt
   github
   golang
   gpg-agent
   jsontools
   kubectl
-  minikube
-  npm
   osx
   pass
   postgres
@@ -97,43 +83,6 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-export EDITOR='vim'
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-alias zshconfig="vim ~/.zshrc"
-alias ohmyzsh="vim ~/.oh-my-zsh"
-
-# IBM Cloud CLI
-source /usr/local/Bluemix/bx/zsh_autocomplete
-
-eval "$(direnv hook zsh)"
-eval "$(fasd --init posix-alias zsh-hook)"
 
 # load common and zsh-specific profile settings
 find -L ~/.profile.d ~/.zsh_profile.d ~/.completion.d ~/.zsh_completion.d -type f | while read file; do
