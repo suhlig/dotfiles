@@ -1,12 +1,9 @@
-# Folder view configuration files
+common/.vim/.netrwhist
+common/Gemfile.lock
+.rake_tasks
 .DS_Store
 Desktop.ini
-
-# Thumbnail cache files
 ._*
 Thumbs.db
-
-# Files that might appear on external disks
 .Spotlight-V100
 .Trashes
-.DS_Store
