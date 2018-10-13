@@ -56,7 +56,6 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   battery
-  boot2docker
   chruby
   colored-man-pages
   colorize
@@ -67,15 +66,10 @@ plugins=(
   github
   golang
   gpg-agent
-  jsontools
   kubectl
-  osx
   pass
-  postgres
   python
-  rake
-  ruby
-  thor
+  rake-fast
   tmux
   tmuxinator
   vagrant
