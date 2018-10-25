@@ -1,3 +1,3 @@
-if type -t hcloud 2>&1 >/dev/null; then
+if type -t hcloud >/dev/null 2>&1; then
   source <(hcloud completion bash)
 fi

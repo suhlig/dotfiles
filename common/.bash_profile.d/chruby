@@ -1,4 +1,4 @@
-if type -t brew 2>&1 >/dev/null; then
+if type -t brew >/dev/null 2>&1; then
   CHRUBY="$(brew --prefix)/share/chruby/chruby.sh"
 
   if [[ -f "$CHRUBY" ]]; then

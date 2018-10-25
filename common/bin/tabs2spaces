@@ -8,7 +8,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 for tool in bash find expand sponge; do
-  if ! type -t "$tool" 2>&1 >/dev/null; then
+  if ! type -t "$tool" >/dev/null 2>&1; then
     echo "Missing required tool $tool"
     exit 1
   fi

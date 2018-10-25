@@ -1,8 +1,8 @@
 function keychain(){
   # Keychain access idea from https://github.com/defunkt/gist
-  
+
   if [ "$1" ]; then
-    security 2>&1 >/dev/null find-internet-password -gs "$1" | ruby -e 'puts $1 if STDIN.gets =~ /^password: \"(.*)\"$/'
+    security >/dev/null 2>&1 find-internet-password -gs "$1" | ruby -e 'puts $1 if STDIN.gets =~ /^password: \"(.*)\"$/'
   else
     echo No argument given. The following passwords are in your chain: >&2
     security dump-keychain | ruby -e 'ARGF.each_line{|line| puts $1 if line =~ /\"srvr\"<blob>=.(.*).$/}'

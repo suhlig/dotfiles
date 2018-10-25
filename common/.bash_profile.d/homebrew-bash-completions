@@ -1,5 +1,5 @@
 # use homebrew's bash completions
-if type -t brew 2>&1 >/dev/null; then
+if type -t brew >/dev/null 2>&1; then
   if [ -d $(brew --prefix)/etc/bash_completion.d/ ]; then
     for local_file in $(brew --prefix)/etc/bash_completion.d/*; do
       source "$local_file"

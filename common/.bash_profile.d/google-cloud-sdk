@@ -1,4 +1,4 @@
-if type -t brew 2>&1 >/dev/null; then
+if type -t brew >/dev/null 2>&1; then
   google_cloud_sdk=`brew --prefix`/Caskroom/google-cloud-sdk/latest/google-cloud-sdk
 
   if [ -d "$google_cloud_sdk" ]; then

@@ -1,5 +1,5 @@
 # grc - frontend for generic colouriser grcat(1)
-if type brew 2>&1 >/dev/null; then
+if type brew >/dev/null 2>&1; then
   grc_file="`brew --prefix`/etc/grc.bashrc"
   [[ -f "$grc_file" ]] && source "$grc_file"
 fi
