@@ -2,7 +2,7 @@
 
 ## Bootstrap
 
-```bash
+```sh
 brew install stow
 cd # the target directory needs to be directly underneath $HOME
 git clone --recurse-submodules -j8 git@github.com:suhlig/dotfiles.git .dotfiles
@@ -12,7 +12,7 @@ stow common {linux|osx}
 
 ## Updating
 
-```bash
+```sh
 cd ~/.dotfiles
 git pull
 git submodule update --init --remote --merge
@@ -25,7 +25,7 @@ Separating SSH identities, e.g. between different projects, can be done with `st
 
 1. Put the keys into separate directories under `.ssh/identities`:
 
-```bash
+```sh
 $ tree ~/.ssh/
 /home/suhlig/.ssh/
 ├── authorized_keys
@@ -41,7 +41,7 @@ $ tree ~/.ssh/
 
 2. Switch identities by specifying the name:
 
-```bash
+```sh
 $ ssh-switch suhlig
 ```
 

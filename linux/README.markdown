@@ -23,7 +23,7 @@
 
   Assuming that `stow` already ran and linked the `Brewfile`:
 
-  ```bash
+  ```sh
   cd ~/.dotfiles/linux
   brew bundle
   ```

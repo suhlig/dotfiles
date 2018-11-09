@@ -1,4 +1,4 @@
-# bash completion for Cloud Foundry CLI
+# completion for Cloud Foundry CLI
 # source: https://github.com/cloudfoundry/cli/blob/master/ci/installers/completion/cf
 
 _cf-cli() {

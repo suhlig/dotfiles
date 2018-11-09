@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Print UUID of most recently entered task
 #
 # Requires the following report (e.g. in $TASKRC):
