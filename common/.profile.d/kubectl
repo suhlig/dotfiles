@@ -1,0 +1,76 @@
+export KUBE_EDITOR=vim
+
+# get
+alias kpods="kubectl get pods"
+alias kgd="kubectl get deployments"
+alias kgst="kubectl get statefulsets"
+alias kgse="kubectl get services"
+alias kgsto="kubectl get storageclass"
+alias kns="kubectl get namespace"
+alias kall="kubectl get all"
+alias kjobs="kubectl get job"
+alias ksec="kubectl get secrets"
+
+# describe
+alias kdes="kubectl describe"
+alias kdesp="kdes pod"
+alias kdesd="kdes deployment"
+alias kdesse="kdes service"
+alias kdesst="kdes statefulset"
+
+# config
+alias kconf="kubectl config view"
+alias kconff="kconf --flatten"
+
+# edit
+alias kedit="kubectl edit"
+alias keditp="kedit pod"
+alias keditd="kedit deployment"
+alias keditst="kedit statefulset"
+alias keditse="kedit service"
+alias kediti="kedit ingress"
+alias keditj="kedit job"
+alias keditsc="kedit storageclass"
+
+# delete
+alias kdel="kubectl delete"
+alias kdelp="kdel pod"
+alias kdeld="kdel deployment"
+alias kdelse="kdel service"
+alias kdelst="kdel statefulset"
+alias kdelsec="kdel secret"
+alias kdelf="kdel -f"
+alias kdelj="kdel job"
+
+# set space
+alias kspace="set-space"
+
+# apply
+alias kapply="kubectl apply -f"
+
+# logs
+alias klogs="kubectl logs"
+alias klogsf="kubectl logs -f"
+
+# watch
+alias wkpods="watch kpods"
+alias wkjobs="watch kjobs"
+alias wkgd="watch kgd"
+alias wkgst="watch kgst"
+alias wkns="watch kns"
+
+kexec(){
+  kubectl exec -it "$1" -- /bin/bash
+}
+
+set-space(){
+  kubectl config set-context "$(kubectl config current-context)" --namespace="$1"
+}
+
+knuke(){
+  kubectl delete namespace "$1"; helm del "$1" --purge
+}
+
+keirini(){
+  watch 'kubectl get pods --all-namespaces | egrep -h "scf|eirini"'
+}
