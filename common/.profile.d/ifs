@@ -1,10 +1,8 @@
-#!/usr/bin/env bash
 # from http://www.commandlinefu.com/commands/view/3759/functions-to-display-save-and-restore-ifs
-
-ifs () {
+ifs(){
   echo -n "${IFS}" | hexdump -e '"" 10/1 "'\''%_c'\''\t" "\n"' -e '"" 10/1 "0x%02x\t" "\n\n"' | sed "s/''\|\t0x[^0-9]//g; $,/^$/d"
 }
 
-ofs () {
+ofs() {
   echo -n "${OFS}" | hexdump -e '"" 10/1 "'\''%_c'\''\t" "\n"' -e '"" 10/1 "0x%02x\t" "\n\n"' | sed "s/''\|\t0x[^0-9]//g; $,/^$/d"
 }

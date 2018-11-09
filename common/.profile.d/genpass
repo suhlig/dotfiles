@@ -1,2 +1,4 @@
 # https://en.wikipedia.org/wiki/Random_password_generator#Bash
-function genpass() { head /dev/urandom | uuencode -m - | sed -n 2p | cut -c1-${1:-8}; }
+function genpass() {
+  head /dev/urandom | uuencode -m - | sed -n 2p | cut -c1-${1:-8};
+}
