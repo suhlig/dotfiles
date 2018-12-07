@@ -1,0 +1,4 @@
+if type brew >/dev/null 2>&1; then
+  echo "Loading fzf config"
+  source $(brew --prefix)/opt/fzf/shell/*.zsh
+fi
