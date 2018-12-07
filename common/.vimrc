@@ -26,3 +26,10 @@ set rtp+=/usr/local/opt/fzf
 
 " https://github.com/scrooloose/nerdtree
 autocmd vimenter * NERDTree
+
+" Toggle NERDTree
+nnoremap <C-n> :NERDTreeToggle<CR>
+
+" Automatically close NerdTree when you open a file
+let NERDTreeQuitOnOpen = 1
+let NERDTreeShowHidden = 1
