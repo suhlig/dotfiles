@@ -25,3 +25,7 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 " Automatically close NerdTree when you open a file
 let NERDTreeQuitOnOpen = 1
 let NERDTreeShowHidden = 1
+
+" https://github.com/scrooloose/nerdtree/issues/928
+let g:NERDTreeNodeDelimiter = "\u00a0"
+
