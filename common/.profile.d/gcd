@@ -1,2 +1,2 @@
 # https://news.ycombinator.com/item?id=17881752
-alias gcd="cd $(git rev-parse --show-toplevel)"
+alias gcd='cd $(git rev-parse --show-toplevel)'
