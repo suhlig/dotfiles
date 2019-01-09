@@ -2,4 +2,7 @@ if type brew >/dev/null 2>&1; then
   for f in $(brew --prefix)/opt/fzf/shell/*.zsh; do
     source "$f"
   done
+
+  export FZF_DEFAULT_OPTS='--height 15% --border'
+  export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*" --glob "!vendor/"'
 fi
