@@ -1,0 +1,48 @@
+#!/bin/zsh
+# Modified version of the tmux stuff from https://github.com/gdankov/dotfiles/blob/master/.funcs
+
+readonly TMATE_PAIR_NAME="$(whoami)-pair"
+readonly TMATE_SOCKET_LOCATION="/tmp/tmate-pair.sock"
+readonly TMATE_TMUX_SESSION="/tmp/tmate-tmux-session"
+
+tmate-url() {
+  local url=""
+  while [ -z "$url" ]; do
+    url="$(tmate -S $TMATE_SOCKET_LOCATION display -p '#{tmate_ssh}')"
+  done
+  echo "$url" | tr -d '\n' | pbcopy
+  echo "Copied tmate url for $TMATE_PAIR_NAME:"
+  echo "$url"
+}
+
+# Start a tmate session by attaching to an existing tmux session
+mate() {
+  if [ ! -e "$TMATE_SOCKET_LOCATION" ]; then
+    tmate -S "$TMATE_SOCKET_LOCATION" \
+      -f "$HOME/.tmate.conf" new-session \
+      -d -s "$TMATE_PAIR_NAME"
+
+    tmate-url
+
+    if [ -n "$1" ]; then
+      echo "$1" >$TMATE_TMUX_SESSION
+      tmate -S "$TMATE_SOCKET_LOCATION" send \
+        -t "$TMATE_PAIR_NAME" \
+        "TMUX='' tmux attach-session -t $1" ENTER
+    fi
+  fi
+  tmate -S "$TMATE_SOCKET_LOCATION" attach-session \
+    -t "$TMATE_PAIR_NAME"
+}
+
+# Close the tmate session
+unmate() {
+  if [ -e "$TMATE_SOCKET_LOCATION" ]; then
+    rm -f $TMATE_TMUX_SESSION
+    tmate -S "$TMATE_SOCKET_LOCATION" kill-session -t "$TMATE_PAIR_NAME"
+
+    echo "Killed session $TMATE_PAIR_NAME"
+  else
+    echo "Session already killed"
+  fi
+}
