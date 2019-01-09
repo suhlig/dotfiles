@@ -1,3 +1,5 @@
-if type -t brew >/dev/null 2>&1; then
-  source $(brew --prefix)/opt/fzf/shell/*.bash
+if type brew >/dev/null 2>&1; then
+  for f in $(brew --prefix)/opt/fzf/shell/*.bash; do
+    source "$f"
+  done
 fi
