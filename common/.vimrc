@@ -37,3 +37,7 @@ let NERDTreeShowHidden = 1
 " https://github.com/scrooloose/nerdtree/issues/928
 let g:NERDTreeNodeDelimiter = "\u00a0"
 
+" https://news.ycombinator.com/item?id=18901621
+set undofile
+set undodir=~/.vim/undo
+
