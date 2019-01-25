@@ -78,6 +78,9 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+autoload bashcompinit
+bashcompinit
+
 # load common and zsh-specific profile settings
 find -L ~/.zsh_profile.d ~/.profile.d ~/.zsh_completion.d ~/.completion.d -type f | while read file; do
   source "$file"
