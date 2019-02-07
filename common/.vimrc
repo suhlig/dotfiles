@@ -26,6 +26,7 @@ set rtp+=/usr/local/opt/fzf
 
 " https://github.com/scrooloose/nerdtree
 autocmd vimenter * NERDTree
+autocmd vimenter * wincmd p
 
 " Toggle NERDTree
 nnoremap <C-n> :NERDTreeToggle<CR>
