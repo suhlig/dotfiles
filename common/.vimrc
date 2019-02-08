@@ -42,3 +42,5 @@ let g:NERDTreeNodeDelimiter = "\u00a0"
 set undofile
 set undodir=~/.vim/undo
 
+let g:SuperTabDefaultCompletionType = "context"
+
