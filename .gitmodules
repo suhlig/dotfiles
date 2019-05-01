@@ -22,3 +22,6 @@
 [submodule "common/.vim/bundle/supertab"]
 	path = common/.vim/bundle/supertab
 	url = https://github.com/ervandew/supertab
+[submodule "common/.vim/bundle/surround"]
+	path = common/.vim/bundle/surround
+	url = https://tpope.io/vim/surround.git
