@@ -1,3 +1,6 @@
+#
+# When ssh'ing, try to attach to an existing tmux session, or create a new one.
+#
 function ssh() {
-  command ssh -t "$@" "tmux attach || tmux new";
+  command ssh -t "$@" "tmux attach-session || tmux new-session";
 }
