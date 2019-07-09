@@ -2,3 +2,11 @@ totp() {
   oathtool --totp --base32 "$(cat ~/.otpkeys/$1)" | tr -d '\n' | tee /dev/stderr | pbcopy
   echo
 }
+
+_totp-completion() {
+  local -a keys
+  keys=($(find ~/.otpkeys -type f | xargs basename -a))
+  _describe 'command' keys
+}
+
+compdef _totp-completion totp
