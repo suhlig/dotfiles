@@ -1,4 +1,4 @@
 totp() {
-  oathtool --totp --base32 "$(cat ~/.otpkeys/$1)" | tr -d '\n' | xclip -i -selection clipboard
-  echo Copied to clipboard.
+  oathtool --totp --base32 "$(cat ~/.otpkeys/$1)" | tr -d '\n' | tee /dev/stderr | pbcopy
+  echo
 }
