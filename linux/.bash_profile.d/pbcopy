@@ -1,3 +1,0 @@
-# http://superuser.com/a/288333
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
