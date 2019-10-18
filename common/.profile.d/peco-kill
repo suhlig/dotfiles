@@ -1,0 +1,8 @@
+if type peco > /dev/null 2>&1; then
+  peco-kill() {
+    proc=`ps aux | peco`
+    pid=`echo "$proc" | awk '{print $2}'`
+    echo "kill pid:$pid. [$proc]"
+    kill $pid
+  }
+fi
