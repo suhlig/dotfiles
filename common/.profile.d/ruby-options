@@ -1,0 +1,2 @@
+# Disable deprecation warnings
+export RUBYOPT=-W:no-deprecated
