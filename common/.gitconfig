@@ -34,6 +34,10 @@
 	autoStash = true
 
 [pull]
-	rebase = true
+  rebase = true
+
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+  insteadOf = https://github.com/
+
+[diff]
+	noprefix = true
