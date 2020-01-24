@@ -1,0 +1,5 @@
+# Interactively reorder Concourse pipelines 
+fly-reorder() {
+  fly "$@" pipelines --json | jq --raw-output '.[].name' | vipe | xargs -I@ echo --pipeline=\"@\" | xargs fly "$@" order-pipelines 
+}
+
