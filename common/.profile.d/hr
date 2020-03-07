@@ -1,1 +1,0 @@
-alias hr='printf %"$(tput cols)"s |tr " " "-"'
