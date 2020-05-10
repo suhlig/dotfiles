@@ -1,4 +1,0 @@
-# teach git about GitHub
-if type -t hub >/dev/null 2>&1; then
-  eval "$(hub alias -s)"
-fi
