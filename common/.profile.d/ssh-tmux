@@ -1,6 +1,11 @@
 #
-# When ssh'ing, try to attach to an existing tmux session, or create a new one.
+# When ssh'ing with exactly one parameter (hostname), try to attach to an existing tmux
+# session, or create a new one.
 #
-function ssh() {
-  command ssh -t "$@" "tmux attach-session || tmux new-session";
+ssh() {
+  if [ $# -eq 1 ]; then
+    command ssh -t "$@" "tmux attach-session || tmux new-session"
+  else
+    command ssh "$@"
+  fi
 }
