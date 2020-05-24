@@ -1,2 +1,2 @@
-alias urlencode="ruby -r cgi -e 'puts CGI.escape ARGF.read'"
-alias urldecode="ruby -r cgi -e 'puts CGI.unescape ARGF.read'"
+alias urlencode="ruby -r cgi -e 'print CGI.escape ARGF.read'"
+alias urldecode="ruby -r cgi -e 'print CGI.unescape ARGF.read'"
