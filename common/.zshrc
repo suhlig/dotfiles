@@ -75,6 +75,7 @@ plugins=(
   vagrant
   zsh-autosuggestions
   zsh_reload
+  zsh-vim-mode
 )
 
 source $ZSH/oh-my-zsh.sh
