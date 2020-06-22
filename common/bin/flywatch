@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+pipeline=$(fly "$@" pipelines | peco --on-cancel error --prompt 'pipeline:' --select-1 | cut -d ' ' -f 1)
+jobs=$(fly "$@" builds -p "$pipeline" --json | jq -r '.[] | select(.status == "started") | "\(.pipeline_name)/\(.job_name)"' | peco --on-cancel error --prompt 'job:' --select-1)
+
+# TODO What if jobs is empty?
+
+fly "$@" watch -j "$job"
