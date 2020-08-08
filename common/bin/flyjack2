@@ -1,0 +1,77 @@
+#!/usr/bin/env ruby
+
+#
+# Call this like
+#
+# eval $(/Users/suhlig/.dotfiles/common/bin/flyjack2 -t uh --verbose)
+#
+# until we stream stdout and stderr properly
+#
+require 'optparse'
+
+fly_params = []
+intercept_params = []
+verbose = false
+
+OptionParser.new do |opts|
+  opts.on('-t', '--target NAME', "Concourse target name") do |target|
+    fly_params << "--target" << target
+  end
+
+  opts.on('-v', '--version', 'Print the version of fly and exit') do
+    fly_params << '--version'
+  end
+
+  opts.on('--verbose', 'Print API requests and responses') do
+    verbose = true
+  end
+
+  opts.on('--print-table-headers', 'Print table headers even for redirected output') do
+    warn "Error: --print-table-headers does not make sense with this script."
+    exit 1
+  end
+
+  opts.on('-j', '--job=PIPELINE/JOB', 'Name of a job to hijack') do |pipeline_job|
+    intercept_params << '--job' << pipeline_job
+  end
+
+  opts.on('--handle=HANDLE', ' Handle id of a job to hijack') do |handle|
+    intercept_params << '--handle' << handle
+  end
+
+  opts.on('-c', '--check=PIPELINE/CHECK', "Name of a resource's checking container to hijack") do |pipeline_check|
+    intercept_params << '--check' << check
+  end
+
+  opts.on('-u', '--url=URL', 'URL for the build, job, or check container to hijack') do |url|
+    intercept_params << '--url' << url
+  end
+
+  opts.on('-b', '--build=BUILD', 'Build number within the job, or global build ID') do |build|
+   warn "Selecting a build interactively is the point of this script; therefore -b does not make sense to use here."
+   exit 1
+  end
+
+  opts.on('-s', '--step=STEP', ' Name of step to hijack (e.g. build, unit, resource name)') do |step|
+    intercept_params << '--step' << step
+  end
+
+  opts.on('--step-type=TYPE', 'Type of step to hijack (e.g. get, put, task)') do |type|
+    intercept_params << '--step-type' << type
+  end
+
+  opts.on('-a', '--attempt=ATTEMPT', ' Attempt number of step to hijack.') do |attempt|
+    intercept_params << '--attempt' << attempt
+  end
+end.parse!
+
+build = %x"fly #{fly_params.join(' ')} builds | fzf --no-sort --ansi"[/^\d+/]
+
+unless build
+  warn "No build selected; aborting."
+  exit 1
+end
+
+command = "fly #{fly_params.join(' ')} intercept #{intercept_params.join(' ')} --build=#{build} #{ARGV.join(' ')}"
+warn command if verbose
+puts command
