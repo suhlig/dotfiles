@@ -1,0 +1,28 @@
+{
+    "window.zoomLevel": 0,
+    "workbench.startupEditor": "newUntitledFile",
+    "go.useLanguageServer": true,
+    "editor.tabSize": 2,
+    "files.trimTrailingWhitespace": true,
+    "explorer.confirmDragAndDrop": false,
+    "files.insertFinalNewline": true,
+    "[elm]": {
+        "editor.formatOnSave": true
+    },
+    "editor.multiCursorModifier": "ctrlCmd",
+    "arduino.additionalUrls": "http://arduino.esp8266.com/stable/package_esp8266com_index.json,https://dl.espressif.com/dl/package_esp32_index.json",
+    "editor.minimap.enabled": false,
+    "editor.tabCompletion": "on",
+    "atomKeymap.promptV3Features": true,
+    "editor.formatOnPaste": true,
+    "editor.fontSize": 14,
+    "editor.detectIndentation": false,
+    "C_Cpp.updateChannel": "Insiders",
+    "[cpp]": {
+      "editor.defaultFormatter": "ms-vscode.cpptools"
+    },
+    "platformio-ide.activateOnlyOnPlatformIOProject": true,
+    "platformio-ide.disablePIOHomeStartup": true,
+    "explorer.confirmDelete": false,
+    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 2, ColumnLimit: 128 }"
+}
