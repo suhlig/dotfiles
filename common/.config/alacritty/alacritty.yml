@@ -397,5 +397,5 @@ alt_send_esc: false
 #   - ~AppKeypad
 #   - AppKeypad
 key_bindings:
-  - { key: N,        mods: Alt, command: { program: "open", args: ["-nb", "io.alacritty"] } }
+  - { key: N,        mods: Command, command: { program: "open", args: ["-nb", "io.alacritty"] } }
 
