@@ -73,7 +73,6 @@ plugins=(
   tmux
   tmuxinator
   vagrant
-  zsh-autosuggestions
   zsh_reload
   zsh-vim-mode
 )
