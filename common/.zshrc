@@ -11,6 +11,9 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="spaceship"
 
 SPACESHIP_KUBECONTEXT_SHOW=false
+SPACESHIP_GCLOUD_SHOW=false
+SPACESHIP_PROMPT_ORDER=("${(@)PACESHIP_PROMPT_ORDER:#glcoud}")
+SPACESHIP_PROMPT_ORDER=("${(@)PACESHIP_PROMPT_ORDER:#kubectx}")
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -55,19 +58,19 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  battery
+  # battery
   chruby
   colored-man-pages
   colorize
-  docker
-  docker-compose
-  docker-machine
+  # docker
+  # docker-compose
+  # docker-machine
   git-prompt
   github
   golang
   gpg-agent
-  kubectl
-  pass
+  # kubectl
+  # pass
   python
   rake-fast
   tmux
@@ -86,3 +89,4 @@ bashcompinit
 find -L ~/.zsh_profile.d ~/.profile.d ~/.zsh_completion.d ~/.completion.d -type f | while read file; do
   source "$file"
 done
+
