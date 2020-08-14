@@ -185,4 +185,3 @@ cask "vmware-fusion"
 cask "vscodium"
 cask "webpquicklook"
 cask "xquartz"
-mas "MotionPro Plus", id: 1218085720
