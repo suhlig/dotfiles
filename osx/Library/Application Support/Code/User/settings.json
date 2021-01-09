@@ -35,5 +35,16 @@
     "platformio-ide.disablePIOHomeStartup": true,
     "explorer.confirmDelete": false,
     "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 2, ColumnLimit: 128 }",
-    "editor.wordWrapColumn": 120
+    "editor.wordWrapColumn": 120,
+    "go.inferGopath": true,
+    "clangd.path": "/Users/suhlig/Library/Application Support/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/10.0.0/clangd_10.0.0/bin/clangd",
+    "files.associations": {
+      "*.bats": "shellscript"
+    },
+    "sync.autoDownload": true,
+    "sync.autoUpload": true,
+    "sync.quietSync": true,
+    "sync.removeExtensions": false,
+    "sync.gist": "4654dc55d7f540183ea212b02527bc06",
+    "html.format.endWithNewline": true
 }
