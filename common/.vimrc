@@ -25,7 +25,7 @@ autocmd FileType javascript,python,ruby,java,go autocmd BufWritePre * :%s/\s\+$/
 set rtp+=/usr/local/opt/fzf
 
 " https://github.com/scrooloose/nerdtree
-autocmd vimenter * NERDTree
+" autocmd vimenter * NERDTree
 autocmd vimenter * wincmd p
 
 " Toggle NERDTree
