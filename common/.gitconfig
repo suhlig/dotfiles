@@ -1,6 +1,6 @@
 [user]
   name = Steffen Uhlig
-  email = steffen@familie-uhlig.net
+  email = Steffen.Uhlig@de.ibm.com
 
 [credential]
   helper = cache --timeout=86400
@@ -39,5 +39,9 @@
 
 [diff "ansible-vault"]
   textconv = ansible-vault view
+
 [init]
-	defaultBranch = main
+  defaultBranch = main
+
+[url "ssh://git@github.ibm.com/"]
+	insteadOf = https://github.ibm.com/

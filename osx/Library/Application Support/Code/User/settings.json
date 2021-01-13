@@ -2,16 +2,6 @@
     "window.zoomLevel": 0,
     "workbench.startupEditor": "newUntitledFile",
     "go.useLanguageServer": true,
-    "go.inferGopath": true,
-    "go.formatTool": "gofmt",
-    "go.alternateTools": {
-      "gofmt": "golines",
-    },
-    "go.languageServerExperimentalFeatures": {
-      "format": false,
-      "diagnostics": true,
-      "documentLink": true
-    },
     "editor.tabSize": 2,
     "files.trimTrailingWhitespace": true,
     "explorer.confirmDragAndDrop": false,
