@@ -2,6 +2,16 @@
     "window.zoomLevel": 0,
     "workbench.startupEditor": "newUntitledFile",
     "go.useLanguageServer": true,
+    "go.inferGopath": true,
+    "go.formatTool": "gofmt",
+    "go.alternateTools": {
+      "gofmt": "golines",
+    },
+    "go.languageServerExperimentalFeatures": {
+      "format": false,
+      "diagnostics": true,
+      "documentLink": true
+    },
     "editor.tabSize": 2,
     "files.trimTrailingWhitespace": true,
     "explorer.confirmDragAndDrop": false,
@@ -26,7 +36,6 @@
     "explorer.confirmDelete": false,
     "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 2, ColumnLimit: 128 }",
     "editor.wordWrapColumn": 120,
-    "go.inferGopath": true,
     "clangd.path": "/Users/suhlig/Library/Application Support/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/10.0.0/clangd_10.0.0/bin/clangd",
     "files.associations": {
       "*.bats": "shellscript"
