@@ -1,6 +1,6 @@
 [user]
   name = Steffen Uhlig
-  email = Steffen.Uhlig@de.ibm.com
+  email = steffen@familie-uhlig.net
 
 [credential]
   helper = cache --timeout=86400
