@@ -44,3 +44,7 @@ set undodir=~/.vim/undo
 
 let g:SuperTabDefaultCompletionType = "context"
 
+highlight DiffChange  ctermfg=0 ctermbg=7     cterm=None
+highlight DiffDelete  ctermfg=0 ctermbg=7     cterm=None
+highlight DiffText    ctermfg=0 ctermbg=Red   cterm=None
+highlight DiffAdd     ctermfg=0 ctermbg=7     cterm=None
