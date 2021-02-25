@@ -30,8 +30,10 @@
 
 [core]
   excludesfile = ~/.gitignore
+  attributesfile = ~/.gitattributes
 
 [diff]
+  tool = vimdiff
   noprefix = true
 
 [url "git@github.com:"]
