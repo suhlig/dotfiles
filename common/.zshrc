@@ -13,7 +13,7 @@ ZSH_THEME="spaceship"
 SPACESHIP_KUBECONTEXT_SHOW=true
 SPACESHIP_GCLOUD_SHOW=false
 SPACESHIP_GOLANG_SHOW=false
-SPACESHIP_DOCKER_SHOW=false   
+SPACESHIP_DOCKER_SHOW=false
 
 SPACESHIP_PROMPT_ORDER=("${(@)PACESHIP_PROMPT_ORDER:#glcoud}")
 SPACESHIP_PROMPT_ORDER=("${(@)PACESHIP_PROMPT_ORDER:#kubectx}")
@@ -97,4 +97,9 @@ done
 HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
 source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh
 autoload -Uz add-zsh-hook
+
+# must be the last line
+if [ -f $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+  source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
