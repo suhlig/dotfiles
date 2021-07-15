@@ -1,7 +1,6 @@
 if type displayplacer > /dev/null 2>&1; then
   alias monitor-home-4k='displayplacer "id:60BD97A4-F3B0-9B32-43C1-F3D1554D179F+19E87336-5CB6-CE0B-3DE1-BFB413A2B5CB res:3360x1890 scaling:on origin:(0,0) degree:0"'
   alias monitor-home-presentation='displayplacer "id:60BD97A4-F3B0-9B32-43C1-F3D1554D179F+19E87336-5CB6-CE0B-3DE1-BFB413A2B5CB res:1920x1080 scaling:on origin:(0,0) degree:0"'
-else
-  alias monitor-home-4k='echo Error: displayplacer is not installed.'
-  alias monitor-home-presentation='echo Error: displayplacer is not installed.'
+  alias monitor-office-4k='displayplacer "id:65C63984-1F8F-3E36-BA2F-A31817203259+19E87336-5CB6-CE0B-3DE1-BFB413A2B5CB res:2560x1440 hz:60 color_depth:8 scaling:off origin:(0,0) degree:0"'
+  alias monitor-office-presentation='displayplacer "id:65C63984-1F8F-3E36-BA2F-A31817203259+19E87336-5CB6-CE0B-3DE1-BFB413A2B5CB res:1920x1080 hz:60 color_depth:8 scaling:off origin:(0,0) degree:0"'
 fi
