@@ -93,3 +93,8 @@ find -L ~/.zsh_profile.d ~/.profile.d ~/.zsh_completion.d ~/.completion.d -type 
   source "$file"
 done
 
+# https://github.com/larkery/zsh-histdb
+HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
+source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh
+autoload -Uz add-zsh-hook
+
