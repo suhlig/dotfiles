@@ -1,16 +1,9 @@
 {
-    "window.zoomLevel": 0,
-    "workbench.startupEditor": "newUntitledFile",
-    "go.useLanguageServer": true,
+  "workbench.startupEditor": "newUntitledFile",
     "go.inferGopath": true,
     "go.formatTool": "gofmt",
     "go.alternateTools": {
       "gofmt": "golines",
-    },
-    "go.languageServerExperimentalFeatures": {
-      "format": false,
-      "diagnostics": true,
-      "documentLink": true
     },
     "editor.tabSize": 2,
     "files.trimTrailingWhitespace": true,
@@ -45,5 +38,31 @@
     "sync.quietSync": true,
     "sync.removeExtensions": false,
     "sync.gist": "4654dc55d7f540183ea212b02527bc06",
-    "html.format.endWithNewline": true
+    "html.format.endWithNewline": true,
+    "yaml.schemaStore.enable": false,
+    "editor.codeActionsOnSave": null,
+    "keyboard.touchbar.enabled": false,
+    "hediet.vscode-drawio.local-storage": "eyIuZHJhd2lvLWNvbmZpZyI6IntcImxhbmd1YWdlXCI6XCJcIixcImN1c3RvbUZvbnRzXCI6W10sXCJsaWJyYXJpZXNcIjpcImdlbmVyYWxcIixcImN1c3RvbUxpYnJhcmllc1wiOltcIkwuc2NyYXRjaHBhZFwiXSxcInBsdWdpbnNcIjpbXSxcInJlY2VudENvbG9yc1wiOltdLFwiZm9ybWF0V2lkdGhcIjpcIjI0MFwiLFwiY3JlYXRlVGFyZ2V0XCI6ZmFsc2UsXCJwYWdlRm9ybWF0XCI6e1wieFwiOjAsXCJ5XCI6MCxcIndpZHRoXCI6ODUwLFwiaGVpZ2h0XCI6MTEwMH0sXCJzZWFyY2hcIjp0cnVlLFwic2hvd1N0YXJ0U2NyZWVuXCI6dHJ1ZSxcImdyaWRDb2xvclwiOlwiI2QwZDBkMFwiLFwiZGFya0dyaWRDb2xvclwiOlwiIzZlNmU2ZVwiLFwiYXV0b3NhdmVcIjp0cnVlLFwicmVzaXplSW1hZ2VzXCI6bnVsbCxcIm9wZW5Db3VudGVyXCI6MCxcInZlcnNpb25cIjoxOCxcInVuaXRcIjoxLFwiaXNSdWxlck9uXCI6ZmFsc2UsXCJ1aVwiOlwiXCJ9In0=",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "files.exclude": {
+      "**/.classpath": true,
+      "**/.project": true,
+      "**/.settings": true,
+      "**/.factorypath": true
+    },
+    "markdown.marp.enableHtml": true,
+    "go.toolsManagement.autoUpdate": true,
+    "shellcheck.enableQuickFix": true,
+    "shellcheck.customArgs": [
+      "-x"
+    ],
+    "editor.accessibilitySupport": "off",
+    "workbench.editorAssociations": {
+      "*.ipynb": "jupyter.notebook.ipynb"
+    },
+    "workbench.editor.untitled.hint": "hidden",
+    "redhat.telemetry.enabled": false,
+    "security.workspace.trust.untrustedFiles": "open",
+    "window.zoomLevel": 1
 }

@@ -49,10 +49,10 @@
 	git-author-initials = su
 	git-author-name = Steffen Uhlig
 	git-author-email = steffen@familie-uhlig.net
-	mtime = 1609966255
-	git-committer-initials =
-	git-committer-name =
-  git-committer-email =
+	mtime = 1626537646
+	git-committer-initials = 
+	git-committer-name = 
+	git-committer-email = 
 
 [init]
   defaultBranch = main
