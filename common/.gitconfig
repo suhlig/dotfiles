@@ -56,3 +56,8 @@
 
 [init]
   defaultBranch = main
+
+# Pairing with nerab
+[includeIf "gitdir:~/workspace/nerab/"]
+  path = ~/workspace/nerab/.gitconfig
+
