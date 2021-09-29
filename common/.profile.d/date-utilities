@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Convert a string date to epoch.
+# Anything after the first argument (like --utc) is passed on to date.
+date2epoch() {
+  # e.g. "2004-02-29 16:21:42"
+  $(_which-date) --date="$1" "${@:2}" '+%s'
+}
+
+# Convert seconds since epoch to its RFC 3339 string representation.
+# Anything after the first argument (like --utc) is passed on to date.
+epoch2date() {
+  # e.g. 1628590396
+  $(_which-date) --date="@$1" "${@:2}" --rfc-3339=s
+}
+
+# Which date to use - gdate if present, otherwise date
+_which-date() {
+  if type gdate >/dev/null 2>&1; then
+    echo gdate
+  else
+    echo date
+  fi
+}
