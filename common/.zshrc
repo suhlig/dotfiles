@@ -11,12 +11,29 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="spaceship"
 
 SPACESHIP_KUBECONTEXT_SHOW=true
-SPACESHIP_GCLOUD_SHOW=false
-SPACESHIP_GOLANG_SHOW=false
-SPACESHIP_DOCKER_SHOW=false
+SPACESHIP_IBMCLOUD_SHOW=true
 
-SPACESHIP_PROMPT_ORDER=("${(@)PACESHIP_PROMPT_ORDER:#glcoud}")
-SPACESHIP_PROMPT_ORDER=("${(@)PACESHIP_PROMPT_ORDER:#kubectx}")
+SPACESHIP_PROMPT_ORDER=(
+    time          # Time stampts section
+    user          # Username section
+    dir           # Current directory section
+    host          # Hostname section
+    git           # Git section (git_branch + git_status)
+    ruby          # Ruby section
+    golang        # Go section
+    rust          # Rust section
+    docker        # Docker section
+    kubectl       # Kubectl context section
+    terraform     # Terraform workspace section
+#    ibmcloud      #  NOT YET in main - IBM Cloud section
+    exec_time     # Execution time
+    line_sep      # Line break
+    battery       # Battery level and status
+    vi_mode       # Vi-mode indicator
+    jobs          # Background jobs indicator
+    exit_code     # Exit code section
+    char          # Prompt character
+  )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

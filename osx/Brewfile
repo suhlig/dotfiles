@@ -198,6 +198,7 @@ brew "scw"
 brew "sdl2"
 brew "shellcheck"
 brew "shfmt"
+brew "spaceship"
 brew "speedtest-cli"
 brew "sphinx-doc"
 brew "ssh-copy-id", link: true
