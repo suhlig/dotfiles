@@ -23,8 +23,8 @@ SPACESHIP_PROMPT_ORDER=(
     golang        # Go section
     rust          # Rust section
     docker        # Docker section
-    kubectl       # Kubectl context section
-    terraform     # Terraform workspace section
+#    kubectl       # Kubectl context section
+#    terraform     # Terraform workspace section
 #    ibmcloud      #  NOT YET in main - IBM Cloud section
     exec_time     # Execution time
     line_sep      # Line break
@@ -96,7 +96,7 @@ plugins=(
   tmux
   tmuxinator
   vagrant
-  zsh_reload
+  # zsh_reload
   zsh-vim-mode
 )
 
