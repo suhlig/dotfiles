@@ -1,0 +1,68 @@
+matches:
+  - trigger: now#
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%d.%m.%Y %H:%M Uhr"
+  - trigger: ts#
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y-%m-%dT%H:%M:%S"
+  - trigger: bd#
+    replace: 71149 Bondorf
+  - trigger: bic#
+    replace: CSDBDE71
+  - trigger: handy#
+    replace: +49 151 2535 0419
+  - trigger: home#
+    replace: +49 7457 948100
+  - trigger: iban#
+    replace: DE89760300800210122228
+  - trigger: kmst#
+    replace: Karl-Marx-Stadt
+  - trigger:  mfg#
+    replace: |
+      Mit freundlichen Grüßen
+
+      Steffen Uhlig
+  - trigger: pry!
+    replace: |
+      require 'pry'
+      binding.pry
+  - trigger: raspi#
+    replace: Raspberry Pi
+  - trigger: rw#
+    replace: Reutiner Weg 3
+  - trigger: su#
+    replace: Steffen Uhlig
+  - trigger: visa#
+    replace: 4159321004347028
+  - trigger: "@uh"
+    replace: steffen@familie-uhlig.net
+  - trigger: strict#
+    replace: |
+      #!/bin/bash
+
+      set -euo pipefail
+      IFS=$'\n\t'
+  - trigger: bw#
+    replace: Baden-Württemberg
+  - trigger: sgduh
+    replace: |
+      Sehr geehrte Damen und Herren,
+  - trigger: cmd#
+    replace: |
+      ```command
+      $ $|$
+      ```
+  - trigger: rq#
+    replace: require '$|$'
+  - trigger: abbr
+    replace: <abbr title=""$|$""></abbr>
+  - trigger: link#
+    replace: "[]({{clipboard}})"
