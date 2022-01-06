@@ -116,6 +116,8 @@ HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
 autoload -Uz add-zsh-hook
 
 # must be the last line
-if [ -f $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-  source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if type brew > /dev/null 2>&1; then
+  if [ -f $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  fi
 fi
