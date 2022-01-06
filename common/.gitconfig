@@ -36,12 +36,6 @@
   tool = vimdiff
   noprefix = true
 
-[url "git@github.com:"]
-  insteadOf = https://github.com/
-
-[url "ssh://git@github.ibm.com/"]
-  insteadOf = https://github.ibm.com/
-
 [diff "ansible-vault"]
   textconv = ansible-vault view
 
@@ -60,4 +54,3 @@
 # Pairing with nerab
 [includeIf "gitdir:~/workspace/nerab/"]
   path = ~/workspace/nerab/.gitconfig
-

@@ -1,8 +1,8 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=~/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -100,7 +100,7 @@ plugins=(
   zsh-vim-mode
 )
 
-source $ZSH/oh-my-zsh.sh
+[ -f "$ZSH"/oh-my-zsh.sh ] && source "$ZSH"/oh-my-zsh.sh
 
 autoload bashcompinit
 bashcompinit
@@ -112,11 +112,10 @@ done
 
 # https://github.com/larkery/zsh-histdb
 HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
-source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh
+[ -f ~/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh ] && source ~/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh
 autoload -Uz add-zsh-hook
 
 # must be the last line
 if [ -f $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
   source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
-
