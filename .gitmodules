@@ -13,9 +13,6 @@
 [submodule "common/.vim/bundle/vim-ruby"]
 	path = common/.vim/bundle/vim-ruby
 	url = https://github.com/vim-ruby/vim-ruby
-[submodule "common/.vim/bundle/elm-vim"]
-	path = common/.vim/bundle/elm-vim
-	url = https://github.com/ElmCast/elm-vim
 [submodule "common/.vim/bundle/nerdtree"]
 	path = common/.vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
