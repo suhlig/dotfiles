@@ -93,8 +93,8 @@ plugins=(
   # pass
   python
   rake-fast
-  tmux
-  tmuxinator
+  # tmux
+  # tmuxinator
   vagrant
   # zsh_reload
   zsh-vim-mode
