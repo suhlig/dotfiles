@@ -93,6 +93,7 @@ plugins=(
   # pass
   python
   rake-fast
+  rust
   # tmux
   # tmuxinator
   vagrant
