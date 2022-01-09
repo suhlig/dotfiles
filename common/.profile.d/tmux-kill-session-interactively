@@ -1,2 +1,2 @@
 # Interactively select which of the tmux sessions to kill
-alias tks='tmux list-sessions | peco --prompt "tmux session to kill: " | cut -d : -f 1 | xargs tmux kill-session -t'
+alias tks='tmux list-sessions | fzf | cut -d : -f 1 | xargs tmux kill-session -t'

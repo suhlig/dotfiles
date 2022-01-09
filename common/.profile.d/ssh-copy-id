@@ -1,4 +1,3 @@
 if type brew &>/dev/null && [ -d /usr/local/opt/ssh-copy-id/bin ]; then
   export PATH="/usr/local/opt/ssh-copy-id/bin:$PATH"
 fi
-
