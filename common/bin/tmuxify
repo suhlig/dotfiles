@@ -12,6 +12,10 @@ if [[ -z $selected ]]; then
   exit 0
 fi
 
+if [ "$selected" = . ]; then
+  selected="$PWD"
+fi
+
 selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
