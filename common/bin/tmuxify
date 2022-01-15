@@ -16,6 +16,12 @@ if [ "$selected" = . ]; then
   selected="$PWD"
 fi
 
+if [ -r "$selected"/.tmuxinator.yml ]; then
+  cd "$selected" || exit 1
+  tmuxinator local
+  exit 0
+fi
+
 selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
