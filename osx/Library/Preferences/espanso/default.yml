@@ -66,3 +66,6 @@ matches:
     replace: <abbr title=""$|$""></abbr>
   - trigger: link#
     replace: "[]({{clipboard}})"
+  - trigger: up#
+    replace: up -c "jq -r '.'"
+
