@@ -1,3 +1,5 @@
+secure_input_notification: false
+
 matches:
   - trigger: now#
     replace: "{{mydate}}"
