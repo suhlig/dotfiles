@@ -51,6 +51,9 @@
 [init]
   defaultBranch = main
 
+[url "git@github.com:"]
+  insteadOf = https://github.com/
+
 # Pairing with nerab
 [includeIf "gitdir:~/workspace/nerab/"]
   path = ~/workspace/nerab/.gitconfig
