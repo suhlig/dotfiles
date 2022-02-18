@@ -1,5 +1,13 @@
-# Interactively reorder Concourse pipelines 
+# Interactively reorder Concourse pipelines
 fly-reorder() {
-  fly "$@" pipelines --json | jq --raw-output '.[].name' | vipe | xargs -I@ echo --pipeline=\"@\" | xargs fly "$@" order-pipelines 
+  fly "$@" pipelines --json \
+    | jq --raw-output '.[].name' \
+    | unique-without-sort \
+    | vipe \
+    | xargs -I@ echo --pipeline=\"@\" \
+    | xargs fly "$@" order-pipelines
 }
 
+unique-without-sort(){
+  awk '!x[$0]++'
+}
