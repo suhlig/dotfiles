@@ -64,7 +64,7 @@ matches:
       ```
   - trigger: rq#
     replace: require '$|$'
-  - trigger: abbr
+  - trigger: abbr#
     replace: <abbr title=""$|$""></abbr>
   - trigger: link#
     replace: "[]({{clipboard}})"
