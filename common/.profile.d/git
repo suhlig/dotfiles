@@ -4,5 +4,6 @@ alias g='git status'
 alias gpr='git pull --rebase'
 alias gp='git push'
 alias gpohu='git push origin HEAD -u'
+alias gpfwl='git push --force-with-lease'
 
 export GIT_EDITOR=vim
