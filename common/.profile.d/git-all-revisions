@@ -1,0 +1,5 @@
+# prints the full content of a file across all revisions
+git-all-revisions(){
+  local -r filepath=${1:?Missing path argument}
+  git log --format=format:%H "$filepath" | xargs -I SHA zsh -c "git show --summary SHA; GIT_PAGER= git show SHA:$filepath"
+}
