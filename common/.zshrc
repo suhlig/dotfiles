@@ -82,22 +82,13 @@ plugins=(
   chruby
   colored-man-pages
   colorize
-  # docker
-  # docker-compose
-  # docker-machine
   git-prompt
   github
   golang
-  gpg-agent
-  # kubectl
-  # pass
   python
   rake-fast
   rust
-  # tmux
-  # tmuxinator
   vagrant
-  # zsh_reload
   zsh-vim-mode
 )
 
