@@ -1,0 +1,6 @@
+#!/bin/bash
+
+tnw(){
+  local -r target=${1:?Missing target directory}
+  tmux new-window -c "$target" -n "$(basename "$target")"
+}
