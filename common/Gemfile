@@ -10,7 +10,5 @@ gem 'overcommit'
 gem 'pg'
 gem 'solargraph'
 gem 'terminal-notifier'
-gem 'rb-readline'
-gem 'travis'
 gem 'tmuxinator'
 
