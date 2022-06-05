@@ -89,6 +89,7 @@ plugins=(
   rake-fast
   rust
   vagrant
+  zsh-autosuggestions
   zsh-vim-mode
 )
 
