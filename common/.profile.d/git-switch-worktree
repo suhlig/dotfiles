@@ -1,0 +1,18 @@
+# Open a tmux session in the directory of the git worktree associated with branch given as $1.
+# If none is given, select one interactively.
+gswt() {
+  local -r branch=${1:-$(git-select-branch)}
+  git worktree add ../"$branch" "$branch"
+  tmuxify ../"$branch"
+}
+
+# select a git branch interactively
+git-select-branch() {
+  git for-each-ref \
+      refs/heads/ \
+      --sort=-committerdate \
+      --format='%(refname:short)' \
+  | fzf --preview 'git branch \
+                       --format="%(HEAD) %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))" \
+                       {}'
+}
