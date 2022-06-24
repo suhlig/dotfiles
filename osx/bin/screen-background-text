@@ -14,7 +14,7 @@ convert \
     -fill white \
     -gravity north \
     -density 90 \
-    -draw "text 100,100 '$text'" \
+    -draw "text 100,200 '$text'" \
   "$file"
 
 osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"$file\""
