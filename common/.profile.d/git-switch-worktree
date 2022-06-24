@@ -2,7 +2,15 @@
 # If none is given, select one interactively.
 gswt() {
   local -r branch=${1:-$(git-select-branch)}
-  git worktree add ../"$branch" "$branch"
+
+  if git rev-parse --verify 2> /dev/null; then
+    # branch exists; just switch to it
+    git worktree add ../"$branch" "$branch"
+  else
+    # branch does not exist; create it
+    git worktree add ../"$branch" -b "$branch"
+  fi
+
   tmuxify ../"$branch"
 }
 
