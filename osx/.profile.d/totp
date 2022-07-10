@@ -1,0 +1,2 @@
+# select account; then print and copy code to clipboard
+alias totp='totp-keychain ls | tr -d - | fzf-tmux | xargs -I ACCT totp-keychain get ACCT | tee /dev/stderr | pbcopy'
