@@ -1,2 +1,0 @@
-# https://github.com/concourse/concourse/issues/1309#issuecomment-362618380
-complete -F _cf-cli fly

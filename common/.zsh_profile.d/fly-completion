@@ -1,0 +1,2 @@
+# https://concourse-ci.org/fly.html#fly-completion
+source <(fly completion --shell zsh)
