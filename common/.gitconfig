@@ -3,7 +3,7 @@
   email = steffen@familie-uhlig.net
 
 [credential]
-  helper = cache --timeout=86400
+	helper = osxkeychain
 
 [color]
   ui = auto
