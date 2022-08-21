@@ -16,7 +16,7 @@ epoch2date() {
 
 # Which date to use - gdate if present, otherwise date
 _which-date() {
-  if type gdate >/dev/null 2>&1; then
+  if type gdate &>/dev/null; then
     echo gdate
   else
     echo date

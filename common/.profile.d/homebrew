@@ -6,6 +6,6 @@ for brew_home in "$HOME/.linuxbrew" /home/linuxbrew/.linuxbrew; do
   fi
 done
 
-if type brew >/dev/null 2>&1 && test -d "$(brew --prefix)/sbin"; then
+if type brew &>/dev/null && test -d "$(brew --prefix)/sbin"; then
   export PATH=$PATH:"$(brew --prefix)/sbin"
 fi
