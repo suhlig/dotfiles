@@ -54,6 +54,10 @@
 [url "git@github.com:"]
   insteadOf = https://github.com/
 
+# https://dev-notes.eu/2022/06/Cargo-Add-for-Dependency-Management/
+[url "https://github.com/rust-lang/crates.io-index"]
+  insteadOf = https://github.com/rust-lang/crates.io-index
+
 # Pairing with nerab
 [includeIf "gitdir:~/workspace/nerab/"]
   path = ~/workspace/nerab/.gitconfig
