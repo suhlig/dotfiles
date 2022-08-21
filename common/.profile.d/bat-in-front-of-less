@@ -1,0 +1,4 @@
+# If bat is available, use it in front of less
+if type bat &>/dev/null; then
+  alias less=bat
+fi
