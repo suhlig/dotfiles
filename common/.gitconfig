@@ -1,6 +1,14 @@
 [user]
   name = Steffen Uhlig
   email = steffen@familie-uhlig.net
+	signingkey = ~/.ssh/identities/suhlig/id_rsa.pub
+	useConfigOnly = true
+
+[commit]
+	gpgsign = true
+
+[gpg]
+	format = ssh
 
 [credential]
 	helper = osxkeychain
@@ -38,15 +46,6 @@
 
 [diff "ansible-vault"]
   textconv = ansible-vault view
-
-[duet "env"]
-	git-author-initials = su
-	git-author-name = Steffen Uhlig
-	git-author-email = steffen@familie-uhlig.net
-	mtime = 1626537646
-	git-committer-initials = 
-	git-committer-name = 
-	git-committer-email = 
 
 [init]
   defaultBranch = main
