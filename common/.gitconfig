@@ -60,3 +60,7 @@
 # Pairing with nerab
 [includeIf "gitdir:~/workspace/nerab/"]
   path = ~/workspace/nerab/.gitconfig
+
+# https://calebhearth.com/sign-git-with-ssh
+[gpg "ssh"]
+	allowedsignersfile = ~/.ssh/git-signers
