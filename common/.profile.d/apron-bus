@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if type apron-bus &>/dev/null; then
+  alias fly=apron-bus
+fi
