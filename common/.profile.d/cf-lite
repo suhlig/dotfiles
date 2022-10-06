@@ -1,8 +1,0 @@
-cf-lite() {
-  cf api api.bosh-lite.com --skip-ssl-validation
-  cf login -o o -s s -u admin -p $(bosh -e vbox interpolate ~/deployments/cf/deployment-vars.yml --path=/cf_admin_password)
-  cf create-org o
-  cf target -o o
-  cf create-space s
-  cf target -o o -s s
-}
