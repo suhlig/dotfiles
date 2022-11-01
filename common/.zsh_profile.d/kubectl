@@ -1,0 +1,2 @@
+# https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-zsh/
+source <(kubectl completion zsh)
