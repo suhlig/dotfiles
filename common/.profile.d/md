@@ -1,7 +1,9 @@
 # Override if aliased (e.g. the one that comes with oh-my-zsh)
-unalias md
+if [ "$(type -t md)" == "alias" ]; then
+	unalias md
+fi
 
 # Create a new directory and enter it
-function md() {
+md() {
 	mkdir -p "$@" && cd "$@"
 }
