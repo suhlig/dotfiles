@@ -1,331 +1,311 @@
-tap "apparition47/tap"
-tap "cloudfoundry/tap"
-tap "git-duet/tap"
-tap "homebrew/bundle"
-tap "homebrew/cask-drivers"
-tap "homebrew/cask-versions"
-tap "homebrew/cask"
-tap "homebrew/core"
-tap "homebrew/services"
-tap "jakehilborn/jakehilborn"
-tap "kaos/shell"
-tap "keith/formulae"
-tap "orion1vi/ddcctl"
-tap "scaleway/scaleway"
-tap "starkandwayne/cf"
-tap "thoughtbot/formulae"
-tap "tinygo-org/tools"
-tap "tldr-pages/tldr"
-brew "aalib"
-brew "ack"
-brew "ansible"
-brew "ant"
-brew "aria2"
-brew "aspell"
-brew "autocode"
-brew "autoconf", link: false
-brew "automake"
-brew "babl"
-brew "baresip"
-brew "bash-completion@2", link: false
-brew "bash"
-brew "bats-core"
-brew "bcrypt"
-brew "bfg"
-brew "bison"
-brew "boost"
-brew "brew-cask-completion"
-brew "briss"
-brew "bundler-completion"
-brew "cabextract"
-brew "caddy"
-brew "chromaprint"
-brew "chruby"
-brew "cloudfoundry/tap/bosh-cli"
-brew "cloudfoundry/tap/cf-cli"
-brew "consul-template"
-brew "consul"
-brew "cookiecutter"
-brew "coreutils"
-brew "cpanminus"
-brew "cppcheck"
-brew "croc"
-brew "crystal"
-brew "curl"
-brew "dbus"
-brew "dcraw"
-brew "dep"
-brew "direnv"
-brew "dive"
-brew "docker-machine-driver-xhyve"
-brew "docker-machine"
-brew "doctl"
-brew "dos2unix"
-brew "duplicity"
-brew "duply"
-brew "elixir"
-brew "elm-format"
-brew "elm"
-brew "entr"
-brew "exa"
-brew "exercism"
-brew "exiftool"
-brew "faktory"
-brew "fasd"
-brew "ffmpeg"
-brew "fftw"
-brew "fluid-synth"
-brew "fswatch"
-brew "fzf"
-brew "gcc"
-brew "gdbm"
-brew "gdk-pixbuf"
-brew "gem-completion"
-brew "gh"
-brew "git-duet/tap/git-duet"
-brew "git-lfs"
-brew "git-secrets"
-brew "git"
-brew "gnu-tar"
-brew "gnuplot"
-brew "go-bindata"
-brew "go"
-brew "gobject-introspection"
-brew "goreleaser"
-brew "gping"
-brew "gpp"
-brew "gradle"
-brew "graphicsmagick"
-brew "graphviz"
-brew "grc"
-brew "gsettings-desktop-schemas"
-brew "gtk-mac-integration"
-brew "gtk+3"
-brew "haskell-stack"
-brew "hcloud"
-brew "highlight"
-brew "hr"
-brew "htop"
-brew "hub"
-brew "hugo"
-brew "hunspell"
-brew "imagemagick"
-brew "imagesnap"
-brew "influxdb"
-brew "iperf"
-brew "iproute2mac"
-brew "jakehilborn/jakehilborn/displayplacer"
-brew "jq"
-brew "kaos/shell/bats-assert"
-brew "keith/formulae/reminders-cli"
-brew "krb5"
-brew "lame"
-brew "lastpass-cli"
-brew "lesspipe"
-brew "libdvdcss"
-brew "libffi"
-brew "libgit2"
-brew "libheif"
-brew "librsvg"
-brew "libssh"
-brew "libssh2"
-brew "libtool"
-brew "libusb-compat"
-brew "libusb"
-brew "libwmf"
-brew "libxml2"
-brew "libyaml"
-brew "libzip"
-brew "little-cms"
-brew "lorem"
-brew "mas"
-brew "maven"
-brew "memcached"
-brew "midicsv"
-brew "monit"
-brew "moreutils"
-brew "mosh"
-brew "mosquitto"
-brew "mpc"
-brew "mpd"
-brew "mplayer"
-brew "mpv"
-brew "mscgen"
-brew "msmtp"
-brew "mutt"
-brew "mysql"
-brew "ncdu"
-brew "nginx"
-brew "node"
-brew "noti"
-brew "numpy"
-brew "oniguruma"
-brew "open-completion"
-brew "open-mpi"
-brew "opencv"
-brew "openjdk"
-brew "openssl@1.1"
-brew "orion1vi/ddcctl/ddcctl"
-brew "pandoc"
-brew "pass"
-brew "peco"
-brew "pgweb"
-brew "pidof"
-brew "pkg-config"
-brew "platformio"
-brew "poppler"
-brew "poster"
-brew "postgresql", restart_service: true
-brew "potrace"
-brew "pssh"
-brew "pstree"
-brew "pv"
-brew "pygobject3"
-brew "python@3.8"
-brew "rake-completion"
-brew "rclone"
-brew "readline"
-brew "reattach-to-user-namespace"
-brew "recode"
-brew "restic"
-brew "ripgrep"
-brew "rpl"
-brew "ruby-completion"
-brew "ruby-install"
-brew "ruby"
-brew "scaleway/scaleway/docker-machine-driver-scaleway"
-brew "scw"
-brew "sdl2"
-brew "shellcheck"
-brew "shfmt"
-brew "spaceship"
-brew "speedtest-cli"
-brew "sphinx-doc"
-brew "ssh-copy-id", link: true
-brew "sshpass"
-brew "starkandwayne/cf/spruce"
-brew "stow"
-brew "task"
-brew "texi2html"
-brew "texinfo"
-brew "the_silver_searcher"
-brew "thoughtbot/formulae/rcm"
-brew "tig"
-brew "tinc"
-brew "tinygo-org/tools/tinygo"
-brew "tldr"
-brew "tmate"
-brew "tmux"
-brew "trash"
-brew "tree"
-brew "ufraw"
-brew "unrar"
-brew "unshield"
-brew "utf8proc"
-brew "vagrant-completion"
-brew "vapoursynth"
-brew "vim"
-brew "vips"
-brew "w3m"
-brew "watch"
-brew "watchexec"
-brew "websocketd"
-brew "wget"
-brew "wireguard-tools"
-brew "wp-cli"
-brew "wrk"
-brew "wsk"
+# General-purpose data compression with high compression ratio
 brew "xz"
-brew "yasm"
+# Automate deployment, configuration, and upgrading
+brew "ansible"
+# Download with resuming and segmented downloading
+brew "aria2"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# GNU File, Shell, and Text utilities
+brew "coreutils"
+# Bash Automated Testing System
+brew "bats-core"
+# Cross platform file encryption utility using blowfish
+brew "bcrypt"
+# Remove large files or passwords from Git history like git-filter-branch
+brew "bfg"
+# Secure and free password manager for all of your devices
+brew "bitwarden-cli"
+# Fish completion for brew-cask
+brew "brew-cask-completion"
+# Crop PDF files
+brew "briss"
+# Bash completion for Bundler
+brew "bundler-completion"
+# Powerful, enterprise-ready, open source web server with automatic HTTPS
+brew "caddy"
+# Ruby environment tool
+brew "chruby"
+# Get a file from an HTTP, HTTPS or FTP server
+brew "curl"
+# Open source multi-tool for exploring and publishing data
+brew "datasette"
+# Load/unload environment variables based on $PWD
+brew "direnv"
+# Convert ASCII diagrams into proper bitmap graphics
+brew "ditaa"
+# Tool for exploring each layer in a docker image
+brew "dive"
+# Convert text between DOS, UNIX, and Mac formats
+brew "dos2unix"
+# Run arbitrary commands when files change
+brew "entr"
+# Modern replacement for 'ls'
+brew "exa"
+# CLI tool for quick access to files and directories
+brew "fasd"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Monitor a directory for changes and run a shell command
+brew "fswatch"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# Bash completion for gem
+brew "gem-completion"
+# GitHub command-line tool
+brew "gh"
+# Distributed revision control system
+brew "git"
+# Git extension to generate reports for standup meetings
+brew "git-standup"
+# Blazing fast terminal-ui for git written in rust
+brew "gitui"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Deliver Go binaries as fast and easily as possible
+brew "goreleaser"
+# General-purpose preprocessor with customizable syntax
+brew "gpp"
+# Image processing tools collection
+brew "graphicsmagick"
+# Colorize logfiles and command output
+brew "grc"
+# GitHub Markdown previewer
+brew "grip"
+# Command-line interface for Hetzner Cloud
+brew "hcloud"
+# Convert source code to formatted text with syntax highlighting
+brew "highlight"
+# <hr />, for your terminal window
+brew "hr"
+# Improved top (interactive process viewer)
+brew "htop"
+# Spell checker and morphological analyzer
+brew "hunspell"
+# ISO/IEC 23008-12:2017 HEIF file format decoder and encoder
+brew "libheif"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.8"
+# Tools and libraries to manipulate images in many formats
+brew "imagemagick"
+# CLI wrapper for basic network utilities on macOS - ip command
+brew "iproute2mac"
+# Serializes the output of command-line tools to structured JSON output
+brew "jc"
+# JSON output from a shell
+brew "jo"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Input filter for the pager less
+brew "lesspipe"
+# Mac App Store command-line interface
+brew "mas"
+# Collection of tools that nobody wrote when UNIX was young
+brew "moreutils"
+# Parses Message Sequence Chart descriptions and produces images
+brew "mscgen"
+# SMTP client that can be used as an SMTP plugin for Mutt
+brew "msmtp"
+# NCurses Disk Usage
+brew "ncdu"
+# Trigger notifications when a process completes
+brew "noti"
+# Bash completion for open
+brew "open-completion"
+# Swiss-army knife of markup format conversion
+brew "pandoc"
+# PDF rendering library (based on the xpdf-3.0 code base)
+brew "poppler"
+# Search PDFs for strings matching a regular expression
+brew "pdfgrep"
+# Display the PID number for a given process name
+brew "pidof"
+# Professional collaborative platform for embedded development
+brew "platformio"
+# Tool for managing OCI containers and pods
+brew "podman"
+# Create large posters out of PostScript pages
+brew "poster"
+# Object-relational database system
+brew "postgresql@14"
+# Convert bitmaps to vector graphics
+brew "potrace"
+# Show ps output as a tree
+brew "pstree"
+# Monitor data's progress through a pipe
+brew "pv"
+# Transfer files to and from your computer by scanning a QR code
+brew "qrcp"
+# Bash completion for Rake
+brew "rake-completion"
+# Rsync for cloud storage
+brew "rclone"
+# Reattach process (e.g., tmux) to background
+brew "reattach-to-user-namespace"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Wrapper around ripgrep that adds multiple rich file types
+brew "ripgrep-all"
+# Text replacement utility
+brew "rpl"
+# Bash completion for Ruby
+brew "ruby-completion"
+# Install Ruby, JRuby, Rubinius, TruffleRuby, or mruby
+brew "ruby-install"
+# Static analysis and lint tool, for (ba)sh scripts
+brew "shellcheck"
+# Autoformat shell script source code
+brew "shfmt"
+# Zsh prompt for Astronauts
+brew "spaceship"
+# Command-line interface for https://speedtest.net bandwidth tests
+brew "speedtest-cli"
+# Add a public key to a remote machine's authorized_keys file
+brew "ssh-copy-id", link: true
+# Organize software neatly under a single directory tree (e.g. /usr/local)
+brew "stow"
+# Easiest, most secure way to use WireGuard and 2FA
+brew "tailscale"
+# Very fast implementation of tldr in Rust
+brew "tealdeer"
+# Terminal multiplexer
+brew "tmux"
+# CLI tool that moves files or folder to the trash
+brew "trash"
+# Display directories as trees (with optional color/HTML output)
+brew "tree"
+# Tool for writing command-line pipes with instant live preview
+brew "up"
+# Bash completion for Vagrant
+brew "vagrant-completion"
+# Vi 'workalike' with many additional features
+brew "vim"
+# Image processing library
+brew "vips"
+# Executes a program periodically, showing output fullscreen
+brew "watch"
+# Execute commands when watched files change
+brew "watchexec"
+# Internet file retriever
+brew "wget"
+# Process YAML documents from the CLI
 brew "yq"
-brew "zbar"
+# Fork of youtube-dl with additional features and fixes
+brew "yt-dlp"
+# Fish-like fast/unobtrusive autosuggestions for zsh
 brew "zsh-autosuggestions"
+# Additional completion definitions for zsh
 brew "zsh-completions"
+# Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+# Cross-platform Text Expander written in Rust
+brew "federico-terzi/espanso/espanso"
+# Pairing tool for Git
+brew "git-duet/tap/git-duet"
+# δyƒƒ /ˈdʏf/ - A diff tool for YAML files, and sometimes JSON
+brew "homeport/tap/dyff"
+# /ˈheɪvənə/ - Think of it as a swiss army knife for Kubernetes tasks
+brew "homeport/tap/havener"
+# macOS command line utility to configure multi-display resolutions and arrangements. Essentially XRandR for macOS.
+brew "jakehilborn/jakehilborn/displayplacer"
+# Common assertions for Bats
+brew "kaos/shell/bats-assert"
+# TOTP cli backed by the OS X keychain
+brew "moul/moul/totp-keychain"
+# 3DxWare Driver
 cask "3dconnexion"
-cask "acorn"
+# GPU-accelerated terminal emulator
 cask "alacritty"
+# Audio video conferencing
 cask "alfaview"
+# Application launcher and productivity software
 cask "alfred"
+# Enable Windows-like alt-tab
 cask "alt-tab"
-cask "apogee-duet"
-cask "applepi-baker"
-cask "arduino"
+# Multi-cloud backup application
 cask "arq"
-cask "atext"
+# Tool to flash OS images to SD cards & USB drives
 cask "balenaetcher"
-cask "bitbar"
-cask "cheatsheet"
+# Desktop password and login vault
+cask "bitwarden"
+# Server and cloud storage browser
 cask "cyberduck"
-cask "dash"
+# Visually compare and merge files
 cask "diffmerge"
+# Disk usage utility
 cask "disk-inventory-x"
+# Application window manager focusing on simplicity
 cask "divvy"
+# App to build and share containerized applications and microservices
 cask "docker"
-cask "dropbox"
-cask "firefox"
-cask "flux"
+# GIT client
 cask "fork"
-cask "fritzing"
-cask "gimp"
-cask "gitkraken"
-cask "gitup"
-cask "gmvault"
+# Scan software for Fujitsu document scanners
+cask "fujitsu-scansnap-manager"
+# Web browser
 cask "google-chrome"
+# Set of tools to manage resources and applications hosted on Google Cloud
 cask "google-cloud-sdk"
+# Desktop automation application
 cask "hammerspoon"
-cask "handbrake"
+# Command-line API client
 cask "ibm-cloud-cli"
-cask "imageoptim"
-cask "istat-menus"
-cask "iterm2"
-cask "java"
-cask "karabiner"
-cask "keybase"
-cask "kindle"
-cask "lastpass"
+# Terminal emulator as alternative to Apple's Terminal app
+# Create, manage and debug system- and user services
 cask "launchcontrol"
-cask "libreoffice"
-cask "macdown"
-cask "mactex"
+# Email tracker, read receipt and spy pixel blocker plugin for Apple Mail
 cask "mailtrackerblocker"
+# Visual diff and merge tool
 cask "meld"
+# German banking and financial management software
 cask "moneymoney"
-cask "monitorcontrol"
-cask "monodraw"
-cask "mplayerx"
+cask "obs-virtualcam"
+# Display image info and preview unsupported formats in QuickLook
 cask "qlimagesize"
+# QuickLook generator for Markdown files
 cask "qlmarkdown"
 cask "qlprettypatch"
+# QuickLook plugin for plaintext files without an extension
 cask "qlstephen"
+# QuickLook generator for video files
 cask "qlvideo"
+# QuickLook plugin for CSV files
 cask "quicklook-csv"
+# QuickLook plugin for JSON files
 cask "quicklook-json"
+# QuickLook generator for Adobe Swatch Exchange files
 cask "quicklookase"
 cask "scansnap-manager-s1500"
-cask "send-to-kindle"
+# Instant messaging application focusing on security
 cask "signal"
+# 3D design software
 cask "sketchup"
-cask "superduper"
+# Team communication and collaboration software
+cask "slack"
+# System monitor for the menu bar
+cask "stats"
+# Application for inspecting installer packages
 cask "suspicious-package"
+# Multi-platform VNC client and server
 cask "tigervnc-viewer"
-cask "timing"
-cask "tuntap"
-cask "unetbootin"
+# PKG software package uninstall tool
 cask "uninstallpkg"
-cask "vagrant-manager"
+# Development environment
 cask "vagrant"
+cask "vagrant-manager"
+# Tool to hide menu bar icons
 cask "vanilla"
+# Virtualizer for x86 hardware
 cask "virtualbox"
+# Open-source code editor
 cask "visual-studio-code"
+# Multimedia player
 cask "vlc"
-cask "vmware-fusion7"
+# Remote desktop application focusing on security
 cask "vnc-viewer"
 cask "webpquicklook"
-cask "xquartz"
-cask "zoom"
+# View output from scripts in the menu bar
+cask "xbar"
 mas "Drafts", id: 1435957248
-mas "Soulver", id: 413965349
-mas "The Unarchiver", id: 425424353
-mas "uBlock", id: 1385985095
-mas "WireGuard", id: 1451685025
+mas "Soulver 2", id: 413965349
+mas "Tailscale", id: 1475387142
