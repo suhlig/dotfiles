@@ -1,5 +1,0 @@
-# Gibt die Anzahl der aktuelle Zahl der Corona-Fälle pro 100.000 Einwohner für einen Landkreis aus
-corona-cases(){
-  local readonly lk=${1:?Fehler: Landkreis fehlt, z.B. Stuttgart}
-  curl --silent "https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=GEN%20%3D%20%27$lk%27&outFields=last_update,county,cases7_per_100k&returnGeometry=false&outSR=4326&f=json" | jq '.features[0].attributes'
-}
