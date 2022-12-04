@@ -1,2 +1,0 @@
-# open ETN.fm with QuickTime
-alias etn.fm="open -a '/Applications/QuickTime Player.app' http://ch1relay1.etn.fm:8130/listen.pls?sid=1"
