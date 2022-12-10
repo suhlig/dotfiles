@@ -1,0 +1,9 @@
+# Override if aliased (e.g. the one that comes with oh-my-zsh)
+if [ "$(whence -w md)" = "md: alias" ]; then
+	unalias md
+fi
+
+# Create a new directory and enter it
+md() {
+	mkdir -p "$@" && cd "$@" || echo Failed to md
+}
