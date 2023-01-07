@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+# brew install imagesnap zbar
+
+file=$(mktemp)
+trap 'rm "$file"' EXIT
+imagesnap -q "$file" 2> /dev/null
+zbarimg -1 --raw -q -Sbinary "$file"

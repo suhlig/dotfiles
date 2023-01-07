@@ -1,3 +1,7 @@
+# Tool to capture still images from an iSight or other video source
+brew "imagesnap"
+# Suite of barcodes-reading tools
+brew "zbar"
 # General-purpose data compression with high compression ratio
 brew "xz"
 # Automate deployment, configuration, and upgrading
