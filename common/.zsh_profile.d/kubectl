@@ -1,2 +1,4 @@
 # https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-zsh/
-source <(kubectl completion zsh)
+if type kubectl &>/dev/null; then
+  source <(kubectl completion zsh)
+fi
