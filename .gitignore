@@ -16,4 +16,5 @@ Session.vim
 [._]ss[a-gi-z]
 [._]sw[a-p]
 common/Gemfile.lock
+osx/Library/Application Support/Code
 tags
