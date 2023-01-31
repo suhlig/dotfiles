@@ -8,7 +8,9 @@ export ZSH=~/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="spaceship"
+if type brew > /dev/null 2>&1; then
+  source $(brew --prefix)/opt/spaceship/spaceship.zsh
+fi
 
 SPACESHIP_KUBECONTEXT_SHOW=true
 SPACESHIP_IBMCLOUD_SHOW=true
@@ -29,7 +31,6 @@ SPACESHIP_PROMPT_ORDER=(
     exec_time     # Execution time
     line_sep      # Line break
     battery       # Battery level and status
-    vi_mode       # Vi-mode indicator
     jobs          # Background jobs indicator
     exit_code     # Exit code section
     char          # Prompt character
@@ -89,7 +90,7 @@ plugins=(
   rake-fast
   rust
   vagrant
-  zsh-vim-mode
+  zsh-vi-mode
 )
 
 [ -f "$ZSH"/oh-my-zsh.sh ] && source "$ZSH"/oh-my-zsh.sh
@@ -113,3 +114,4 @@ if type brew > /dev/null 2>&1; then
     source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
   fi
 fi
+
