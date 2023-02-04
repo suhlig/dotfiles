@@ -1,5 +1,11 @@
+#!/usr/bin/env bash
+
 # select account; then print and copy code to clipboard
 # arguments get passed to fzf as query
 function totp {
-  totp-keychain ls | tr -d - | fzf-tmux --query "$@" | xargs -I ACCT totp-keychain get ACCT | tee /dev/stderr | pbcopy
+  if [ "$(bw status | jq --raw-output .status)" != unlocked ]; then
+    echo 'Need to login; use export BW_SESSION="$(bw unlock --raw)"'
+  else
+    bw list items  | jq -r '.[] | select(.login.totp) | .name' | fzf-tmux --query "$@" | xargs -I ACCT bw get totp ACCT | tee /dev/stderr | pbcopy
+  fi
 }
