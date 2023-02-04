@@ -4,13 +4,7 @@ export PATH=~/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
-if type brew > /dev/null 2>&1; then
-  source $(brew --prefix)/opt/spaceship/spaceship.zsh
-fi
+ZSH_THEME="spaceship"
 
 SPACESHIP_KUBECONTEXT_SHOW=true
 SPACESHIP_IBMCLOUD_SHOW=true
@@ -95,6 +89,8 @@ plugins=(
   rake-fast
   rust
   vagrant
+  zsh-autosuggestions
+  zsh-vi-mode
 )
 
 [ -f "$ZSH"/oh-my-zsh.sh ] && source "$ZSH"/oh-my-zsh.sh
@@ -109,8 +105,10 @@ done
 
 # https://github.com/larkery/zsh-histdb
 HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
-[ -f ~/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh ] && source ~/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh
-autoload -Uz add-zsh-hook
+if [ -f ~/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh ]; then
+  source ~/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh
+  autoload -Uz add-zsh-hook
+fi
 
 # must be the last line
 if type brew > /dev/null 2>&1; then
