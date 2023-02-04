@@ -1,8 +1,8 @@
 [user]
   name = Steffen Uhlig
   email = steffen@familie-uhlig.net
-	signingkey = ~/.ssh/identities/suhlig/id_rsa.pub
-	useConfigOnly = true
+  signingkey = ~/.ssh/identities/suhlig/id_ed25519.pub
+  useConfigOnly = true
 
 [commit]
 	gpgsign = true
