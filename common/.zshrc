@@ -6,7 +6,7 @@ export ZSH=~/.oh-my-zsh
 
 ZSH_THEME="spaceship"
 
-SPACESHIP_KUBECONTEXT_SHOW=true
+SPACESHIP_KUBECTL_CONTEXT_SHOW=true
 SPACESHIP_IBMCLOUD_SHOW=true
 
 SPACESHIP_PROMPT_ORDER=(
@@ -19,9 +19,8 @@ SPACESHIP_PROMPT_ORDER=(
     golang        # Go section
     rust          # Rust section
     docker        # Docker section
-#    kubectl       # Kubectl context section
-#    terraform     # Terraform workspace section
-#    ibmcloud      #  NOT YET in main - IBM Cloud section
+    kubectl       # Kubectl context section
+    ibmcloud      # IBM Cloud section
     exec_time     # Execution time
     line_sep      # Line break
     battery       # Battery level and status
@@ -78,7 +77,6 @@ fi
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  # battery
   chruby
   colored-man-pages
   colorize
