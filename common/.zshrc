@@ -90,6 +90,7 @@ plugins=(
   rust
   vagrant
   zsh-autosuggestions
+  zsh-histdb-skim
   zsh-vi-mode
 )
 
@@ -109,6 +110,17 @@ if [ -f ~/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh ]; then
   source ~/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh
   autoload -Uz add-zsh-hook
 fi
+
+# https://github.com/m42e/zsh-histdb-skim
+if type histdb-skim-widget > /dev/null 2>&1; then
+  bindkey '^R' histdb-skim-widget
+fi
+
+# Restore custom history search
+# https://github.com/jeffreytse/zsh-vi-mode/issues/127#issuecomment-930104572
+function zvm_after_init() {
+  zvm_bindkey viins '^R' histdb-skim-widget
+}
 
 # must be the last line
 if type brew > /dev/null 2>&1; then
