@@ -1,0 +1,85 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+backupLocation=${1:?Missing argument #1 for backup directory}
+_=${BW_BACKUP_PASSWORD:?Missing}
+
+main() {
+  export-personal-items
+  save-personal-attachments
+
+  export-org-items "Familie Uhlig"
+  save-org-attachments "Familie Uhlig"
+}
+
+export-personal-items() {
+  accountName=$(bw status | jq --raw-output .userEmail)
+  mkdir -p "$backupLocation"/"$accountName"
+
+  bw export \
+    --output "$backupLocation"/"$accountName"/bitwarden.json \
+    --format encrypted_json \
+    --password "$BW_BACKUP_PASSWORD"
+}
+
+export-org-items() {
+  orgName=${1:?Missing}
+  mkdir -p "$backupLocation"/"$orgName"
+
+  bw export \
+    --organizationid "$(getOrgID "$orgName")" \
+    --output "$backupLocation"/"$orgName"/bitwarden.json \
+    --format encrypted_json \
+    --password "$BW_BACKUP_PASSWORD"
+}
+
+save-personal-attachments() {
+  accountName=$(bw status | jq --raw-output .userEmail)
+
+  for item in $(bw list items | jq --compact-output '.[] | select(.organizationId == null and .attachments != null)'); do
+    itemID="$(jq --raw-output .id <<< "$item")"
+    itemName="$(jq --raw-output .name <<< "$item")"
+    attachmentsDir="$backupLocation"/"$accountName"/"$itemName"
+    mkdir -p "$attachmentsDir"
+
+    for atcmnt in $(jq --compact-output '.attachments[]' <<< "$item"); do
+      fileName="$(jq --raw-output .fileName <<< "$atcmnt")"
+      atcmntID="$(jq --raw-output .id <<< "$atcmnt")"
+
+      bw get attachment \
+        "$atcmntID" \
+        --itemid "$itemID" \
+        --output "$attachmentsDir"/"$fileName"
+    done
+  done
+}
+
+save-org-attachments() {
+  orgName=${1:?Missing}
+
+  for item in $(bw list items --organizationid "$(getOrgID "$orgName")" | jq --compact-output '.[] | select(.attachments != null)'); do
+    itemID="$(jq --raw-output .id <<< "$item")"
+    itemName="$(jq --raw-output .name <<< "$item")"
+    attachmentsDir="$backupLocation"/"$orgName"/"$itemName"
+    mkdir -p "$attachmentsDir"
+
+    for atcmnt in $(jq --compact-output '.attachments[]' <<< "$item"); do
+      fileName="$(jq --raw-output .fileName <<< "$atcmnt")"
+      atcmntID="$(jq --raw-output .id <<< "$atcmnt")"
+
+      bw get attachment \
+        "$atcmntID" \
+        --itemid "$itemID" \
+        --output "$attachmentsDir"/"$fileName"
+    done
+  done
+}
+
+getOrgID() {
+  orgName=${1:?Missing}
+  bw list organizations | jq --raw-output --arg orgName "$orgName" 'select(.[].name == $orgName)[0].id'
+}
+
+main "$@"
