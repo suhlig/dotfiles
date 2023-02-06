@@ -86,6 +86,7 @@ plugins=(
   zsh-autosuggestions
   zsh-histdb-skim
   zsh-vi-mode
+  zsh-syntax-highlighting
 )
 
 [ -f "$ZSH"/oh-my-zsh.sh ] && source "$ZSH"/oh-my-zsh.sh
