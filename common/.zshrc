@@ -4,8 +4,6 @@ export PATH=~/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
-ZSH_THEME="spaceship"
-
 SPACESHIP_KUBECTL_CONTEXT_SHOW=true
 SPACESHIP_IBMCLOUD_SHOW=true
 
@@ -28,6 +26,10 @@ SPACESHIP_PROMPT_ORDER=(
     exit_code     # Exit code section
     char          # Prompt character
   )
+
+if type brew > /dev/null 2>&1; then
+  source $(brew --prefix)/opt/spaceship/spaceship.zsh
+fi
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
