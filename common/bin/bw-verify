@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# Verifies a backup by looking for the canary
+
+set -euo pipefail
+IFS=$'\n\t'
+
+backupLocation=${1:?Missing argument for the backup file}
+_=${BW_BACKUP_PRIVATE_KEYFILE_TO:?Missing}
+
+rage \
+  --decrypt \
+  --identity "$BW_BACKUP_PRIVATE_KEYFILE_TO" \
+  "$backupLocation" \
+| tar xz --to-stdout steffen@familie-uhlig.net/bitwarden.json \
+| jq --exit-status '.items[] | select(.name == "backup canary").notes == "Calimero"' > /dev/null 2>&1 \
+|| echo "Error: Could not find it!"

@@ -1,38 +1,64 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# Exports the personal Bitwarden vault and all of the listed shared vaults
+# including attachments to an encrypted tarball.
+#
+# Needs a private key as the encrypting entity (pointed to by
+# $BW_BACKUP_PRIVATE_KEYFILE_FROM) and a public key as receiver (pointed to
+# by $BW_BACKUP_PUBLIC_KEYFILE_TO). Check the rage manual for acceptable
+# key formats.
 
 set -euo pipefail
 IFS=$'\n\t'
 
-backupLocation=${1:?Missing argument #1 for backup directory}
-_=${BW_BACKUP_PASSWORD:?Missing}
+backupLocation=${1:?Missing argument for the backup file}
+_=${BW_BACKUP_PRIVATE_KEYFILE_FROM:?Missing}
+_=${BW_BACKUP_PUBLIC_KEYFILE_TO:?Missing}
+
+backupDirectory=$(mktemp -d)
+trap 'rm -rf $backupDirectory' EXIT
 
 main() {
+  check-prerequisites
   export-personal-items
   save-personal-attachments
-
   export-org-items "Familie Uhlig"
   save-org-attachments "Familie Uhlig"
+  encrypt
+}
+
+check-prerequisites() {
+  local missing=false
+
+  for tool in bw jq rage; do
+    if ! type "$tool" > /dev/null 2>&1; then
+      missing=true
+      echo 2>&1 "Error: Prerequisite tool $tool missing."
+    fi
+  done
+
+  if [[ $missing == true ]]; then
+    exit 1
+  fi
 }
 
 export-personal-items() {
   accountName=$(bw status | jq --raw-output .userEmail)
-  mkdir -p "$backupLocation"/"$accountName"
+  mkdir -p "$backupDirectory"/"$accountName"
 
   bw export \
-    --output "$backupLocation"/"$accountName"/bitwarden.json \
-    --format encrypted_json \
-    --password "$BW_BACKUP_PASSWORD"
+    --format json \
+    --output "$backupDirectory"/"$accountName"/bitwarden.json
 }
 
 export-org-items() {
-  orgName=${1:?Missing}
-  mkdir -p "$backupLocation"/"$orgName"
+  orgName=${1:?Missing argument for org name}
+  mkdir -p "$backupDirectory"/"$orgName"
 
   bw export \
     --organizationid "$(getOrgID "$orgName")" \
-    --output "$backupLocation"/"$orgName"/bitwarden.json \
-    --format encrypted_json \
-    --password "$BW_BACKUP_PASSWORD"
+    --format json \
+    --output "$backupDirectory"/"$orgName"/bitwarden.json
 }
 
 save-personal-attachments() {
@@ -41,7 +67,7 @@ save-personal-attachments() {
   for item in $(bw list items | jq --compact-output '.[] | select(.organizationId == null and .attachments != null)'); do
     itemID="$(jq --raw-output .id <<< "$item")"
     itemName="$(jq --raw-output .name <<< "$item")"
-    attachmentsDir="$backupLocation"/"$accountName"/"$itemName"
+    attachmentsDir="$backupDirectory"/"$accountName"/"$itemName"
     mkdir -p "$attachmentsDir"
 
     for atcmnt in $(jq --compact-output '.attachments[]' <<< "$item"); do
@@ -57,12 +83,12 @@ save-personal-attachments() {
 }
 
 save-org-attachments() {
-  orgName=${1:?Missing}
+  orgName=${1:?Missing argument for org name}
 
   for item in $(bw list items --organizationid "$(getOrgID "$orgName")" | jq --compact-output '.[] | select(.attachments != null)'); do
     itemID="$(jq --raw-output .id <<< "$item")"
     itemName="$(jq --raw-output .name <<< "$item")"
-    attachmentsDir="$backupLocation"/"$orgName"/"$itemName"
+    attachmentsDir="$backupDirectory"/"$orgName"/"$itemName"
     mkdir -p "$attachmentsDir"
 
     for atcmnt in $(jq --compact-output '.attachments[]' <<< "$item"); do
@@ -78,8 +104,17 @@ save-org-attachments() {
 }
 
 getOrgID() {
-  orgName=${1:?Missing}
+  orgName=${1:?Missing argument for org ID}
   bw list organizations | jq --raw-output --arg orgName "$orgName" 'select(.[].name == $orgName)[0].id'
 }
 
-main "$@"
+encrypt() {
+  tar c --directory "$backupDirectory" . \
+  | rage \
+      --encrypt \
+      --recipients-file "$BW_BACKUP_PUBLIC_KEYFILE_TO" \
+      --identity "$BW_BACKUP_PRIVATE_KEYFILE_FROM" \
+      --output "$backupLocation"
+}
+
+main

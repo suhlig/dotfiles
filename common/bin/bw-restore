@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Restores a backup by decrypting the age-encrypted tarball and unpacking it to a temporary directory.
+
+set -euo pipefail
+IFS=$'\n\t'
+
+backupLocation=${1:?Missing argument for the backup file}
+restoreDirectory=$(mktemp -d)
+
+_=${BW_BACKUP_PRIVATE_KEYFILE_TO:?Missing}
+
+rage \
+  --decrypt \
+  --identity "$BW_BACKUP_PRIVATE_KEYFILE_TO" \
+  "$backupLocation" \
+| tar xz --directory "$restoreDirectory"
+
+echo "Backup was restored to $restoreDirectory. Don't forget to delete it when you are done!"
