@@ -10,3 +10,6 @@ for directory in ~/.profile.d ~/.bash_profile.d ~/.completion.d ~/.bash_completi
     [ -f "$file" ] && source "$file"
   done
 done
+
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+eval "$(atuin init bash)"
