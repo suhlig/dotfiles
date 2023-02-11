@@ -48,3 +48,7 @@ highlight DiffChange  ctermfg=0 ctermbg=7     cterm=None
 highlight DiffDelete  ctermfg=0 ctermbg=7     cterm=None
 highlight DiffText    ctermfg=0 ctermbg=Red   cterm=None
 highlight DiffAdd     ctermfg=0 ctermbg=7     cterm=None
+
+" Allow Neovim To Copy/Paste With System Clipboard
+" https://ploegert.gitbook.io/til/tools/vim/allow-neovim-to-copy-paste-with-system-clipboard
+set clipboard+=unnamedplus
