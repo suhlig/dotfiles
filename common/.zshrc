@@ -95,6 +95,9 @@ plugins=(
 autoload bashcompinit
 bashcompinit
 
+# https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
+FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
 # load common and zsh-specific profile settings
 find -L ~/.zsh_profile.d ~/.profile.d ~/.zsh_completion.d ~/.completion.d -type f | while read file; do
   source "$file"
@@ -105,6 +108,7 @@ done
 function zvm_after_init() {
   bindkey '^r' _atuin_search_widget
 }
+
 # must be the last line
 if type brew > /dev/null 2>&1; then
   if [ -f $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
