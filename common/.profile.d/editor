@@ -1,3 +1,5 @@
-export VISUAL=vim
-export EDITOR=vim
-export GEM_EDITOR=vim
+export VISUAL=nvim
+export EDITOR=nvim
+export GEM_EDITOR=nvim
+alias vi=nvim
+alias vim=nvim

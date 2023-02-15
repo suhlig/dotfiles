@@ -1,2 +1,2 @@
-export KUBE_EDITOR=vim
+export KUBE_EDITOR=nvim
 alias k=kubectl
