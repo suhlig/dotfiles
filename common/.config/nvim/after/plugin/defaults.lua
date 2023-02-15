@@ -14,3 +14,6 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   command = [[%s/\s\+$//e]],
 })
 
+require('packer').startup(function(use)
+  use 'fatih/vim-go'
+end)
