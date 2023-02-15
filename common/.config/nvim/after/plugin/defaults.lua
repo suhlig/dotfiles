@@ -17,3 +17,10 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 require('packer').startup(function(use)
   use 'fatih/vim-go'
 end)
+
+local o = vim.o
+
+o.expandtab = true
+o.smartindent = true
+o.tabstop = 2
+o.shiftwidth = 2
