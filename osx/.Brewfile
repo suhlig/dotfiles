@@ -1,11 +1,7 @@
 brew "krew"
-brew "git-each"
 brew "xsv"
 brew "sqlite-utils"
-brew "cobra"
 brew "nvim"
-brew "zsh-autoupdate"
-brew "zsh-vi-mode"
 
 # Improved shell history for zsh and bash
 brew "atuin"
