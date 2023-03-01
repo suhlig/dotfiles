@@ -1,3 +1,14 @@
+brew "krew"
+brew "git-each"
+brew "xsv"
+brew "sqlite-utils"
+brew "cobra"
+brew "nvim"
+brew "zsh-autoupdate"
+brew "zsh-vi-mode"
+
+# Improved shell history for zsh and bash
+brew "atuin"
 # Tool to capture still images from an iSight or other video source
 brew "imagesnap"
 # Suite of barcodes-reading tools
@@ -182,8 +193,6 @@ brew "tree"
 brew "up"
 # Bash completion for Vagrant
 brew "vagrant-completion"
-# Vi 'workalike' with many additional features
-brew "vim"
 # Image processing library
 brew "vips"
 # Executes a program periodically, showing output fullscreen
