@@ -8,6 +8,7 @@ cd # the target directory needs to be directly underneath $HOME
 git clone git@github.com:suhlig/dotfiles.git .dotfiles
 cd  .dotfiles
 stow common {linux|osx}
+git clone https://github.com/TamCore/autoupdate-oh-my-zsh-plugins $ZSH_CUSTOM/plugins/autoupdate
 ```
 
 ## Updating
