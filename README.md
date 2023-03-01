@@ -5,7 +5,7 @@
 ```sh
 brew install stow
 cd # the target directory needs to be directly underneath $HOME
-git clone --recurse-submodules -j8 git@github.com:suhlig/dotfiles.git .dotfiles
+git clone git@github.com:suhlig/dotfiles.git .dotfiles
 cd  .dotfiles
 stow common {linux|osx}
 ```
@@ -15,7 +15,6 @@ stow common {linux|osx}
 ```sh
 cd ~/.dotfiles
 git pull
-git submodule update --init --remote --merge
 stow --restow common osx
 ```
 
