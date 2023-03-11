@@ -96,7 +96,9 @@ autoload bashcompinit
 bashcompinit
 
 # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
-FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+if type brew > /dev/null 2>&1; then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
 
 # load common and zsh-specific profile settings
 find -L ~/.zsh_profile.d ~/.profile.d ~/.zsh_completion.d ~/.completion.d -type f | while read file; do
