@@ -101,7 +101,7 @@ if type brew > /dev/null 2>&1; then
 fi
 
 # load common and zsh-specific profile settings
-find -L ~/.zsh_profile.d ~/.profile.d ~/.zsh_completion.d ~/.completion.d -type f | while read file; do
+find -L ~/.zsh_profile.d ~/.profile.d ~/.zsh_completion.d -type f | while read file; do
   source "$file"
 done
 
