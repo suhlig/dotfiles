@@ -1,17 +1,7 @@
 [user]
   name = Steffen Uhlig
   email = steffen@familie-uhlig.net
-  signingkey = ~/.ssh/identities/suhlig/id_ed25519.pub
   useConfigOnly = true
-
-[commit]
-	gpgsign = true
-
-[gpg]
-	format = ssh
-
-[credential]
-	helper = osxkeychain
 
 [color]
   ui = auto
@@ -50,17 +40,5 @@
 [init]
   defaultBranch = main
 
-[url "git@github.com:"]
-  insteadOf = https://github.com/
-
-# https://dev-notes.eu/2022/06/Cargo-Add-for-Dependency-Management/
-[url "https://github.com/rust-lang/crates.io-index"]
-  insteadOf = https://github.com/rust-lang/crates.io-index
-
-# Pairing with nerab
-[includeIf "gitdir:~/workspace/nerab/"]
-  path = ~/workspace/nerab/.gitconfig
-
-# https://calebhearth.com/sign-git-with-ssh
-[gpg "ssh"]
-	allowedsignersfile = ~/.ssh/git-signers
+[include]
+  path = ~/.gitconfig.local
