@@ -19,11 +19,3 @@ brew "zsh"
 
 tap "git-duet/tap"
 brew "git-duet/tap/git-duet"
-
-# TODO Needs update for Linux
-# tap "jthomas/tools"
-# brew "wsk"
-
-tap "cloudfoundry/tap"
-brew "cf-cli"
-brew "bosh-cli"
