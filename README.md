@@ -16,6 +16,12 @@ git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/z
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
+## Supporting Software
+
+Dotfiles should work without the following, but it's nicer if they are present:
+
+- [atuin](https://atuin.sh/docs/)
+
 ## Updating
 
 ```sh

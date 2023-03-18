@@ -108,7 +108,9 @@ done
 # Restore custom history search
 # https://github.com/jeffreytse/zsh-vi-mode/issues/127#issuecomment-930104572
 function zvm_after_init() {
-  bindkey '^r' _atuin_search_widget
+  if type atuin >/dev/null 2>&1; then
+    bindkey '^r' _atuin_search_widget
+  fi
 }
 
 # must be the last line
