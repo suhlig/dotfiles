@@ -1,6 +1,19 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=~/bin:/usr/local/bin:$PATH
 
+source ~/.zplug/init.zsh
+zplug "jeffreytse/zsh-vi-mode"
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "spaceship-prompt/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
+zplug "zsh-users/zsh-autosuggestions"
+zplug "tmux-plugins/tpm"
+
+if ! zplug check; then
+  zplug install
+fi
+
+zplug load
+
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
@@ -26,10 +39,6 @@ SPACESHIP_PROMPT_ORDER=(
     exit_code     # Exit code section
     char          # Prompt character
   )
-
-if type brew > /dev/null 2>&1; then
-  source $(brew --prefix)/opt/spaceship/spaceship.zsh
-fi
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -85,9 +94,6 @@ plugins=(
   rake-fast
   rust
   vagrant
-  zsh-autosuggestions
-  zsh-vi-mode
-  zsh-syntax-highlighting
 )
 
 [ -f "$ZSH"/oh-my-zsh.sh ] && source "$ZSH"/oh-my-zsh.sh
@@ -119,4 +125,3 @@ if type brew > /dev/null 2>&1; then
     source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
   fi
 fi
-
