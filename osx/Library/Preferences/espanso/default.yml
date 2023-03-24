@@ -8,6 +8,13 @@ matches:
         type: date
         params:
           format: "%d.%m.%Y %H:%M Uhr"
+  - trigger: date#
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y-%m-%d"
   - trigger: ts#
     replace: "{{mydate}}"
     vars:
