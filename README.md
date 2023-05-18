@@ -16,6 +16,8 @@ git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/z
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
+Once tpm was installed, press `<prefix>I` to install all plugins.
+
 ## Supporting Software
 
 Dotfiles should work without the following, but it's nicer if they are present:
