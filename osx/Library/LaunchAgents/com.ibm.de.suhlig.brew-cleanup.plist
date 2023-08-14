@@ -6,7 +6,7 @@
     <string>com.ibm.de.suhlig.brew-cleanup</string>
     <key>ProgramArguments</key>
     <array>
-      <string>/usr/local/bin/brew</string>
+      <string>/opt/homebrew/bin/brew</string>
       <string>cleanup</string>
     </array>
     <key>StartCalendarInterval</key>
@@ -17,10 +17,10 @@
       <integer>00</integer>
     </dict>
     <key>RunAtLoad</key>
-    <true/>
+    <false/>
     <key>StandardErrorPath</key>
-    <string>/Users/suhlig/tmp/brew-cleanup.err</string>
+    <string>~/com.ibm.de.suhlig.brew-cleanup.err</string>
     <key>StandardOutPath</key>
-    <string>/Users/suhlig/tmp/brew-cleanup.out</string>
+    <string>~/com.ibm.de.suhlig.brew-cleanup.out</string>
   </dict>
 </plist>
