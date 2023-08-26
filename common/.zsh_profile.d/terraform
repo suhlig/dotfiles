@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+if type brew >/dev/null 2>&1; then
+  complete -o nospace -C $(brew --prefix)/bin/terraform terraform
+fi
