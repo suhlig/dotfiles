@@ -12,9 +12,17 @@ convert \
     -pointsize 72 \
     -font helvetica \
     -fill white \
-    -gravity north \
     -density 90 \
-    -draw "text 100,200 '$text'" \
+    -pointsize 100 \
+    -gravity NorthWest -annotate +100+100 "$text" \
+    -gravity North     -annotate +0+100   "$text" \
+    -gravity NorthEast -annotate +100+100 "$text" \
+    -gravity West      -annotate +100+0   "$text" \
+    -gravity Center    -annotate +0+0     "$text" \
+    -gravity East      -annotate +100+100 "$text" \
+    -gravity SouthWest -annotate +100+100 "$text" \
+    -gravity South     -annotate +0+0     "$text" \
+    -gravity SouthEast -annotate +100+100 "$text" \
   "$file"
 
 osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"$file\""
