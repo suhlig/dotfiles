@@ -20,6 +20,7 @@ trap 'rm -rf $backupDirectory' EXIT
 
 main() {
   check-prerequisites
+  check-session
   export-personal-items
   save-personal-attachments
   export-org-items "Familie Uhlig"
@@ -39,6 +40,14 @@ check-prerequisites() {
 
   if [[ $missing == true ]]; then
     exit 1
+  fi
+}
+
+check-session() {
+  if [ ! -v BW_SESSION ]; then
+    echo 2>&1 Unlocking bitwarden session...
+    BW_SESSION="$(bw unlock --raw)"
+    export BW_SESSION
   fi
 }
 
