@@ -4,25 +4,28 @@ set -euo pipefail
 IFS=$'\n\t'
 
 readonly text="$1"
-readonly file=/Users/suhlig/Pictures/background-"$RANDOM".png
+readonly file=~/Pictures/background-"$RANDOM".png
+
+resolution=$(displayplacer list | grep -E '^displayplacer ' | awk '{print $3}' | awk -F':' '{print $2}')
+fontSize=$(awk -F'x' '{print $2/40}' <<< "$resolution")
 
 convert \
-    -size 6720x3780 \
+    -size "$resolution" \
     xc:black \
-    -pointsize 72 \
+    -pointsize 128 \
     -font helvetica \
     -fill white \
     -density 90 \
-    -pointsize 100 \
-    -gravity NorthWest -annotate +100+100 "$text" \
-    -gravity North     -annotate +0+100   "$text" \
-    -gravity NorthEast -annotate +100+100 "$text" \
-    -gravity West      -annotate +100+0   "$text" \
-    -gravity Center    -annotate +0+0     "$text" \
-    -gravity East      -annotate +100+100 "$text" \
-    -gravity SouthWest -annotate +100+100 "$text" \
-    -gravity South     -annotate +0+0     "$text" \
-    -gravity SouthEast -annotate +100+100 "$text" \
+    -pointsize "$fontSize" \
+    -gravity NorthWest -annotate +"$fontSize"+"$fontSize" "$text" \
+    -gravity North     -annotate +0+"$fontSize"           "$text" \
+    -gravity NorthEast -annotate +"$fontSize"+"$fontSize" "$text" \
+    -gravity West      -annotate +"$fontSize"+0           "$text" \
+    -gravity Center    -annotate +0+0                     "$text" \
+    -gravity East      -annotate +"$fontSize"+"$fontSize" "$text" \
+    -gravity SouthWest -annotate +"$fontSize"+"$fontSize" "$text" \
+    -gravity South     -annotate +0+0                     "$text" \
+    -gravity SouthEast -annotate +"$fontSize"+"$fontSize" "$text" \
   "$file"
 
 osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"$file\""
