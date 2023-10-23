@@ -1,4 +1,4 @@
 # https://concourse-ci.org/fly.html#fly-completion
 if type fly &>/dev/null; then
-  source <(fly completion --shell zsh)
+  source <(fly7.10.0 completion --shell zsh)
 fi

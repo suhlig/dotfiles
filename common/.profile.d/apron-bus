@@ -1,5 +1,5 @@
 #!/bin/bash
 
-if type apron-bus &>/dev/null; then
-  alias fly=apron-bus
+if type apron-bus &> /dev/null && [ ! -L $(which fly) ]; then
+  ln -s $(which apron-bus) ~/bin/fly
 fi
