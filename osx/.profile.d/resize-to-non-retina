@@ -1,0 +1,7 @@
+# https://apple.stackexchange.com/a/255004
+resize-to-non-retina() {
+  for f in "$@"; do
+    width=$((`sips -g pixelWidth "$f" | cut -s -d ':' -f 2 | cut -c 2-` / 2))
+    sips -s dpiHeight 72.0 -s dpiWidth 72.0 -Z $width "$f"
+  done
+}
