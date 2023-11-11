@@ -32,6 +32,8 @@ matches:
     replace: +49 7457 948100
   - trigger: iban#
     replace: DE89760300800210122228
+  - trigger: noris#
+    replace: DE63100777770778018200
   - trigger: kmst#
     replace: Karl-Marx-Stadt
   - trigger:  mfg#
