@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Interactively select which of the tmux sessions to kill
+alias tks='tmux list-sessions | fzf | cut -d : -f 1 | xargs tmux kill-session -t'
+
+# Responsible suicide; kill command is defined in .tmux.conf
+alias tk='tmux kill'
+
+# New window(s) with path
+tnw(){
+  if (( $# == 0 )); then
+    >&2 echo Error: Need at least one directory
+    return 1
+  fi
+
+  for dir in "$@"; do
+    tmux new-window -c "$dir" -n "$(basename "$dir")"
+  done
+}
