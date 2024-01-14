@@ -1,4 +1,4 @@
-for brew_home in "$HOME/.linuxbrew" /home/linuxbrew/.linuxbrew; do
+for brew_home in "$HOME/.linuxbrew" /home/linuxbrew/.linuxbrew /opt/homebrew; do
   if [[ -d "$brew_home" ]]; then
     export PATH="$brew_home/bin:$PATH"
     export MANPATH="$brew_home/share/man:$MANPATH"
