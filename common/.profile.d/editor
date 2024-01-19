@@ -3,3 +3,5 @@ export EDITOR=nvim
 export GEM_EDITOR=nvim
 alias vi=nvim
 alias vim=nvim
+alias cadot='code add .'
+alias cdot='code .'
