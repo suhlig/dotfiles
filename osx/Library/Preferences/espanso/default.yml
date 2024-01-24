@@ -79,4 +79,5 @@ matches:
     replace: "[]({{clipboard}})"
   - trigger: up#
     replace: up -c "jq -r '.'"
-
+  - trigger: dlv#
+    replace: dlv debug . --headless --log --api-version 2 --listen localhost:2345
