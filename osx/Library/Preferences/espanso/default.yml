@@ -45,6 +45,10 @@ matches:
     replace: |
       require 'pry'
       binding.pry
+  - trigger: irb!
+    replace: |
+      require 'irb'
+      binding.irb
   - trigger: raspi#
     replace: Raspberry Pi
   - trigger: rw#
