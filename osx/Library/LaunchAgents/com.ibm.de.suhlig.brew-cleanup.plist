@@ -17,10 +17,10 @@
       <integer>00</integer>
     </dict>
     <key>RunAtLoad</key>
-    <false/>
+    <true/>
     <key>StandardErrorPath</key>
-    <string>~/com.ibm.de.suhlig.brew-cleanup.err</string>
+    <string>/Users/suhlig/com.ibm.de.suhlig.brew-cleanup.err</string>
     <key>StandardOutPath</key>
-    <string>~/com.ibm.de.suhlig.brew-cleanup.out</string>
+    <string>/Users/suhlig/com.ibm.de.suhlig.brew-cleanup.out</string>
   </dict>
 </plist>
