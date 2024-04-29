@@ -85,3 +85,24 @@ matches:
     replace: up -c "jq -r '.'"
   - trigger: dlv#
     replace: dlv debug . --headless --log --api-version 2 --listen localhost:2345
+  - trigger: maine#
+    replace: |
+      package main
+
+      import (
+        "fmt"
+        "os"
+      )
+
+      func main() {
+        err := mainE()
+
+        if err != nil {
+          fmt.Fprintf(os.Stderr, "Error %s\n", err)
+          os.Exit(1)
+        }
+      }
+
+      func mainE() error {
+        return nil
+      }
