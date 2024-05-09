@@ -106,3 +106,6 @@ matches:
       func mainE() error {
         return nil
       }
+  - trigger: fperr
+    replace: |
+      fmt.Fprintf(os.Stderr, "%s", )
