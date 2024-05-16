@@ -17,5 +17,4 @@ Session.vim
 [._]sw[a-p]
 common/.config/nvim/plugin
 common/Gemfile.lock
-osx/Library/Application Support/Code
 tags

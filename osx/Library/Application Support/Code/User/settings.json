@@ -56,8 +56,18 @@
     "workbench.editorAssociations": {
       "*.ipynb": "jupyter.notebook.ipynb"
     },
-    "workbench.editor.untitled.hint": "hidden",
     "redhat.telemetry.enabled": false,
     "security.workspace.trust.untrustedFiles": "open",
-    "window.zoomLevel": 1
+    "[python]": {
+      "editor.formatOnType": true
+    },
+    "vale.doNotShowWarningForFileToBeSavedBeforeLinting": true,
+    "git.openRepositoryInParentFolders": "always",
+    "hediet.vscode-drawio.resizeImages": null,
+    "workbench.editor.empty.hint": "hidden",
+    "update.showReleaseNotes": false,
+    "cmake.showOptionsMovedNotification": false,
+    "[rust]": {
+      "editor.defaultFormatter": "rust-lang.rust-analyzer"
+    }
 }
