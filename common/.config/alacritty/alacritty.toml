@@ -83,6 +83,7 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 decorations = "buttonless"
 dynamic_padding = false
 dynamic_title = true
+option_as_alt = "OnlyLeft"
 
 [window.dimensions]
 columns = 0
@@ -91,3 +92,4 @@ lines = 0
 [window.padding]
 x = 0
 y = 0
+

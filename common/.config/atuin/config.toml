@@ -38,7 +38,4 @@
 ## possible values: return-original, return-query
 # exit_mode = "return-original"
 
-# https://atuin.sh/docs/key-binding#ctrl-n-key-shortcuts
-ctrl_n_shortcuts = true
-
 show_preview = true
