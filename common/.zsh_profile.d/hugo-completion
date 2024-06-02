@@ -1,0 +1,2 @@
+# https://gohugo.io/commands/hugo_completion_zsh/
+type hugo &>/dev/null && source <(hugo completion zsh)
