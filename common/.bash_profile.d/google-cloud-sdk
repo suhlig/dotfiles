@@ -1,9 +1,0 @@
-if type -t brew >/dev/null 2>&1; then
-  google_cloud_sdk=`brew --prefix`/Caskroom/google-cloud-sdk/latest/google-cloud-sdk
-
-  if [ -d "$google_cloud_sdk" ]; then
-    for inc_file in "$google_cloud_sdk"/*.bash.inc; do
-      source "$inc_file"
-    done
-  fi
-fi

@@ -251,8 +251,6 @@ cask "docker"
 cask "fork"
 # Scan software for Fujitsu document scanners
 cask "fujitsu-scansnap-manager"
-# Web browser
-cask "google-chrome"
 # Set of tools to manage resources and applications hosted on Google Cloud
 cask "google-cloud-sdk"
 # Desktop automation application
