@@ -1,0 +1,8 @@
+notify-done() {
+  if type shoutrrr >/dev/null 2>&1; then
+    shoutrrr send --url ntfy://ntfy.sh/suhlig --message "${1:-Done}"
+  else
+    echo shoutrrr is not installed\; consider executing
+    echo go install github.com/containrrr/shoutrrr/shoutrrr@latest
+  fi
+}
