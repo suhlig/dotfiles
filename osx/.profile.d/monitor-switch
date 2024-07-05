@@ -1,6 +1,6 @@
 if type displayplacer > /dev/null 2>&1; then
-  alias monitor-home-4k='displayplacer "id:1E913594-6631-459B-932A-F9CCFCC4A11D+37D8832A-2D66-02CA-B9F7-8F30A301B230 res:3008x1692 hz:60 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0"'
-  alias monitor-home-presentation='displayplacer "id:1E913594-6631-459B-932A-F9CCFCC4A11D+37D8832A-2D66-02CA-B9F7-8F30A301B230 res:1920x1080 hz:60 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0"'
+  alias monitor-home-4k='displayplacer "id:5404858D-CA76-46C2-95DE-6B8BBA74086B+37D8832A-2D66-02CA-B9F7-8F30A301B230 res:3008x1692 hz:60 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0"'
+  alias monitor-home-presentation='displayplacer "id:5404858D-CA76-46C2-95DE-6B8BBA74086B+37D8832A-2D66-02CA-B9F7-8F30A301B230 res:1920x1080 hz:60 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0"'
   alias monitor-office-4k='echo TODO Use displayplacer list and update the entry in ~/.dotfiles/osx/.profile.d/monitor-switch'
   alias monitor-office-presentation='echo TODO Use displayplacer list and update the entry in ~/.dotfiles/osx/.profile.d/monitor-switch'
 fi
