@@ -108,4 +108,4 @@ matches:
       }
   - trigger: fperr
     replace: |
-      fmt.Fprintf(os.Stderr, "%s", )
+      fmt.Fprintf(os.Stderr, "%s\n", )
