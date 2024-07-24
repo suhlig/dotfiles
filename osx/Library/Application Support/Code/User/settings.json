@@ -69,5 +69,6 @@
     "cmake.showOptionsMovedNotification": false,
     "[rust]": {
       "editor.defaultFormatter": "rust-lang.rust-analyzer"
-    }
+    },
+    "workbench.fontAliasing": "auto"
 }
