@@ -9,3 +9,5 @@ done
 if type brew &>/dev/null && test -d "$(brew --prefix)/sbin"; then
   export PATH=$PATH:"$(brew --prefix)/sbin"
 fi
+
+export HOMEBREW_NO_ENV_HINTS=TRUE
