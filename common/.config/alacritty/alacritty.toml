@@ -1,3 +1,7 @@
+import = [
+    "~/.config/alacritty/themes/themes/github_dark.toml"
+]
+
 live_config_reload = true
 
 [cursor]
@@ -12,7 +16,7 @@ render_timer = false
 size = 14.0
 
 [font.bold]
-family = "Roboto Mono for Powerline"
+family = "IBM Plex Mono"
 style = "Bold"
 
 [font.glyph_offset]
@@ -20,11 +24,11 @@ x = 0
 y = 0
 
 [font.italic]
-family = "Roboto Mono for Powerline"
+family = "IBM Plex Mono"
 style = "Italic"
 
 [font.normal]
-family = "Roboto Mono Light for Powerline"
+family = "IBM Plex Mono"
 style = "Light"
 
 [font.offset]

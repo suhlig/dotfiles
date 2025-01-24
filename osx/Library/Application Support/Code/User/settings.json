@@ -70,7 +70,7 @@
     "[rust]": {
       "editor.defaultFormatter": "rust-lang.rust-analyzer"
     },
-    "workbench.fontAliasing": "auto"
+    "workbench.fontAliasing": "auto",
     "[yaml]": {
       "editor.insertSpaces": true,
       "editor.tabSize": 2,
@@ -82,4 +82,6 @@
         "strings": true
       }
     }
+    },
+    "editor.fontFamily": "\"IBM Plex Mono\", 'Courier New', monospace"
 }
