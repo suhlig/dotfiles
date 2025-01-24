@@ -81,7 +81,7 @@
         "comments": false,
         "strings": true
       }
-    }
     },
+    "go.lintTool": "golangci-lint",
     "editor.fontFamily": "\"IBM Plex Mono\", 'Courier New', monospace"
 }
