@@ -6,5 +6,6 @@ alias gp='git push'
 alias gpohu='git push origin HEAD -u'
 alias gpfwl='git push --force-with-lease'
 alias gap='git add -p'
+alias gwtl='git worktree list'
 
 export GIT_EDITOR=nvim
