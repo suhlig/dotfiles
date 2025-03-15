@@ -1,2 +1,0 @@
-alias yaml_pp='ruby -r yaml -r pp -e "pp YAML::load(ARGF.read)"'
-alias yaml2json='ruby -r yaml -r json -e "puts YAML::load(ARGF.read).to_json"'
