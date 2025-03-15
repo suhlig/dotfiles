@@ -29,6 +29,10 @@ find -L ~/.zsh_profile.d ~/.profile.d ~/.zsh_completion.d -type f | while read f
   source "$file"
 done
 
+if type starship > /dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
+
 # must be the last line
 if type brew > /dev/null 2>&1; then
   if [ -f $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
