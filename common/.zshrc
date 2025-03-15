@@ -22,6 +22,7 @@ fi
 autoload -Uz compinit
 compinit
 
+setopt autocd
 
 # load common and zsh-specific profile settings
 find -L ~/.zsh_profile.d ~/.profile.d ~/.zsh_completion.d -type f | while read file; do
