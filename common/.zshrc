@@ -28,11 +28,3 @@ setopt autocd
 find -L ~/.zsh_profile.d ~/.profile.d ~/.zsh_completion.d -type f | while read file; do
   source "$file"
 done
-
-if type zoxide > /dev/null 2>&1; then
-  eval "$(zoxide init zsh)"
-fi
-
-if type starship > /dev/null 2>&1; then
-  eval "$(starship init zsh)"
-fi
