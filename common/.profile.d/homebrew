@@ -1,13 +1,1 @@
-for brew_home in "$HOME/.linuxbrew" /home/linuxbrew/.linuxbrew /opt/homebrew; do
-  if [[ -d "$brew_home" ]]; then
-    export PATH="$brew_home/bin:$PATH"
-    export MANPATH="$brew_home/share/man:$MANPATH"
-    export INFOPATH="$brew_home/share/info:$INFOPATH"
-  fi
-done
-
-if type brew &>/dev/null && test -d "$(brew --prefix)/sbin"; then
-  export PATH=$PATH:"$(brew --prefix)/sbin"
-fi
-
 export HOMEBREW_NO_ENV_HINTS=TRUE
