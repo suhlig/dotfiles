@@ -36,10 +36,3 @@ fi
 if type starship > /dev/null 2>&1; then
   eval "$(starship init zsh)"
 fi
-
-# must be the last line
-if type brew > /dev/null 2>&1; then
-  if [ -f $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-  fi
-fi
