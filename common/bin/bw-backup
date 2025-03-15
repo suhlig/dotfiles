@@ -34,7 +34,7 @@ check-prerequisites() {
   for tool in bw jq rage; do
     if ! type "$tool" > /dev/null 2>&1; then
       missing=true
-      echo 2>&1 "Error: Prerequisite tool $tool missing."
+      echo >&2 "Error: Prerequisite tool $tool missing."
     fi
   done
 
@@ -45,7 +45,7 @@ check-prerequisites() {
 
 check-session() {
   if [ ! -v BW_SESSION ]; then
-    echo 2>&1 Unlocking bitwarden session...
+    echo >&2 Unlocking bitwarden session...
     BW_SESSION="$(bw unlock --raw)"
     export BW_SESSION
   fi
