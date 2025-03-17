@@ -1,4 +1,0 @@
-# https://concourse-ci.org/fly.html#fly-completion
-if type fly &>/dev/null; then
-  source <(fly completion --shell bash)
-fi
