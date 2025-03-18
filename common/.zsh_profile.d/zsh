@@ -1,3 +1,4 @@
 source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+zvm_after_init_commands+=('[ -f ~/.zsh_profile.d/atuin ] && source ~/.zsh_profile.d/atuin')
