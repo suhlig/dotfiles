@@ -1,0 +1,3 @@
+if [ -d $(brew --prefix)/opt/postgresql@17 ]; then
+  export PATH="$(brew --prefix)/opt/postgresql@17/bin:$PATH"
+fi
