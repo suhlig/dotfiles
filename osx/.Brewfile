@@ -138,7 +138,7 @@ brew "podman"
 # Create large posters out of PostScript pages
 brew "poster"
 # Object-relational database system
-brew "postgresql@14"
+brew "postgresql@17"
 # Convert bitmaps to vector graphics
 brew "potrace"
 # Show ps output as a tree
