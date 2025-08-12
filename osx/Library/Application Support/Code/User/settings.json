@@ -79,5 +79,5 @@
     "go.lintTool": "golangci-lint",
     "editor.fontFamily": "\"IBM Plex Mono\", 'Courier New', monospace",
     "editor.fontSize": 14,
-    "git.blame.editorDecoration.enabled": true
+    "git.blame.editorDecoration.enabled": true,
 }

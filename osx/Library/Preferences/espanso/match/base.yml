@@ -23,6 +23,13 @@ matches:
         type: date
         params:
           format: "%Y-%m-%dT%H:%M:%S"
+  - trigger: "unix#"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%s"
   - trigger: "bd#"
     replace: 71149 Bondorf
   - trigger: "bic#"
@@ -40,7 +47,7 @@ matches:
   - trigger: "mfg#"
     replace: |
       Mit freundlichen Grüßen
-      
+
       Steffen Uhlig
   - trigger: pry!
     replace: |
@@ -63,7 +70,7 @@ matches:
   - trigger: "strict#"
     replace: |
       #!/bin/bash
-      
+
       set -euo pipefail
       IFS=$'\n\t'
   - trigger: "bw#"
