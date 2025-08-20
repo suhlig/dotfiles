@@ -65,6 +65,8 @@ matches:
     replace: Steffen Uhlig
   - trigger: "visa#"
     replace: 4159321004347028
+  - trigger: "@ibm"
+    replace: Steffen.Uhlig@de.ibm.com
   - trigger: "@uh"
     replace: steffen@familie-uhlig.net
   - trigger: "strict#"
