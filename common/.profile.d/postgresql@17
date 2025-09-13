@@ -1,3 +1,5 @@
-if [ -d $(brew --prefix)/opt/postgresql@17 ]; then
+#!/usr/bin/env zsh
+
+if [ type brew > /dev/null 2>&1 && -d $(brew --prefix)/opt/postgresql@17 ]; then
   export PATH="$(brew --prefix)/opt/postgresql@17/bin:$PATH"
 fi
