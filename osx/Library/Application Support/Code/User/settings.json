@@ -44,7 +44,6 @@
       "**/.factorypath": true
     },
     "markdown.marp.enableHtml": true,
-    "go.toolsManagement.autoUpdate": true,
     "shellcheck.enableQuickFix": true,
     "shellcheck.customArgs": [
       "-x"
@@ -83,4 +82,15 @@
     "telemetry.telemetryLevel": "off",
     "telemetry.feedback.enabled": false,
     "telemetry.editStats.enabled": false,
+    "go.editorContextMenuCommands": {
+      "testAtCursor": false,
+      "addTags": false,
+      "toggleTestFile": false,
+      "generateTestForFunction": false,
+      "addImport": false,
+      "testCoverage": false,
+      "playground": false,
+      "debugTestAtCursor": false
+    },
+    "go.toolsManagement.autoUpdate": true,
 }
