@@ -80,4 +80,7 @@
     "editor.fontFamily": "\"IBM Plex Mono\", 'Courier New', monospace",
     "editor.fontSize": 14,
     "git.blame.editorDecoration.enabled": true,
+    "telemetry.telemetryLevel": "off",
+    "telemetry.feedback.enabled": false,
+    "telemetry.editStats.enabled": false,
 }
