@@ -1,6 +1,8 @@
 if type displayplacer > /dev/null 2>&1; then
-  alias monitor-home-4k='displayplacer "id:1E913594-6631-459B-932A-F9CCFCC4A11D+37D8832A-2D66-02CA-B9F7-8F30A301B230 res:3008x1692 hz:60 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0"'
-  alias monitor-home-presentation='displayplacer "id:1E913594-6631-459B-932A-F9CCFCC4A11D+37D8832A-2D66-02CA-B9F7-8F30A301B230 res:1920x1080 hz:60 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0"'
-  alias monitor-office-4k='displayplacer "id:5 res:3008x1692 hz:60 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0"'
-  alias monitor-office-presentation='displayplacer "id:5 res:1920x1080 hz:60 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0"'
+  alias monitor-4k='displayplacer "res:3008x1692 hz:60 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0"'
+  alias monitor-presentation='displayplacer "res:1920x1080 hz:60 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0"'
+  alias monitor-office-4k=monitor-4k
+  alias monitor-office-presentation=monitor-presentation
+  alias monitor-home-4k=monitor-4k
+  alias monitor-home-presentation=monitor-presentation
 fi
