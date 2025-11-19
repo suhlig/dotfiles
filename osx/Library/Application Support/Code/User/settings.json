@@ -29,7 +29,7 @@
     "editor.wordWrapColumn": 120,
     "clangd.path": "/Users/suhlig/Library/Application Support/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/10.0.0/clangd_10.0.0/bin/clangd",
     "files.associations": {
-      "*.bats": "shellscript"
+      "*.bats": "bats"
     },
     "html.format.endWithNewline": true,
     "yaml.schemaStore.enable": false,
@@ -93,4 +93,6 @@
       "debugTestAtCursor": false
     },
     "go.toolsManagement.autoUpdate": true,
+    "makefile.configureOnOpen": false,
+    "[bats]": {},
 }
