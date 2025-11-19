@@ -100,3 +100,11 @@ matches:
   - trigger: fperr
     replace: |
       fmt.Fprintf(os.Stderr, "%s\n", )
+  - trigger: v11y
+    replace: vulnerability
+  - trigger: v13s
+    replace: vulnerabilities
+  - trigger: s6y
+    replace: severity
+  - trigger: s8s
+    replace: severities
