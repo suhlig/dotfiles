@@ -1,10 +1,5 @@
 {
-  "workbench.startupEditor": "newUntitledFile",
-    "go.inferGopath": true,
-    "go.formatTool": "gofmt",
-    "go.alternateTools": {
-      "gofmt": "golines",
-    },
+    "workbench.startupEditor": "newUntitledFile",
     "editor.tabSize": 2,
     "files.trimTrailingWhitespace": true,
     "explorer.confirmDragAndDrop": false,
@@ -75,24 +70,12 @@
         "strings": true
       }
     },
-    "go.lintTool": "golangci-lint",
     "editor.fontFamily": "\"IBM Plex Mono\", 'Courier New', monospace",
     "editor.fontSize": 14,
     "git.blame.editorDecoration.enabled": true,
     "telemetry.telemetryLevel": "off",
     "telemetry.feedback.enabled": false,
     "telemetry.editStats.enabled": false,
-    "go.editorContextMenuCommands": {
-      "testAtCursor": false,
-      "addTags": false,
-      "toggleTestFile": false,
-      "generateTestForFunction": false,
-      "addImport": false,
-      "testCoverage": false,
-      "playground": false,
-      "debugTestAtCursor": false
-    },
-    "go.toolsManagement.autoUpdate": true,
     "makefile.configureOnOpen": false,
     "[bats]": {},
     "docker.extension.enableComposeLanguageServer": false,
