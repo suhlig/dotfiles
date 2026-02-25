@@ -112,3 +112,11 @@ matches:
     replace: severity
   - trigger: s8s
     replace: severities
+  - trigger: DO#
+    replace: Deployment Orchestrator
+  - trigger: do#
+    replace: deployment-orchestrator
+  - trigger: CE#
+    replace: Code Engine
+  - trigger: ce#
+    replace: code-engine
