@@ -128,7 +128,7 @@ brew "shellcheck"
 # Autoformat shell script source code
 brew "shfmt"
 # Zsh prompt for Astronauts
-brew "spaceship"
+brew "starship"
 # Command-line interface for https://speedtest.net bandwidth tests
 brew "speedtest-cli"
 # Add a public key to a remote machine's authorized_keys file

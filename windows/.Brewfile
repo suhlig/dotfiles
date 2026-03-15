@@ -54,7 +54,7 @@ brew "ruby-completion"
 brew "ruby-install"
 brew "shellcheck"
 brew "shfmt"
-brew "spaceship"
+brew "starship"
 brew "speedtest-cli"
 brew "ssh-copy-id", link: true
 brew "stow"
