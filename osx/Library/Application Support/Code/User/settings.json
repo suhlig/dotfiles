@@ -87,4 +87,15 @@
       ".aider-desk": true,
       ".aider*": true
     },
+    "gist.profileOptions": {},
+    "kilo-code.new.autocomplete.enableAutoTrigger": true,
+    "kilo-code.new.autocomplete.enableSmartInlineTaskKeybinding": true,
+    "kilo-code.new.autocomplete.enableChatAutocomplete": true,
+    "kilo-code.debug": false,
+    "kilo-code.allowedCommands": [
+      "git log",
+      "git diff",
+      "git show"
+    ],
+    "kilo-code.deniedCommands": [],
 }
