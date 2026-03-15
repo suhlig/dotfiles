@@ -83,4 +83,8 @@
     "go.toolsManagement.autoUpdate": true,
     "go.diagnostic.vulncheck": "Off",
     "go.survey.prompt": false,
+    "search.exclude": {
+      ".aider-desk": true,
+      ".aider*": true
+    },
 }
