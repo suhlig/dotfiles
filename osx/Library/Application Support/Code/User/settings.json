@@ -80,4 +80,7 @@
     "makefile.configureOnOpen": false,
     "[bats]": {},
     "docker.extension.enableComposeLanguageServer": false,
+    "go.toolsManagement.autoUpdate": true,
+    "go.diagnostic.vulncheck": "Off",
+    "go.survey.prompt": false,
 }
