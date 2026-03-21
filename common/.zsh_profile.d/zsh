@@ -1,9 +1,8 @@
 #!/usr/bin/env zsh
 
-if type brew > /dev/null 2>&1; then
-  source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-  source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-  source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
-
+# The zvm_after_init_commands array is a hook provided by the zsh-vi-mode plugin.
+#
+# It is used to execute commands after the vi-mode initialization is complete. This
+# is necessary because zsh-vi-mode often overwrites or interferes with keybindings
+# and widgets from other plugins (like atuin or zsh-autosuggestions) during its setup.
 zvm_after_init_commands+=('[ -f ~/.zsh_profile.d/atuin ] && source ~/.zsh_profile.d/atuin')

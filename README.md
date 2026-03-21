@@ -1,32 +1,18 @@
 # dotfiles
 
-## Bootstrap
+# Bootstrap
 
-```sh
-brew install stow zsh-vi-mode zsh-syntax-highlighting zsh-autosuggestions
-cd # the target directory needs to be directly underneath $HOME
-git clone git@github.com:suhlig/dotfiles.git .dotfiles
-cd  .dotfiles
-stow common {linux|osx}
-brew bundle --global
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```command
 ```
-
-Once tpm was installed, press `<prefix>I` to install all plugins.
-
-## Supporting Software
 
 Dotfiles should work without the following, but it's nicer if they are present:
 
-- [atuin](https://atuin.sh/docs/)
+- [atuin](https://atuin.sh/docs)
+- [startship](https://https://starship.rs/)
 
-## Updating
+# Updating
 
-```sh
-cd ~/.dotfiles
-git pull
-stow --restow common osx
-brew bundle --global
+```command
 ```
 
 ## Switch SSH identities
@@ -60,3 +46,10 @@ $ ssh-switch suhlig
 * `Bad owner or permissions on ~/.ssh/config`
 
   git doesn't care about permissions except the `x` flag. `chmod 700 ~/.ssh/config` helps.
+
+# Test
+
+```command
+docker build -t suhlig/dotfiles-debian-trixie-slim - < test/debian/trixie/slim.docker
+docker run -it --rm suhlig/dotfiles-debian-trixie-slim
+```
