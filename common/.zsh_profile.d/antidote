@@ -1,6 +1,8 @@
-if [ -f $(brew --prefix)/share/antidote/antidote.zsh ]; then
-  source $(brew --prefix)/share/antidote/antidote.zsh
+#!/usr/bin/env zsh
+
+if [ -f ~/.antidote/antidote.zsh ]; then
+  source ~/.antidote/antidote.zsh
+
   # initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
   antidote load
 fi
-

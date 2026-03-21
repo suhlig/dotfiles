@@ -2,20 +2,39 @@
 
 # Bootstrap
 
-```command
+One-off:
+
+```shell
+git clone https://github.com/suhlig/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles && ./bootstrap.zsh
 ```
 
-Dotfiles should work without the following, but it's nicer if they are present:
+TODO For usage in an Ansible playbook, the dotfiles repo is a role itself, so that we can use it like this:
 
-- [atuin](https://atuin.sh/docs)
-- [startship](https://https://starship.rs/)
+```yaml
+- name: Sample playbook to deploy suhlig.foundation.dotfiles
+  hosts: all
+  roles:
+    - role: suhlig.foundation.dotfiles
+      become: true
+      tags: [ suhlig, bootstrap, foundation ]
+```
+
+Part of the role is a task that clones the dotfiles repo and then calls bootstrap:
+
+```yaml
+- name: Setup environment
+  shell: ./bootstrap.zsh
+  args:
+    chdir: /home/suhlig/.dotfiles
+    creates: ~/.zshrc
+```
 
 # Updating
 
-```command
-```
+TODO
 
-## Switch SSH identities
+# SSH identities
 
 Separating SSH identities, e.g. between different projects, can be done with `stow`, too:
 
@@ -50,6 +69,6 @@ $ ssh-switch suhlig
 # Test
 
 ```command
-docker build -t suhlig/dotfiles-debian-trixie-slim - < test/debian/trixie/slim.docker
-docker run -it --rm suhlig/dotfiles-debian-trixie-slim
+docker buildx bake
+docker run -it --rm dotfiles-debian-trixie-test
 ```
