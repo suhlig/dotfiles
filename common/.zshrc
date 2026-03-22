@@ -1,3 +1,5 @@
+[ -f "$HOME/.profile.d/add-bin-to-path" ] && source "$HOME/.profile.d/add-bin-to-path"
+
 for brew_home in "$HOME/.linuxbrew" /home/linuxbrew/.linuxbrew /opt/homebrew; do
   if [[ -d "$brew_home" ]]; then
     export PATH="$brew_home/bin:$PATH"
