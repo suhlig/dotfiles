@@ -1,2 +1,0 @@
-FROM dotfiles-debian-trixie:full
-RUN cd ~/.dotfiles && ./bootstrap.zsh

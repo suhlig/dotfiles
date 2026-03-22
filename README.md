@@ -70,5 +70,5 @@ $ ssh-switch suhlig
 
 ```command
 docker buildx bake
-docker run -it --rm dotfiles-debian-trixie-test
+docker run -it --rm dotfiles-debian-trixie-full
 ```
