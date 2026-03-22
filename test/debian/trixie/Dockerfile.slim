@@ -11,15 +11,17 @@ RUN apt-get update \
  && locale-gen \
  && rm -rf /var/lib/apt/lists/*
 
-# Testing the current work directory
-WORKDIR /root
-ADD . .dotfiles
-
-# Alternatively, we can test the published main branch
-# RUN git clone https://github.com/suhlig/dotfiles.git ~/.dotfiles
-
-RUN cd ~/.dotfiles && ./bootstrap.zsh
-
 RUN chsh -s /usr/bin/zsh
 
+WORKDIR /root
+
+# Testing the dotfiles repo directory
+ADD . .dotfiles
+
+# Alternatively, we can also test the published main branch
+# RUN git clone https://github.com/suhlig/dotfiles.git .dotfiles
+
+RUN cd /root/.dotfiles && ./bootstrap.zsh
+
+WORKDIR /root
 CMD ["zsh"]
