@@ -3,12 +3,16 @@
 setopt ERR_EXIT NO_UNSET PIPE_FAIL
 
 main() {
+  update-repo
   check-prerequisites
   check-suggestions
   upsert-antidote
   remove-defaults
   stow-dotfiles
-  print-welcome-message
+}
+
+update-repo() {
+  git pull --rebase
 }
 
 check-prerequisites() {
@@ -78,14 +82,6 @@ stow-dotfiles() {
   local platform
   platform=$(detect-platform) || exit 1
   stow common $platform
-}
-
-print-welcome-message() {
-  cat << EOF
-  Dotfiles have successfully been installed. Run the following command to replace your current shell with the new config:
-
-  exec zsh --login
-EOF
 }
 
 detect-platform() {
