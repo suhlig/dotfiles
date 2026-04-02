@@ -98,4 +98,36 @@
       "git show"
     ],
     "kilo-code.deniedCommands": [],
+    "cSpell.language": "en,de-DE",
+    "cSpell.userWords": [
+      "Bluemix",
+      "Dagli",
+      "Evangelismus",
+      "Masry",
+      "Pairadise",
+      "Schunk",
+      "Schwind",
+      "Somaya",
+      "Sugandha",
+      "Uhlig"
+    ],
+    "cSpell.ignoreWords": [
+      "emph"
+    ],
+    "window.confirmSaveUntitledWorkspace": false,
+    "bob-code.allowedCommands": [
+      "git log",
+      "git diff",
+      "git show",
+      "cd /Users/suhlig/workspace/ce/deployment-orchestrator/26-deployer-on-call",
+      "go test ./orchestrator/... ./simulation/...",
+      "cd",
+      "go",
+      "grep",
+      "sort",
+      "sort -t: -k2 -n",
+      "grep -E \"^(ok|FAIL|\\?)\"",
+      "gh issue list --repo https://github.ibm.com/coligo/product --limit 500 --json number,title,state,labels,createdAt,updatedAt,author,assignees,body,comments --state all"
+    ],
+    "bob-code.deniedCommands": [],
 }

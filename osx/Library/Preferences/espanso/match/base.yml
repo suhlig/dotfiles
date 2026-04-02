@@ -120,3 +120,6 @@ matches:
     replace: Code Engine
   - trigger: ce#
     replace: code-engine
+  - trigger: tf#
+    replace: Terraform
+
