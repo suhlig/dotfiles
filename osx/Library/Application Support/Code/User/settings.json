@@ -95,7 +95,8 @@
     "kilo-code.allowedCommands": [
       "git log",
       "git diff",
-      "git show"
+      "git show",
+      "go build ./..."
     ],
     "kilo-code.deniedCommands": [],
     "cSpell.language": "en,de-DE",
@@ -130,4 +131,8 @@
       "gh issue list --repo https://github.ibm.com/coligo/product --limit 500 --json number,title,state,labels,createdAt,updatedAt,author,assignees,body,comments --state all"
     ],
     "bob-code.deniedCommands": [],
+    "terminal.integrated.commandsToSkipShell": [
+      "kilo-code.new.agentManagerOpen",
+      "kilo-code.new.agentManager.showTerminal"
+    ],
 }
