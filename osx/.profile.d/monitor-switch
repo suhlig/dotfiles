@@ -1,6 +1,6 @@
 if type displayplacer > /dev/null 2>&1; then
-  alias monitor-4k='displayplacer "res:3008x1692 hz:60 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0"'
-  alias monitor-presentation='displayplacer "res:1920x1080 hz:60 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0"'
+  alias monitor-4k='displayplacer "res:3008x1692 enabled:true scaling:on origin:(0,0) degree:0"'
+  alias monitor-presentation='displayplacer "res:1920x1080 enabled:true scaling:on origin:(0,0) degree:0"'
   alias monitor-office-4k=monitor-4k
   alias monitor-office-presentation=monitor-presentation
   alias monitor-home-4k=monitor-4k
