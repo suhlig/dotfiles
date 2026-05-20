@@ -39,3 +39,11 @@ style = "full"
 # exit_mode = "return-original"
 
 show_preview = true
+search_mode = "daemon-fuzzy"
+
+[ai]
+enabled = true
+
+[daemon]
+enabled = true
+autostart = true
