@@ -3,7 +3,7 @@
 gswt() {
   local -r branch=${1:-$(git-select-branch)}
 
-  if git rev-parse --verify 2> /dev/null; then
+  if git rev-parse --verify "$branch" 2> /dev/null; then
     # branch exists; just switch to it
     git worktree add ../"$branch" "$branch"
   else
