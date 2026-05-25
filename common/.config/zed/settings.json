@@ -90,6 +90,36 @@
             },
             {
               "pattern": "^goreleaser\\s+build(\\s|$)"
+            },
+            {
+              "pattern": "^brew\\s+list(\\s|$)"
+            },
+            {
+              "pattern": "^echo\\s+libusb(\\s|$)"
+            },
+            {
+              "pattern": "^ls\\b"
+            },
+            {
+              "pattern": "^echo\\s+not(\\s|$)"
+            },
+            {
+              "pattern": "^pkg-config\\b"
+            },
+            {
+              "pattern": "^go\\s+env(\\s|$)"
+            },
+            {
+              "pattern": "^gh\\s+run(\\s|$)"
+            },
+            {
+              "pattern": "^git-cliff\\b"
+            },
+            {
+              "pattern": "^tail\\b"
+            },
+            {
+              "pattern": "^awk\\b"
             }
           ]
         },
