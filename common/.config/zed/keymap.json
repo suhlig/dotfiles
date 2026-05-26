@@ -18,4 +18,38 @@
       // "j k": "vim::NormalBefore"
     },
   },
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-j": "editor::JoinLines"
+    }
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "ctrl-j": "editor::JoinLines"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-/": [
+        "editor::ToggleComments",
+        {
+          "advance_downwards": false
+        }
+      ]
+    }
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "cmd-ß": [
+        "editor::ToggleComments",
+        {
+          "advance_downwards": false
+        }
+      ]
+    }
+  }
 ]

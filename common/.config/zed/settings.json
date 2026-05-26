@@ -27,6 +27,23 @@
   "agent": {
     "tool_permissions": {
       "tools": {
+        "move_path": {
+          "default": "allow"
+        },
+        "create_directory": {
+          "always_allow": [
+            {
+              "pattern": "^/Users/suhlig/workspace/uhlig\\.it/www/"
+            }
+          ]
+        },
+        "delete_path": {
+          "always_allow": [
+            {
+              "pattern": "^/Users/suhlig/workspace/uhlig\\.it/www/"
+            }
+          ]
+        },
         "fetch": {
           "default": "allow",
           "always_allow": [
@@ -120,6 +137,24 @@
             },
             {
               "pattern": "^awk\\b"
+            },
+            {
+              "pattern": "^find\\s+\\.(\\s|$)"
+            },
+            {
+              "pattern": "^sort\\b"
+            },
+            {
+              "pattern": "^cat\\b"
+            },
+            {
+              "pattern": "^zola\\s+build(\\s|$)"
+            },
+            {
+              "pattern": "^find\\s+public/blog/homebrew-top-ten/(\\s|$)"
+            },
+            {
+              "pattern": "^find\\s+public(\\s|$)"
             }
           ]
         },
