@@ -155,6 +155,18 @@
             },
             {
               "pattern": "^find\\s+public(\\s|$)"
+            },
+            {
+              "pattern": "^go\\s+tool(\\s|$)"
+            },
+            {
+              "pattern": "^cargo\\s+test(\\s|$)"
+            },
+            {
+              "pattern": "^cargo\\s+update(\\s|$)"
+            },
+            {
+              "pattern": "^cargo\\s+build(\\s|$)"
             }
           ]
         },
@@ -166,9 +178,10 @@
     "dock": "right",
     "default_profile": "write",
     "default_model": {
+      "effort": "max",
       "provider": "opencode",
-      "model": "go/kimi-k2.6",
-      "enable_thinking": false
+      "model": "go/deepseek-v4-pro",
+      "enable_thinking": true
     },
     "favorite_models": [],
     "model_parameters": []
