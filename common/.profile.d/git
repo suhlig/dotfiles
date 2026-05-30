@@ -8,4 +8,4 @@ alias gpfwl='git push --force-with-lease'
 alias gap='git add -p'
 alias gwtl='git worktree list'
 
-export GIT_EDITOR=nvim
+export GIT_EDITOR='zed --wait'

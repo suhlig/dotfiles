@@ -167,6 +167,21 @@
             },
             {
               "pattern": "^cargo\\s+build(\\s|$)"
+            },
+            {
+              "pattern": "^cargo\\s+clippy(\\s|$)"
+            },
+            {
+              "pattern": "^cargo\\s+run(\\s|$)"
+            },
+            {
+              "pattern": "^wc\\b"
+            },
+            {
+              "pattern": "^git\\s+diff(\\s|$)"
+            },
+            {
+              "pattern": "^pre-commit\\s+run(\\s|$)"
             }
           ]
         },
@@ -178,10 +193,9 @@
     "dock": "right",
     "default_profile": "write",
     "default_model": {
-      "effort": "max",
       "provider": "opencode",
-      "model": "go/deepseek-v4-pro",
-      "enable_thinking": true
+      "model": "free/big-pickle",
+      "enable_thinking": false
     },
     "favorite_models": [],
     "model_parameters": []

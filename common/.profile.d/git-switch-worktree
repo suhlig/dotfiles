@@ -11,7 +11,7 @@ gswt() {
     git worktree add ../"$branch" -b "$branch"
   fi
 
-  tmuxify ../"$branch"
+  tmux new-window -c ../"$branch" -n "$branch"
 }
 
 # select a git branch interactively
