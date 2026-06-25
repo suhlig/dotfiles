@@ -46,11 +46,11 @@ $ tree ~/.ssh/
 ├── authorized_keys
 ├── identities
 │   ├── other
-│   │   ├── id_rsa
-│   │   └── id_rsa.pub
+│   │   ├── id_ed25519
+│   │   └── id_ed25519.pub
 │   └── suhlig
-│       ├── id_rsa
-│       └── id_rsa.pub
+│       ├── id_ed25519
+│       └── id_ed25519.pub
 └── known_hosts
 ```
 
