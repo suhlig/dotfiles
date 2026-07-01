@@ -112,5 +112,6 @@
     "sort -t: -k2 -n",
     "grep -E \"^(ok|FAIL|\\?)\""
   ],
-  "bob-code.deniedCommands": []
+  "bob-code.deniedCommands": [],
+  "editor.fontSize": 14
 }
