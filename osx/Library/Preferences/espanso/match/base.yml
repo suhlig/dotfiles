@@ -122,4 +122,8 @@ matches:
     replace: code-engine
   - trigger: tf#
     replace: Terraform
-
+  - trigger: skip#
+    replace: |
+      skip-unit-tests
+      skip-openapi-validation
+      skip-integration-tests
