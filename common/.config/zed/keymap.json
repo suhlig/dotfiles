@@ -51,5 +51,41 @@
         }
       ]
     }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "cmd-left": "pane::GoBack"
+    }
+  },
+  {
+    "context": "Pane",
+    "unbind": {
+      "ctrl--": "pane::GoBack"
+    }
+  },
+  {
+    "context": "ThreadHistory",
+    "bindings": {
+      "cmd-left": "pane::GoBack"
+    }
+  },
+  {
+    "context": "ThreadHistory",
+    "unbind": {
+      "ctrl--": "pane::GoBack"
+    }
+  },
+  {
+    "context": "AcpThread",
+    "bindings": {
+      "cmd-left": "pane::GoBack"
+    }
+  },
+  {
+    "context": "AcpThread",
+    "unbind": {
+      "ctrl--": "pane::GoBack"
+    }
   }
 ]

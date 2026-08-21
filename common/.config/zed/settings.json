@@ -7,6 +7,59 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "proxy": "",
+  "context_servers": {
+    "Lunacy": {
+      "enabled": true,
+      "remote": false,
+      "command": "/Applications/Lunacy.app/Contents/MacOS/Lunacy",
+      "args": [
+        "-mcp"
+      ]
+    }
+  },
+  "language_models": {
+    "openai_compatible": {
+      "Hetzner Experiments": {
+        "api_url": "https://inference.hetzner.com/api/v1",
+        "available_models": [
+          {
+            "name": "Qwen/Qwen3.6-35B-A3B-FP8",
+            "max_tokens": 262144,
+            "max_output_tokens": 32000,
+            "max_completion_tokens": 262144,
+            "capabilities": {
+              "tools": true,
+              "images": true,
+              "parallel_tool_calls": false,
+              "prompt_cache_key": false,
+              "chat_completions": true,
+              "interleaved_reasoning": false,
+              "max_tokens_parameter": false
+            }
+          },
+          {
+            "name": "Qwen3.8-27B",
+            "max_tokens": 262144,
+            "max_output_tokens": 32000,
+            "max_completion_tokens": 262144,
+            "capabilities": {
+              "tools": true,
+              "images": true,
+              "parallel_tool_calls": false,
+              "prompt_cache_key": false,
+              "chat_completions": true,
+              "interleaved_reasoning": false,
+              "max_tokens_parameter": false
+            }
+          }
+        ]
+      }
+    },
+    "opencode": {
+      "show_zen_models": true
+    }
+  },
   "remove_trailing_whitespace_on_save": true,
   "calls": {
     "mute_on_join": true
@@ -25,12 +78,100 @@
     "dock": "left"
   },
   "agent": {
+    "enable_feedback": false,
+    "sidebar_side": "right",
+    "sandbox_permissions": {
+      "allow_unsandboxed": true,
+      "network_hosts": [
+        "pkg.go.dev",
+        "github.com"
+      ]
+    },
     "tool_permissions": {
       "tools": {
+        "mcp:Lunacy:get_main_prompt": {
+          "default": "allow"
+        },
+        "mcp:Lunacy:get_undo_stack": {
+          "default": "allow"
+        },
+        "mcp:Lunacy:get_selected": {
+          "default": "allow"
+        },
+        "mcp:chrome-devtools-mcp-zed:close_page": {
+          "default": "allow"
+        },
+        "mcp:chrome-devtools-mcp-zed:emulate": {
+          "default": "allow"
+        },
+        "mcp:chrome-devtools-mcp-zed:fill_form": {
+          "default": "allow"
+        },
+        "mcp:chrome-devtools-mcp-zed:get_network_request": {
+          "default": "allow"
+        },
+        "mcp:chrome-devtools-mcp-zed:resize_page": {
+          "default": "allow"
+        },
+        "mcp:chrome-devtools-mcp-zed:new_page": {
+          "default": "allow"
+        },
+        "mcp:chrome-devtools-mcp-zed:click": {
+          "default": "allow"
+        },
+        "mcp:chrome-devtools-mcp-zed:list_network_requests": {
+          "default": "allow"
+        },
+        "mcp:chrome-devtools-mcp-zed:list_console_messages": {
+          "default": "allow"
+        },
+        "mcp:Lunacy:get_screenshot_area": {
+          "default": "allow"
+        },
+        "mcp:chrome-devtools-mcp-zed:evaluate_script": {
+          "default": "allow"
+        },
+        "mcp:chrome-devtools-mcp-zed:take_snapshot": {
+          "default": "allow"
+        },
+        "mcp:chrome-devtools-mcp-zed:list_pages": {
+          "default": "allow"
+        },
+        "mcp:chrome-devtools-mcp-zed:take_screenshot": {
+          "default": "allow"
+        },
+        "mcp:chrome-devtools-mcp-zed:navigate_page": {
+          "default": "allow"
+        },
+        "mcp:Lunacy:get_components": {
+          "default": "allow"
+        },
+        "mcp:Lunacy:get_viewport_info": {
+          "default": "allow"
+        },
+        "mcp:Lunacy:get_screenshot_viewport": {
+          "default": "allow"
+        },
+        "mcp:Lunacy:get_format_documentation": {
+          "default": "allow"
+        },
+        "mcp:Lunacy:get_screenshot_by_ids": {
+          "default": "allow"
+        },
+        "mcp:Lunacy:get_image": {
+          "default": "allow"
+        },
+        "mcp:Lunacy:get_layers_in_area": {
+          "default": "allow"
+        },
+        "copy_path": {
+          "default": "allow"
+        },
         "move_path": {
           "default": "allow"
         },
         "create_directory": {
+          "default": "allow",
           "always_allow": [
             {
               "pattern": "^/Users/suhlig/workspace/uhlig\\.it/www/"
@@ -41,6 +182,12 @@
           "always_allow": [
             {
               "pattern": "^/Users/suhlig/workspace/uhlig\\.it/www/"
+            },
+            {
+              "pattern": "^main/cmd/dspictl/"
+            },
+            {
+              "pattern": "^caterbill/doc/screenshot/"
             }
           ]
         },
@@ -182,6 +329,444 @@
             },
             {
               "pattern": "^pre-commit\\s+run(\\s|$)"
+            },
+            {
+              "pattern": "^cargo\\s+check(\\s|$)"
+            },
+            {
+              "pattern": "^GIT_EDITOR=true\\s+git\\s+commit(\\s|$)"
+            },
+            {
+              "pattern": "^cd\\s+/Users/suhlig/workspace/rustomato/main(\\s|$)"
+            },
+            {
+              "pattern": "^git\\s+status(\\s|$)"
+            },
+            {
+              "pattern": "^mlr\\b"
+            },
+            {
+              "pattern": "^tinygo\\s+build(\\s|$)"
+            },
+            {
+              "pattern": "^tinygo\\s+flash(\\s|$)"
+            },
+            {
+              "pattern": "^cd\\s+/Users/suhlig/workspace/DSPi(\\s|$)"
+            },
+            {
+              "pattern": "^git\\b"
+            },
+            {
+              "pattern": "^tinygo\\s+info(\\s|$)"
+            },
+            {
+              "pattern": "^echo\\s+No(\\s|$)"
+            },
+            {
+              "pattern": "^cd\\s+/Users/suhlig/workspace/dspictl/refactor-commands(\\s|$)"
+            },
+            {
+              "pattern": "^echo\\s+BUILD(\\s|$)"
+            },
+            {
+              "pattern": "^chmod\\s+\\+x(\\s|$)"
+            },
+            {
+              "pattern": "^sed\\b"
+            },
+            {
+              "pattern": "^cd\\s+/Users/suhlig/workspace/dspictl/main(\\s|$)"
+            },
+            {
+              "pattern": "^git\\s+log(\\s|$)"
+            },
+            {
+              "pattern": "^echo\\b"
+            },
+            {
+              "pattern": "^MANPATH=/tmp/man-test\\s+man\\s+dspictl(\\s|$)"
+            },
+            {
+              "pattern": "^mkdir\\b"
+            },
+            {
+              "pattern": "^mv\\s+/tmp/man-test/dspictl\\.1(\\s|$)"
+            },
+            {
+              "pattern": "^man\\b"
+            },
+            {
+              "pattern": "^rm\\b"
+            },
+            {
+              "pattern": "^cp\\s+/tmp/man-test/dspictl\\.1(\\s|$)"
+            },
+            {
+              "pattern": "^go\\s+doc(\\s|$)"
+            },
+            {
+              "pattern": "^cp\\s+/tmp/test_md2man2\\.go(\\s|$)"
+            },
+            {
+              "pattern": "^rm\\s+test_md2man2\\.go(\\s|$)"
+            },
+            {
+              "pattern": "^typst\\s+compile(\\s|$)"
+            },
+            {
+              "pattern": "^sqlite3\\s+speisehof-rechnungen-dev\\.db(\\s|$)"
+            },
+            {
+              "pattern": "^cd\\s+/Users/suhlig/workspace/nowak/caterbill(\\s|$)"
+            },
+            {
+              "pattern": "^golangci-lint\\s+run(\\s|$)"
+            },
+            {
+              "pattern": "^sqlite3\\s+/Users/suhlig/workspace/nowak/caterbill/caterbill/speisehof-rechnungen-dev\\.db(\\s|$)"
+            },
+            {
+              "pattern": "^sqlite3\\s+/Users/suhlig/workspace/nowak/caterbill/speisehof-rechnungen-dev\\.db(\\s|$)"
+            },
+            {
+              "pattern": "^curl\\b"
+            },
+            {
+              "pattern": "^python3\\b"
+            },
+            {
+              "pattern": "^GIT_EDITOR=true\\s+git\\s+add(\\s|$)"
+            },
+            {
+              "pattern": "^cd\\s+backend(\\s|$)"
+            },
+            {
+              "pattern": "^go\\s+generate(\\s|$)"
+            },
+            {
+              "pattern": "^make\\b"
+            },
+            {
+              "pattern": "^cd\\s+caterbill(\\s|$)"
+            },
+            {
+              "pattern": "^go\\s+version(\\s|$)"
+            },
+            {
+              "pattern": "^cd\\s+/Users/suhlig/workspace/DSPi-Console(\\s|$)"
+            },
+            {
+              "pattern": "^pwd\\b"
+            },
+            {
+              "pattern": "^which\\s+go(\\s|$)"
+            },
+            {
+              "pattern": "^cd\\s+/Users/suhlig/workspace/dspictl/release-v1\\.1\\.5(\\s|$)"
+            },
+            {
+              "pattern": "^GIT_EDITOR=true\\s+git(\\s|$)"
+            },
+            {
+              "pattern": "^strings\\s+/tmp/test_server(\\s|$)"
+            },
+            {
+              "pattern": "^go\\s+clean(\\s|$)"
+            },
+            {
+              "pattern": "^GOTOOLCHAIN=local\\s+go\\s+test(\\s|$)"
+            },
+            {
+              "pattern": "^pdftoppm\\b"
+            },
+            {
+              "pattern": "^cp\\s+/tmp/test-invoice-2-1\\.png(\\s|$)"
+            },
+            {
+              "pattern": "^cp\\s+/tmp/test-invoice-2-2\\.png(\\s|$)"
+            },
+            {
+              "pattern": "^cp\\s+/tmp/test-invoice-1\\.png(\\s|$)"
+            },
+            {
+              "pattern": "^cp\\s+/tmp/test-invoice-2\\.png(\\s|$)"
+            },
+            {
+              "pattern": "^cp\\s+speisehof-rechnungen-dev\\.db(\\s|$)"
+            },
+            {
+              "pattern": "^sqlite3\\s+/tmp/test-migration2\\.db(\\s|$)"
+            },
+            {
+              "pattern": "^echo\\s+MIGRATION(\\s|$)"
+            },
+            {
+              "pattern": "^sqlite3\\s+/tmp/fresh\\.db(\\s|$)"
+            },
+            {
+              "pattern": "^DATABASE_URL=postgres://localhost/rostfacto-dev\\s+sqlx\\s+migrate(\\s|$)"
+            },
+            {
+              "pattern": "^psql\\s+postgres://localhost/rostfacto-dev(\\s|$)"
+            },
+            {
+              "pattern": "^cat\\s+templates/retro\\.html(\\s|$)"
+            },
+            {
+              "pattern": "^cat\\s+templates/archive_modal\\.html(\\s|$)"
+            },
+            {
+              "pattern": "^env\\b"
+            },
+            {
+              "pattern": "^grep\\s+DATABASE_URL(\\s|$)"
+            },
+            {
+              "pattern": "^echo\\s+DATABASE_URL(\\s|$)"
+            },
+            {
+              "pattern": "^which\\s+psql(\\s|$)"
+            },
+            {
+              "pattern": "^psql\\b"
+            },
+            {
+              "pattern": "^pg_isready\\b"
+            },
+            {
+              "pattern": "^which\\s+cargo(\\s|$)"
+            },
+            {
+              "pattern": "^cargo\\b"
+            },
+            {
+              "pattern": "^which\\s+sqlx(\\s|$)"
+            },
+            {
+              "pattern": "^echo\\s+sqlx(\\s|$)"
+            },
+            {
+              "pattern": "^export\\b"
+            },
+            {
+              "pattern": "^sqlx\\s+migrate(\\s|$)"
+            },
+            {
+              "pattern": "^sh\\s+run_integration_tests\\.sh(\\s|$)"
+            },
+            {
+              "pattern": "^DATABASE_URL=postgres://rostfacto@localhost/rostfacto-dev\\s+cargo\\s+check(\\s|$)"
+            },
+            {
+              "pattern": "^lsof\\b"
+            },
+            {
+              "pattern": "^xargs\\b"
+            },
+            {
+              "pattern": "^DATABASE_URL=postgres://rostfacto@localhost/rostfacto-dev\\s+cargo\\s+run(\\s|$)"
+            },
+            {
+              "pattern": "^sleep\\s+3(\\s|$)"
+            },
+            {
+              "pattern": "^DATABASE_URL=postgres://rostfacto@localhost/rostfacto-dev\\s+cargo\\s+test(\\s|$)"
+            },
+            {
+              "pattern": "^cargo\\s+fmt(\\s|$)"
+            },
+            {
+              "pattern": "^SQLX_OFFLINE=true\\s+cargo\\s+clippy(\\s|$)"
+            },
+            {
+              "pattern": "^gh\\s+pr(\\s|$)"
+            },
+            {
+              "pattern": "^SQLX_OFFLINE=true\\s+cargo\\s+test(\\s|$)"
+            },
+            {
+              "pattern": "^gh\\s+api(\\s|$)"
+            },
+            {
+              "pattern": "^SQLX_OFFLINE=true\\s+cargo\\s+check(\\s|$)"
+            },
+            {
+              "pattern": "^DATABASE_URL=postgres://rostfacto@localhost/rostfacto-dev\\s+cargo\\s+sqlx(\\s|$)"
+            },
+            {
+              "pattern": "^DATABASE_URL=postgres://rostfacto@localhost/rostfacto-dev\\s+sqlx\\s+migrate(\\s|$)"
+            },
+            {
+              "pattern": "^touch\\s+tests/migration_test\\.rs(\\s|$)"
+            },
+            {
+              "pattern": "^perl\\b"
+            },
+            {
+              "pattern": "^go\\s+fix(\\s|$)"
+            },
+            {
+              "pattern": "^docker\\s+compose(\\s|$)"
+            },
+            {
+              "pattern": "^sleep\\s+5(\\s|$)"
+            },
+            {
+              "pattern": "^bash\\s+scripts/validate_html\\.sh(\\s|$)"
+            },
+            {
+              "pattern": "^bash\\s+scripts/manual_test_archive\\.sh(\\s|$)"
+            },
+            {
+              "pattern": "^pkill\\b"
+            },
+            {
+              "pattern": "^ps\\b"
+            },
+            {
+              "pattern": "^touch\\s+src/handlers\\.rs(\\s|$)"
+            },
+            {
+              "pattern": "^which\\s+geckodriver(\\s|$)"
+            },
+            {
+              "pattern": "^strings\\s+/tmp/rostfacto_debug\\.log(\\s|$)"
+            },
+            {
+              "pattern": "^GOCACHE=/Users/suhlig/workspace/dspictl/release-v1\\.1\\.5/\\.go-cache\\s+go\\s+test(\\s|$)"
+            },
+            {
+              "pattern": "^GOCACHE=/Users/suhlig/workspace/dspictl/release-v1\\.1\\.5/\\.go-cache\\s+go\\s+build(\\s|$)"
+            },
+            {
+              "pattern": "^GOCACHE=/Users/suhlig/workspace/dspictl/release-v1\\.1\\.5/\\.go-cache\\s+go\\s+vet(\\s|$)"
+            },
+            {
+              "pattern": "^GOCACHE=/Users/suhlig/workspace/dspictl/release-v1\\.1\\.5/\\.go-cache\\s+go\\s+run(\\s|$)"
+            },
+            {
+              "pattern": "^git\\s+add(\\s|$)"
+            },
+            {
+              "pattern": "^printf\\s+nnnnnnynnn(\\s|$)"
+            },
+            {
+              "pattern": "^GOCACHE=/Users/suhlig/workspace/dspictl/release-v1\\.1\\.5/\\.go-cache\\s+GIT_EDITOR=true\\s+git\\s+commit(\\s|$)"
+            },
+            {
+              "pattern": "^sleep\\s+1(\\s|$)"
+            },
+            {
+              "pattern": "^timeout\\s+240(\\s|$)"
+            },
+            {
+              "pattern": "^docker\\s+manifest(\\s|$)"
+            },
+            {
+              "pattern": "^docker\\s+buildx(\\s|$)"
+            },
+            {
+              "pattern": "^kill\\s+12221(\\s|$)"
+            },
+            {
+              "pattern": "^nohup\\s+env(\\s|$)"
+            },
+            {
+              "pattern": "^sleep\\s+2(\\s|$)"
+            },
+            {
+              "pattern": "^uniq\\b"
+            },
+            {
+              "pattern": "^kill\\s+23520(\\s|$)"
+            },
+            {
+              "pattern": "^nohup\\s+geckodriver(\\s|$)"
+            },
+            {
+              "pattern": "^kill\\s+92004(\\s|$)"
+            },
+            {
+              "pattern": "^kill\\s+55391(\\s|$)"
+            },
+            {
+              "pattern": "^echo\\s+geckodriver(\\s|$)"
+            },
+            {
+              "pattern": "^kill\\s+49641(\\s|$)"
+            },
+            {
+              "pattern": "^echo\\s+cleaned(\\s|$)"
+            },
+            {
+              "pattern": "^touch\\s+src/main\\.rs(\\s|$)"
+            },
+            {
+              "pattern": "^echo\\s+compose(\\s|$)"
+            },
+            {
+              "pattern": "^dropdb\\s+rostfacto-scratch(\\s|$)"
+            },
+            {
+              "pattern": "^echo\\s+scratch(\\s|$)"
+            },
+            {
+              "pattern": "^cat\\s+/Users/suhlig/workspace/dspictl/main/\\.pre-commit-config\\.yaml(\\s|$)"
+            },
+            {
+              "pattern": "^find\\s+/Users/suhlig/workspace/dspictl/main/\\.github(\\s|$)"
+            },
+            {
+              "pattern": "^find\\s+/Users/suhlig/workspace/DSPi/\\.github(\\s|$)"
+            },
+            {
+              "pattern": "^uptime\\b"
+            },
+            {
+              "pattern": "^sqlite3\\s+/tmp/caterbill-migration-check\\.db(\\s|$)"
+            },
+            {
+              "pattern": "^xxd\\b"
+            },
+            {
+              "pattern": "^sqlite3\\s+/tmp/cb-test\\.db(\\s|$)"
+            },
+            {
+              "pattern": "^which\\s+typst(\\s|$)"
+            },
+            {
+              "pattern": "^typst\\b"
+            },
+            {
+              "pattern": "^cp\\s+web/templates/main\\.typ(\\s|$)"
+            },
+            {
+              "pattern": "^cd\\s+/tmp/typst-check(\\s|$)"
+            },
+            {
+              "pattern": "^echo\\s+OK(\\s|$)"
+            },
+            {
+              "pattern": "^docker\\s+pull(\\s|$)"
+            },
+            {
+              "pattern": "^docker\\s+run(\\s|$)"
+            },
+            {
+              "pattern": "^printf\\s+ynnnynyn(\\s|$)"
+            },
+            {
+              "pattern": "^jq\\s+\\.(\\s|$)"
+            },
+            {
+              "pattern": "^gh\\s+issue(\\s|$)"
+            },
+            {
+              "pattern": "^jq\\b"
+            },
+            {
+              "pattern": "^ANSIBLE_COLLECTIONS_PATH=/Users/suhlig/\\.ansible/collections/ansible_collections\\s+ansible-playbook(\\s|$)"
             }
           ]
         },
@@ -193,11 +778,25 @@
     "dock": "right",
     "default_profile": "write",
     "default_model": {
+      "effort": "max",
       "provider": "opencode",
-      "model": "free/big-pickle",
-      "enable_thinking": false
+      "model": "go/deepseek-v4-flash",
+      "enable_thinking": true
     },
-    "favorite_models": [],
+    "favorite_models": [
+      {
+        "provider": "opencode",
+        "model": "go/deepseek-v4-flash",
+        "enable_thinking": true,
+        "effort": "max"
+      },
+      {
+        "provider": "opencode",
+        "model": "go/kimi-k3",
+        "enable_thinking": true,
+        "effort": "max"
+      }
+    ],
     "model_parameters": []
   },
   "ui_font_family": "IBM Plex Sans",
