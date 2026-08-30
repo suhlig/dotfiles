@@ -1,0 +1,82 @@
+#!/usr/bin/env zsh
+# ansible-live — link own Ansible role checkouts into the default role search path.
+#
+# Conventions:
+#   - Repo location mirrors the GitHub owner:  ~/git/github.com/<owner>/ansible-role-<name>
+#   - Link name mirrors the Galaxy identity:   <namespace>.<role_name>
+#   - Third-party roles: ansible-galaxy role install -r requirements.yml (never linked here).
+#   - Never galaxy-install your own <namespace>.* on this machine: it would replace a symlink.
+#
+# Run after cloning, moving, or renaming a role checkout. Idempotent; prunes dangling links.
+
+setopt ERR_EXIT NO_UNSET PIPE_FAIL
+
+# GitHub roots that may hold own ansible-role-* checkouts
+roots=("$HOME/git/github.com/suhlig" "$HOME/git/github.com/uhlig.it")
+
+# Default Galaxy namespace for own roles
+NS=suhlig
+
+# Ansible state dir (respect a custom ANSIBLE_HOME if one is set)
+ANSIBLE_HOME=${ANSIBLE_HOME:-$HOME/.ansible}
+ROLES_DIR="$ANSIBLE_HOME/roles"
+
+mkdir -p "$ROLES_DIR"
+
+# First galaxy_info.role_name found in a meta/main.yml
+meta_role_name() {
+  local line
+  while IFS= read -r line; do
+    if [[ $line =~ '^[[:space:]]*role_name:[[:space:]]*([^[:space:]]+)[[:space:]]*$' ]]; then
+      print -- "${match[1]}"
+      return
+    fi
+  done < "$1"
+}
+
+# Galaxy name for a checkout. Forks of third-party roles get the UPSTREAM
+# galaxy name, so local plays use the fork wherever the original would be used.
+# Example: */ansible-role-ntp) print -- geerlingguy.ntp ;;
+galaxy_name() {
+  local repo=$1 name
+  case "$repo" in
+    */ansible-role-ntp) print -- geerlingguy.ntp ;;
+    *)
+      name=$(meta_role_name "$repo/meta/main.yml")
+      [[ -n $name ]] || name=${${repo:t}#ansible-role-}
+      print -- "$NS.$name"
+      ;;
+  esac
+}
+
+link_role() {
+  local repo=$1 link
+  link="$ROLES_DIR/$(galaxy_name "$repo")"
+  if [[ -e $link && ! -L $link ]]; then
+    print -u2 "SKIP: $link exists as a real directory (galaxy install?) - leaving it alone"
+    return
+  fi
+  if [[ "$(readlink "$link" 2>/dev/null || true)" != "$repo" ]]; then
+    ln -sfn "$repo" "$link"
+    print -- "linked ${link:t} -> $repo"
+  fi
+}
+
+for root in $roots; do
+  for repo in "$root"/ansible-role-*; do
+    [[ -d "$repo/meta" ]] || continue
+    link_role "$repo"
+  done
+done
+
+# Remove dangling links (checkout moved or deleted)
+for link in "$ROLES_DIR"/*; do
+  if [[ -L $link && ! -e $link ]]; then
+    rm "$link"
+    print -- "pruned $link"
+  fi
+done
+
+# (N) = don't error on no match; @ = symlinks only
+links=("$ROLES_DIR"/*(N@))
+print -- "done - ${#links} symlink(s) in $ROLES_DIR"
