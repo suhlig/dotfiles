@@ -767,6 +767,54 @@
             },
             {
               "pattern": "^ANSIBLE_COLLECTIONS_PATH=/Users/suhlig/\\.ansible/collections/ansible_collections\\s+ansible-playbook(\\s|$)"
+            },
+            {
+              "pattern": "^pgrep\\b"
+            },
+            {
+              "pattern": "^ps\\s+aux(\\s|$)"
+            },
+            {
+              "pattern": "^sleep\\s+20(\\s|$)"
+            },
+            {
+              "pattern": "^find\\s+\\~/workspace(\\s|$)"
+            },
+            {
+              "pattern": "^which\\s+wtg(\\s|$)"
+            },
+            {
+              "pattern": "^cat\\s+\\~/\\.wtg\\*(\\s|$)"
+            },
+            {
+              "pattern": "^awk\\s+\\{print(\\s|$)"
+            },
+            {
+              "pattern": "^tr\\s+n(\\s|$)"
+            },
+            {
+              "pattern": "^ls\\s+/tmp/tasmota-build/lib/libesp32/(\\s|$)"
+            },
+            {
+              "pattern": "^find\\s+/tmp/tasmota-build/lib(\\s|$)"
+            },
+            {
+              "pattern": "^find\\s+/tmp/pio-core(\\s|$)"
+            },
+            {
+              "pattern": "^cd\\s+/tmp/tasmota-src/Tasmota-15\\.6\\.0(\\s|$)"
+            },
+            {
+              "pattern": "^ls\\s+lib/(\\s|$)"
+            },
+            {
+              "pattern": "^cd\\s+/tmp(\\s|$)"
+            },
+            {
+              "pattern": "^unzip\\b"
+            },
+            {
+              "pattern": "^ls\\s+plat32(\\s|$)"
             }
           ]
         },

@@ -113,5 +113,13 @@
     "grep -E \"^(ok|FAIL|\\?)\""
   ],
   "bob-code.deniedCommands": [],
-  "editor.fontSize": 14
+  "editor.fontSize": 14,
+  "yaml.disableSchemaDetection": [
+    "**/.github/workflows/*.yml",
+    "**/.github/workflows/*.yaml",
+    "**/.gitea/workflows/*.yml",
+    "**/.gitea/workflows/*.yaml",
+    "**/.forgejo/workflows/*.yml",
+    "**/.forgejo/workflows/*.yaml"
+  ]
 }
