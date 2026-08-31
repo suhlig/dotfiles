@@ -42,7 +42,7 @@ show_preview = true
 search_mode = "daemon-fuzzy"
 
 [ai]
-enabled = true
+enabled = false
 
 [daemon]
 enabled = true
