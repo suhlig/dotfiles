@@ -6,7 +6,7 @@ code from the working tree — no pushes, no re-installs.
 
 ## Why this exists
 
-Ansible resolves a role reference like `suhlig.simple_systemd_service` by
+Ansible resolves a role reference like `uhlig-it.simple_systemd_service` by
 looking for a directory with exactly that name in the role search paths
 (`~/.ansible/roles` is the first built-in default entry). Our checkouts are
 named after the GitHub repo (`ansible-role-simple-systemd-service`), so they
@@ -15,7 +15,7 @@ can never be found directly.
 These symlinks bridge the two:
 
 ```
-~/.ansible/roles/suhlig.simple_systemd_service
+~/.ansible/roles/uhlig-it.simple_systemd_service
     -> ~/git/github.com/uhlig.it/ansible-role-simple-systemd-service
 ```
 
@@ -32,10 +32,10 @@ same way, under their `<namespace>/<name>` from `galaxy.yml`:
 | Thing | Rule |
 |---|---|
 | Repo location | mirrors the GitHub owner: `~/git/github.com/<owner>/ansible-role-<name>` (roles) resp. `~/git/github.com/<owner>/<name>` (collections) |
-| Link name | mirrors the Galaxy identity: `<namespace>.<role_name>` (from `meta/main.yml`) resp. `<namespace>/<name>` (from `galaxy.yml`) |
+| Link name | mirrors the checkout: `<namespace>.<role_name>` (from `meta/main.yml`) resp. `<namespace>/<name>` (from `galaxy.yml`); `<namespace>` mirrors the GitHub owner (`uhlig.it` → `uhlig-it`, dots are not legal in Galaxy namespaces) |
 | Third-party roles | `ansible-galaxy role install -r requirements.yml` — never cloned into `~/git`, never linked |
 | Forks of third-party roles | linked under the *upstream* Galaxy name (override in `galaxy_name()`), so the fork shadows the installed original |
-| Own roles in `requirements.yml` | forbidden on this machine — a Galaxy install would replace the symlink (it is fine on CI machines, which have no links) |
+| Own roles in `requirements.yml` | forbidden — remove such entries: a Galaxy install would replace the symlink here, and our own roles are not published to Galaxy, so the entry fails on any other machine anyway |
 | Collections (own) | checkouts with `galaxy.yml` at the repo root, linked into `~/.ansible/collections/ansible_collections/<ns>/<name>` |
 | Own collections in `requirements.yml` | forbidden on this machine — a Galaxy install would replace the symlink (it is fine on CI machines, which have no links) |
 
@@ -57,7 +57,7 @@ alongside installed ones — handy for verification.
 ~/.dotfiles/ansible-live/README.md    <- this file (git)
 ~/.ansible/ansible-live               -> symlink to the script
 ~/.ansible/README.md                  -> symlink to this file
-~/.ansible/roles/suhlig.*             <- symlinks created by the script
+~/.ansible/roles/suhlig.*, uhlig-it.*   <- symlinks created by the script
 ~/.ansible/roles/...                  <- Galaxy installs (third-party)
 ~/.ansible/collections/ansible_collections/suhlig/* <- collection symlinks
 ~/.ansible/collections/ansible_collections/...      <- Galaxy installs (third-party)

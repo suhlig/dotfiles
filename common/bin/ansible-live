@@ -5,7 +5,7 @@
 # Conventions:
 #   - Role repos mirror the GitHub owner:     ~/git/github.com/<owner>/ansible-role-<name>
 #   - Collection repos mirror the GitHub owner: ~/git/github.com/<owner>/<name> (galaxy.yml at repo root)
-#   - Link names mirror the Galaxy identities:  <namespace>.<role_name> resp. <ns>/<name> in ansible_collections
+#   - Link names: <namespace>.<role_name> resp. <ns>/<name> from galaxy.yml; namespace mirrors the GitHub owner (uhlig.it -> uhlig-it)
 #   - Third-party roles/collections: ansible-galaxy ... install -r requirements.yml (never linked here).
 #   - Never galaxy-install your own <namespace>.* on this machine: it would replace a symlink.
 #
@@ -16,8 +16,15 @@ setopt ERR_EXIT NO_UNSET PIPE_FAIL
 # GitHub roots that may hold own role/collection checkouts
 roots=("$HOME/git/github.com/suhlig" "$HOME/git/github.com/uhlig.it")
 
-# Default Galaxy namespace for own roles
-NS=suhlig
+# Galaxy namespace for a checkout root: mirrors the GitHub owner. The GitHub
+# org 'uhlig.it' maps to the Galaxy namespace 'uhlig-it' (dots are not legal
+# in Galaxy namespace names).
+ns_for_root() {
+  case "${1:t}" in
+    uhlig.it) print -- uhlig-it ;;
+    *) print -- "${1:t}" ;;
+  esac
+}
 
 # Ansible state dir (respect a custom ANSIBLE_HOME if one is set)
 ANSIBLE_HOME=${ANSIBLE_HOME:-$HOME/.ansible}
@@ -41,20 +48,20 @@ meta_role_name() {
 # galaxy name, so local plays use the fork wherever the original would be used.
 # Example: */ansible-role-ntp) print -- geerlingguy.ntp ;;
 galaxy_name() {
-  local repo=$1 name
+  local repo=$1 ns=$2 name
   case "$repo" in
     */ansible-role-ntp) print -- geerlingguy.ntp ;;
     *)
       name=$(meta_role_name "$repo/meta/main.yml")
       [[ -n $name ]] || name=${${repo:t}#ansible-role-}
-      print -- "$NS.$name"
+      print -- "$ns.$name"
       ;;
   esac
 }
 
 link_role() {
-  local repo=$1 link
-  link="$ROLES_DIR/$(galaxy_name "$repo")"
+  local repo=$1 ns=$2 link
+  link="$ROLES_DIR/$(galaxy_name "$repo" "$ns")"
   if [[ -e $link && ! -L $link ]]; then
     print -u2 "SKIP: $link exists as a real directory (galaxy install?) - leaving it alone"
     return
@@ -98,13 +105,14 @@ link_collection() {
 }
 
 for root in $roots; do
+  ns=$(ns_for_root "$root")
   for repo in "$root"/*(N/); do
     [[ -f "$repo/galaxy.yml" ]] || continue
     link_collection "$repo"
   done
   for repo in "$root"/ansible-role-*; do
     [[ -d "$repo/meta" ]] || continue
-    link_role "$repo"
+    link_role "$repo" "$ns"
   done
 done
 
