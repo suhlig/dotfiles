@@ -68,9 +68,8 @@ require('lazy').setup({
   {
     -- Highlight and indent code
     'nvim-treesitter/nvim-treesitter',
-    config = function()
-      pcall(require('nvim-treesitter.install').update { with_sync = true })
-    end,
+    -- Re-sync installed parsers whenever the plugin updates
+    build = ':TSUpdate',
   },
 
   -- NOTE: The import below automatically adds your own plugins from `lua/custom/plugins/*.lua`
