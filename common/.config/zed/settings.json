@@ -57,7 +57,8 @@
       }
     },
     "opencode": {
-      "show_zen_models": true
+      "show_go_models": true,
+      "show_zen_models": false
     }
   },
   "remove_trailing_whitespace_on_save": true,
@@ -89,6 +90,9 @@
     },
     "tool_permissions": {
       "tools": {
+        "mcp:chrome-devtools-mcp-zed:drag": {
+          "default": "allow"
+        },
         "mcp:Lunacy:get_main_prompt": {
           "default": "allow"
         },
@@ -188,6 +192,9 @@
             },
             {
               "pattern": "^caterbill/doc/screenshot/"
+            },
+            {
+              "pattern": "^kehrkraft-validation/"
             }
           ]
         },
@@ -815,6 +822,24 @@
             },
             {
               "pattern": "^ls\\s+plat32(\\s|$)"
+            },
+            {
+              "pattern": "^echo\\s+COMPILE_OK(\\s|$)"
+            },
+            {
+              "pattern": "^pdfinfo\\s+\\.tmp_pdf_view/test1\\.pdf(\\s|$)"
+            },
+            {
+              "pattern": "^pdfinfo\\s+\\.tmp_pdf_view/test3\\.pdf(\\s|$)"
+            },
+            {
+              "pattern": "^pdftotext\\b"
+            },
+            {
+              "pattern": "^pdfinfo\\s+\\.tmp_pdf_view/wrapper_mock\\.pdf(\\s|$)"
+            },
+            {
+              "pattern": "^sqlite3\\b"
             }
           ]
         },
@@ -843,6 +868,11 @@
         "model": "go/kimi-k3",
         "enable_thinking": true,
         "effort": "max"
+      },
+      {
+        "provider": "openrouter",
+        "model": "z-ai/glm-5.3-flash",
+        "enable_thinking": true
       }
     ],
     "model_parameters": []
