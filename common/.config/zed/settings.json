@@ -840,6 +840,15 @@
             },
             {
               "pattern": "^sqlite3\\b"
+            },
+            {
+              "pattern": "^ansible-playbook\\b"
+            },
+            {
+              "pattern": "^ANSIBLE_ROLES_PATH=/tmp/galaxy-test:roles\\s+ansible-playbook(\\s|$)"
+            },
+            {
+              "pattern": "^ANSIBLE_ROLES_PATH=/tmp/galaxy-test\\s+ansible-playbook(\\s|$)"
             }
           ]
         },
@@ -851,9 +860,9 @@
     "dock": "right",
     "default_profile": "write",
     "default_model": {
-      "effort": "max",
-      "provider": "opencode",
-      "model": "go/deepseek-v4-flash",
+      "effort": "high",
+      "provider": "openrouter",
+      "model": "deepseek/deepseek-v4.1-flash",
       "enable_thinking": true
     },
     "favorite_models": [
@@ -873,6 +882,12 @@
         "provider": "openrouter",
         "model": "z-ai/glm-5.3-flash",
         "enable_thinking": true
+      },
+      {
+        "provider": "openrouter",
+        "model": "deepseek/deepseek-v4.1-flash",
+        "enable_thinking": true,
+        "effort": "high"
       }
     ],
     "model_parameters": []
