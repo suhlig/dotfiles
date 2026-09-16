@@ -1,0 +1,106 @@
+#
+# List every open pull request in the repositories you can push to, i.e. the
+# ones you could potentially merge, with the URL to open each one in the web UI.
+#
+# The output is always the same four columns: REPO, TITLE, AUTHOR and URL.
+#
+# Note that push access does not guarantee a merge: branch protection, required
+# reviews and CODEOWNERS may still block you.
+#
+# Extra arguments are passed on to `gh search prs`, e.g.
+#
+#   gh-prs-i-can-merge --review-requested=@me --no-draft
+#
+# Set GH_PRS_CHUNK to change how many repositories are queried per request.
+#
+# The URL column doubles as a clickable link: on a terminal the URL is emitted
+# as an OSC 8 hyperlink, so it can be opened directly (cmd-click in iTerm2,
+# ghostty, kitty, ...). When the output is piped or redirected the URL is plain
+# text. Set GH_PRS_LINKS=1 or GH_PRS_LINKS=0 to force the links on or off, e.g.
+#
+#   GH_PRS_LINKS=1 gh-prs-i-can-merge | less -R
+#
+
+# zsh only; keep quiet when this directory is sourced from .bashrc
+[[ -n ${ZSH_VERSION-} ]] || return 0
+
+gh-prs-i-can-merge() {
+  emulate -L zsh
+  setopt local_options pipe_fail
+
+  local chunk=${GH_PRS_CHUNK:-10}
+
+  # Escape sequences would linger in files and confuse dumb terminals, so only
+  # emit hyperlinks when they can actually be followed.
+  local hyperlink
+  case ${GH_PRS_LINKS-} in
+    0) hyperlink=false ;;
+    1) hyperlink=true ;;
+    *) if [[ -t 1 && ${TERM-} != dumb ]]; then
+         hyperlink=true
+       else
+         hyperlink=false
+       fi ;;
+  esac
+
+  # Repositories where we have write-ish rights. The REST endpoint is used
+  # rather than GraphQL's viewer.repositories because it also includes
+  # repositories granted through team membership, and it exposes the per-repo
+  # `permissions` we filter on. Sorting explicitly keeps pagination stable.
+  local -a repos
+  repos=(${(f)"$(
+    gh api --paginate '/user/repos?per_page=100&sort=full_name' \
+      --jq '.[] | select((.permissions.push or .permissions.maintain or .permissions.admin)
+                          and (.archived|not)) | .full_name'
+  )"})
+
+  if (( ! ${#repos} )); then
+    print -u2 "gh-prs-i-can-merge: no repositories with write access"
+    return 1
+  fi
+  print -u2 "gh-prs-i-can-merge: ${#repos} repositories with write access"
+
+  local tmp
+  tmp=$(mktemp) || return 1
+
+  {
+    # The search API limits the length of the query, so ask about a few
+    # repositories at a time. `${batch/#/--repo=}` turns every element of the
+    # array into a single `--repo=<name>` flag.
+    local -a batch
+    local repo
+    for repo in $repos; do
+      batch+=($repo)
+      (( ${#batch} >= chunk )) || continue
+      gh search prs ${batch/#/--repo=} --state=open --limit 100 \
+        --json number,title,url,repository,author \
+        "$@" >> "$tmp"
+      batch=()
+    done
+    if (( ${#batch} )); then
+      gh search prs ${batch/#/--repo=} --state=open --limit 100 \
+        --json number,title,url,repository,author \
+        "$@" >> "$tmp"
+    fi
+
+    jq -s -r --argjson hyperlink "$hyperlink" '
+      # OSC 8 hyperlink: ESC ] 8 ; ; URI, then ESC followed by a backslash,
+      # the visible text, and ESC ] 8 ; ; plus that same ESC-backslash again.
+      def link: "\u001b]8;;" + . + "\u001b\\" + . + "\u001b]8;;\u001b\\";
+
+      (add // []) | unique_by(.url)
+      | sort_by(.repository.nameWithOwner, .number)
+      | (["REPO", "TITLE", "AUTHOR", "URL"] | @tsv),
+        (.[] as $pr
+         | ([$pr.repository.nameWithOwner,
+            $pr.title,
+            ($pr.author.login // "ghost")
+           ] | @tsv)
+           # @tsv doubles backslashes, which would corrupt the escape sequences,
+           # so the URL is appended after escaping instead of escaped itself.
+           + "\t" + (if $hyperlink then ($pr.url | link) else $pr.url end))
+    ' "$tmp" | column -t -s $'\t'
+  } always {
+    rm -f "$tmp"
+  }
+}
