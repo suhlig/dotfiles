@@ -14,14 +14,12 @@
 setopt ERR_EXIT NO_UNSET PIPE_FAIL
 
 # GitHub roots that may hold own role/collection checkouts
-roots=("$HOME/git/github.com/suhlig" "$HOME/git/github.com/uhlig.it")
+roots=("$HOME/git/github.com/suhlig" "$HOME/git/github.com/uhlig-it")
 
-# Galaxy namespace for a checkout root: mirrors the GitHub owner. The GitHub
-# org 'uhlig.it' maps to the Galaxy namespace 'uhlig-it' (dots are not legal
-# in Galaxy namespace names).
+# Galaxy namespace for a checkout root: mirrors the GitHub owner.
 ns_for_root() {
   case "${1:t}" in
-    uhlig.it) print -- uhlig-it ;;
+    uhlig-it) print -- uhlig-it ;;
     *) print -- "${1:t}" ;;
   esac
 }
