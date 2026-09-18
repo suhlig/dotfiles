@@ -849,6 +849,27 @@
             },
             {
               "pattern": "^ANSIBLE_ROLES_PATH=/tmp/galaxy-test\\s+ansible-playbook(\\s|$)"
+            },
+            {
+              "pattern": "^ssh\\b"
+            },
+            {
+              "pattern": "^mosquitto_pub\\b"
+            },
+            {
+              "pattern": "^sleep\\s+30(\\s|$)"
+            },
+            {
+              "pattern": "^mosquitto_sub\\b"
+            },
+            {
+              "pattern": "^ansible\\b"
+            },
+            {
+              "pattern": "^sleep\\s+40(\\s|$)"
+            },
+            {
+              "pattern": "^sleep\\s+60(\\s|$)"
             }
           ]
         },
