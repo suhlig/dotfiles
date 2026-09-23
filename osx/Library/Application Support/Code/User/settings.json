@@ -114,13 +114,8 @@
   ],
   "bob-code.deniedCommands": [],
   "editor.fontSize": 14,
-  "yaml.disableSchemaDetection": [
-    "**/.github/workflows/*.yml",
-    "**/.github/workflows/*.yaml",
-    "**/.gitea/workflows/*.yml",
-    "**/.gitea/workflows/*.yaml",
-    "**/.forgejo/workflows/*.yml",
-    "**/.forgejo/workflows/*.yaml"
-  ],
+  "yaml.disableSchemaDetection": [],
   "cSpell.enabled": false,
+  "concertSecureCoder.autoScanOnSave": true,
+  "concertSecureCoder.autoScanOnTypingStop": true,
 }
