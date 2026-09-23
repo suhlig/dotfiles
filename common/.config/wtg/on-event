@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+
+case $WTG_SPACE_EVENT in
+  create)
+    tmux new-session -d -s "$WTG_SPACE_NAME" -c "$WTG_SPACE_ROOT" -n root
+
+    for dir in ${(f)WTG_REPO_PATHS}; do
+      tmux new-window -t "$WTG_SPACE_NAME" -c "$dir" -n "${dir:t}"
+    done
+
+    echo "tmux session \"$WTG_SPACE_NAME\" created at $WTG_SPACE_ROOT"
+    ;;
+  delete)
+    tmux kill-session -t "$WTG_SPACE_NAME" && echo "tmux session \"$WTG_SPACE_NAME\" killed"
+    ;;
+esac
