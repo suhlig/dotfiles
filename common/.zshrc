@@ -29,3 +29,6 @@ setopt autocd # for .. etc.
 find -L ~/.zsh_profile.d ~/.profile.d ~/.zsh_completion.d -type f | while read file; do
   source "$file"
 done
+
+# https://github.com/FreeCAD/FreeCAD/issues/32955
+alias FreeCadWithSpaceMouse='/Applications/FreeCAD.app/Contents/MacOS/FreeCAD >/dev/null 2>&1 & disown'
