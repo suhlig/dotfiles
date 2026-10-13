@@ -9,6 +9,11 @@
 {
   "proxy": "",
   "context_servers": {
+    "mcp-server-github": {
+      "enabled": true,
+      "remote": false,
+      "settings": {}
+    },
     "freecad": {
       "command": "uvx",
       "args": ["freecad-mcp"]
@@ -129,6 +134,54 @@
     },
     "tool_permissions": {
       "tools": {
+        "mcp:mcp-server-github:add_issue_comment": {
+          "default": "allow"
+        },
+        "mcp:mcp-server-github:merge_pull_request": {
+          "default": "allow"
+        },
+        "mcp:mcp-server-github:create_pull_request": {
+          "default": "allow"
+        },
+        "mcp:mcp-server-github:delete_file": {
+          "default": "allow"
+        },
+        "mcp:mcp-server-github:get_commit": {
+          "default": "allow"
+        },
+        "mcp:mcp-server-github:push_files": {
+          "default": "allow"
+        },
+        "mcp:mcp-server-github:update_pull_request_branch": {
+          "default": "allow"
+        },
+        "mcp:mcp-server-github:create_or_update_file": {
+          "default": "allow"
+        },
+        "mcp:mcp-server-github:list_pull_requests": {
+          "default": "allow"
+        },
+        "mcp:mcp-server-github:list_commits": {
+          "default": "allow"
+        },
+        "mcp:mcp-server-github:pull_request_read": {
+          "default": "allow"
+        },
+        "mcp:mcp-server-github:search_issues": {
+          "default": "allow"
+        },
+        "mcp:mcp-server-github:get_latest_release": {
+          "default": "allow"
+        },
+        "mcp:mcp-server-github:search_code": {
+          "default": "allow"
+        },
+        "mcp:mcp-server-github:get_file_contents": {
+          "default": "allow"
+        },
+        "mcp:mcp-server-github:search_repositories": {
+          "default": "allow"
+        },
         "mcp:freecad:delete_object": {
           "default": "allow"
         },
@@ -1103,6 +1156,153 @@
             },
             {
               "pattern": "^find\\s+\\~/Library/Preferences/3Dconnexion(\\s|$)"
+            },
+            {
+              "pattern": "^rsvg-convert\\b"
+            },
+            {
+              "pattern": "^magick\\s+v3\\.png(\\s|$)"
+            },
+            {
+              "pattern": "^magick\\s+t0\\.png(\\s|$)"
+            },
+            {
+              "pattern": "^echo\\s+done(\\s|$)"
+            },
+            {
+              "pattern": "^magick\\s+w2b\\.png(\\s|$)"
+            },
+            {
+              "pattern": "^magick\\s+u2\\.png(\\s|$)"
+            },
+            {
+              "pattern": "^magick\\s+f_0\\.png(\\s|$)"
+            },
+            {
+              "pattern": "^magick\\s+f_1\\.png(\\s|$)"
+            },
+            {
+              "pattern": "^magick\\s+f_2\\.png(\\s|$)"
+            },
+            {
+              "pattern": "^magick\\s+f_3\\.png(\\s|$)"
+            },
+            {
+              "pattern": "^magick\\s+f_0c\\.png(\\s|$)"
+            },
+            {
+              "pattern": "^magick\\s+h_0\\.png(\\s|$)"
+            },
+            {
+              "pattern": "^magick\\s+h_1\\.png(\\s|$)"
+            },
+            {
+              "pattern": "^magick\\s+h_2\\.png(\\s|$)"
+            },
+            {
+              "pattern": "^magick\\s+h_3\\.png(\\s|$)"
+            },
+            {
+              "pattern": "^magick\\s+h_0c\\.png(\\s|$)"
+            },
+            {
+              "pattern": "^magick\\s+bigRow\\.png(\\s|$)"
+            },
+            {
+              "pattern": "^magick\\s+identify(\\s|$)"
+            },
+            {
+              "pattern": "^esphome\\s+config(\\s|$)"
+            },
+            {
+              "pattern": "^ansible-vault\\s+view(\\s|$)"
+            },
+            {
+              "pattern": "^which\\s+ansible-vault(\\s|$)"
+            },
+            {
+              "pattern": "^ansible-vault\\b"
+            },
+            {
+              "pattern": "^PAGER=cat\\s+ansible-vault\\s+view(\\s|$)"
+            },
+            {
+              "pattern": "^echo\\s+==(\\s|$)"
+            },
+            {
+              "pattern": "^which\\s+python3(\\s|$)"
+            },
+            {
+              "pattern": "^pip3\\s+install(\\s|$)"
+            },
+            {
+              "pattern": "^brew\\s+install(\\s|$)"
+            },
+            {
+              "pattern": "^pipx\\s+install(\\s|$)"
+            },
+            {
+              "pattern": "^ffplay\\b"
+            },
+            {
+              "pattern": "^magick\\s+/tmp/card\\.png(\\s|$)"
+            },
+            {
+              "pattern": "^ffmpeg\\b"
+            },
+            {
+              "pattern": "^ffprobe\\b"
+            },
+            {
+              "pattern": "^python3\\s+github\\.com/uhlig-it/infrastructure/playbooks/services/files/analyze-recording\\.py(\\s|$)"
+            },
+            {
+              "pattern": "^base64\\b"
+            },
+            {
+              "pattern": "^sed\\s+s/:\\.\\*\\$//(\\s|$)"
+            },
+            {
+              "pattern": "^cat\\s+/tmp/infra_all_keys\\.txt(\\s|$)"
+            },
+            {
+              "pattern": "^comm\\b"
+            },
+            {
+              "pattern": "^cat\\s+/tmp/opus_keys\\.txt(\\s|$)"
+            },
+            {
+              "pattern": "^shasum\\b"
+            },
+            {
+              "pattern": "^cat\\s+/tmp/infra_all_secrets\\.yml(\\s|$)"
+            },
+            {
+              "pattern": "^openspec\\s+list(\\s|$)"
+            },
+            {
+              "pattern": "^which\\s+moli(\\s|$)"
+            },
+            {
+              "pattern": "^moli\\b"
+            },
+            {
+              "pattern": "^tail_lines\\s+80(\\s|$)"
+            },
+            {
+              "pattern": "^sleep\\s+15(\\s|$)"
+            },
+            {
+              "pattern": "^GOTOOLCHAIN=local\\s+go\\s+list(\\s|$)"
+            },
+            {
+              "pattern": "^sleep\\s+240(\\s|$)"
+            },
+            {
+              "pattern": "^sleep\\s+150(\\s|$)"
+            },
+            {
+              "pattern": "^sleep\\s+180(\\s|$)"
             }
           ]
         },
@@ -1116,7 +1316,7 @@
     "default_model": {
       "effort": "high",
       "provider": "opencode",
-      "model": "go/deepseek-v4.1-flash",
+      "model": "go/glm-5.3-flash",
       "enable_thinking": true
     },
     "favorite_models": [
