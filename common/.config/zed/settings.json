@@ -297,9 +297,9 @@
     "dock": "right",
     "default_profile": "write",
     "default_model": {
-      "effort": "max",
-      "provider": "openrouter",
-      "model": "z-ai/glm-5.3-flash",
+      "effort": "high",
+      "provider": "opencode",
+      "model": "go/deepseek-v4.1-flash",
       "enable_thinking": true
     },
     "favorite_models": [
