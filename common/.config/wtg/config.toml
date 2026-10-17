@@ -41,3 +41,9 @@ root_dir = "~/workspace"
 # event type and the space path through environment variables. See docs/always.md.
 # Default is none; example:
 run = "~/.config/wtg/on-event"
+
+[archive]
+# Directory retired repo clones are moved to by wtg repo archive. It must be
+# outside every discovery root (so archived repos are not rediscovered) and on
+# the same filesystem as your repos. (default: ~/repos-archived)
+root_dir = "~/git-archive/"
