@@ -1,0 +1,6 @@
+# Ghostty terminal configuration
+# Docs: https://ghostty.org/docs/config/reference
+
+font-family = IBM Plex Mono
+font-size = 15
+theme = Ayu
