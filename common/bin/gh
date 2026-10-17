@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+#
+# Run gh with the identity that matches the repository it acts on. This is the
+# gh counterpart of the git includeIf rule in ~/.gitconfig.local: when the
+# target is a nowak-reisen or speisehof repo, gh acts as Aishe Drechsler (via
+# GH_CONFIG_DIR); everywhere else it keeps the default identity.
+#
+# The target is an explicit -R/--repo argument when present, otherwise the
+# origin of the repository in the current directory.
+#
+# Stowed to ~/bin/gh, so it shadows the real gh on PATH.
+
+set -euo pipefail
+
+# Locate the real gh: the first gh on PATH that is not this wrapper.
+real_gh=
+IFS=:
+for dir in $PATH; do
+  candidate=$dir/gh
+
+  [[ -x $candidate ]] || continue
+  [[ $candidate -ef $0 ]] && continue
+
+  real_gh=$candidate
+  break
+done
+unset IFS
+
+if [[ -z $real_gh ]]; then
+  printf 'gh wrapper: cannot find the real gh on PATH\n' >&2
+  exit 127
+fi
+
+# What the command acts on: an explicit repo argument, else this repo's origin.
+target=
+expect_repo=
+for arg in "$@"; do
+  if [[ -n $expect_repo ]]; then
+    target=$arg
+    break
+  fi
+
+  case $arg in
+    -R|--repo) expect_repo=1 ;;
+    --repo=*) target=${arg#--repo=} ;;
+    -R*) target=${arg#-R} ;;
+  esac
+done
+
+if [[ -z $target ]]; then
+  target=$(git remote get-url origin 2>/dev/null || true)
+fi
+
+case $target in
+  *github.com[:/]nowak-reisen/*|*github.com[:/]speisehof/*|nowak-reisen/*|speisehof/*)
+    # A token exported into the environment would win over the config dir; drop
+    # it so Aishe's identity is authoritative here.
+    unset GH_TOKEN GITHUB_TOKEN
+    GH_CONFIG_DIR=$HOME/.config/gh-aidrechs exec "$real_gh" "$@"
+    ;;
+  *)
+    exec "$real_gh" "$@"
+    ;;
+esac
