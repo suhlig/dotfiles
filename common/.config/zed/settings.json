@@ -133,1219 +133,149 @@
       ]
     },
     "tool_permissions": {
+      "default": "allow",
       "tools": {
-        "mcp:mcp-server-github:add_issue_comment": {
-          "default": "allow"
-        },
-        "mcp:mcp-server-github:merge_pull_request": {
-          "default": "allow"
-        },
-        "mcp:mcp-server-github:create_pull_request": {
-          "default": "allow"
-        },
-        "mcp:mcp-server-github:delete_file": {
-          "default": "allow"
-        },
-        "mcp:mcp-server-github:get_commit": {
-          "default": "allow"
-        },
-        "mcp:mcp-server-github:push_files": {
-          "default": "allow"
-        },
-        "mcp:mcp-server-github:update_pull_request_branch": {
-          "default": "allow"
-        },
-        "mcp:mcp-server-github:create_or_update_file": {
-          "default": "allow"
-        },
-        "mcp:mcp-server-github:list_pull_requests": {
-          "default": "allow"
-        },
-        "mcp:mcp-server-github:list_commits": {
-          "default": "allow"
-        },
-        "mcp:mcp-server-github:pull_request_read": {
-          "default": "allow"
-        },
-        "mcp:mcp-server-github:search_issues": {
-          "default": "allow"
-        },
-        "mcp:mcp-server-github:get_latest_release": {
-          "default": "allow"
-        },
-        "mcp:mcp-server-github:search_code": {
-          "default": "allow"
-        },
-        "mcp:mcp-server-github:get_file_contents": {
-          "default": "allow"
-        },
-        "mcp:mcp-server-github:search_repositories": {
-          "default": "allow"
-        },
-        "mcp:freecad:delete_object": {
-          "default": "allow"
-        },
-        "mcp:freecad:edit_object": {
-          "default": "allow"
-        },
-        "mcp:freecad:execute_code_async": {
-          "default": "allow"
-        },
-        "mcp:freecad:execute_code_headless": {
-          "default": "allow"
-        },
-        "mcp:freecad:get_async_status": {
-          "default": "allow"
-        },
-        "mcp:freecad:get_object": {
-          "default": "allow"
-        },
-        "mcp:freecad:get_objects": {
-          "default": "allow"
-        },
-        "mcp:freecad:get_parts_list": {
-          "default": "allow"
-        },
-        "mcp:freecad:get_rpc_status": {
-          "default": "allow"
-        },
-        "mcp:freecad:get_view": {
-          "default": "allow"
-        },
-        "mcp:freecad:insert_part_from_library": {
-          "default": "allow"
-        },
-        "mcp:freecad:reload_document": {
-          "default": "allow"
-        },
-        "mcp:freecad:run_fem_analysis": {
-          "default": "allow"
-        },
-        "mcp:freecad:list_documents": {
-          "default": "allow"
-        },
-        "mcp:freecad:execute_code": {
-          "default": "allow"
-        },
-        "mcp:freecad:create_object": {
-          "default": "allow"
-        },
-        "mcp:freecad:create_document": {
-          "default": "allow"
-        },
-        "mcp:chrome-devtools-mcp-zed:fill": {
-          "default": "allow"
-        },
-        "mcp:chrome-devtools-mcp-zed:press_key": {
-          "default": "allow"
-        },
-        "write_file": {
-          "always_allow": [
-            {
-              "pattern": "^github\\.com/uhlig-it/shop-alarm/"
-            }
-          ]
-        },
-        "skill": {
-          "default": "allow"
-        },
-        "mcp:chrome-devtools-mcp-zed:drag": {
-          "default": "allow"
-        },
-        "mcp:Lunacy:get_main_prompt": {
-          "default": "allow"
-        },
-        "mcp:Lunacy:get_undo_stack": {
-          "default": "allow"
-        },
-        "mcp:Lunacy:get_selected": {
-          "default": "allow"
-        },
-        "mcp:chrome-devtools-mcp-zed:close_page": {
-          "default": "allow"
-        },
-        "mcp:chrome-devtools-mcp-zed:emulate": {
-          "default": "allow"
-        },
-        "mcp:chrome-devtools-mcp-zed:fill_form": {
-          "default": "allow"
-        },
-        "mcp:chrome-devtools-mcp-zed:get_network_request": {
-          "default": "allow"
-        },
-        "mcp:chrome-devtools-mcp-zed:resize_page": {
-          "default": "allow"
-        },
-        "mcp:chrome-devtools-mcp-zed:new_page": {
-          "default": "allow"
-        },
-        "mcp:chrome-devtools-mcp-zed:click": {
-          "default": "allow"
-        },
-        "mcp:chrome-devtools-mcp-zed:list_network_requests": {
-          "default": "allow"
-        },
-        "mcp:chrome-devtools-mcp-zed:list_console_messages": {
-          "default": "allow"
-        },
-        "mcp:Lunacy:get_screenshot_area": {
-          "default": "allow"
-        },
-        "mcp:chrome-devtools-mcp-zed:evaluate_script": {
-          "default": "allow"
-        },
-        "mcp:chrome-devtools-mcp-zed:take_snapshot": {
-          "default": "allow"
-        },
-        "mcp:chrome-devtools-mcp-zed:list_pages": {
-          "default": "allow"
-        },
-        "mcp:chrome-devtools-mcp-zed:take_screenshot": {
-          "default": "allow"
-        },
-        "mcp:chrome-devtools-mcp-zed:navigate_page": {
-          "default": "allow"
-        },
-        "mcp:Lunacy:get_components": {
-          "default": "allow"
-        },
-        "mcp:Lunacy:get_viewport_info": {
-          "default": "allow"
-        },
-        "mcp:Lunacy:get_screenshot_viewport": {
-          "default": "allow"
-        },
-        "mcp:Lunacy:get_format_documentation": {
-          "default": "allow"
-        },
-        "mcp:Lunacy:get_screenshot_by_ids": {
-          "default": "allow"
-        },
-        "mcp:Lunacy:get_image": {
-          "default": "allow"
-        },
-        "mcp:Lunacy:get_layers_in_area": {
-          "default": "allow"
-        },
-        "copy_path": {
-          "default": "allow"
-        },
-        "move_path": {
-          "default": "allow"
-        },
-        "create_directory": {
-          "default": "allow",
-          "always_allow": [
-            {
-              "pattern": "^/Users/suhlig/workspace/uhlig\\.it/www/"
-            }
-          ]
-        },
-        "delete_path": {
-          "default": "allow",
-          "always_allow": [
-            {
-              "pattern": "^/Users/suhlig/workspace/uhlig\\.it/www/"
-            },
-            {
-              "pattern": "^main/cmd/dspictl/"
-            },
-            {
-              "pattern": "^caterbill/doc/screenshot/"
-            },
-            {
-              "pattern": "^kehrkraft-validation/"
-            }
-          ]
-        },
-        "fetch": {
-          "default": "allow",
-          "always_allow": [
-            {
-              "pattern": "^https?://go\\.dev"
-            },
-            {
-              "pattern": "^https?://raw\\.githubusercontent\\.com"
-            }
-          ]
-        },
-        "restore_file_from_disk": {
-          "default": "allow"
-        },
         "terminal": {
+          "default": "confirm",
           "always_allow": [
-            {
-              "pattern": "^go\\s+build(\\s|$)"
-            },
-            {
-              "pattern": "^go\\s+test(\\s|$)"
-            },
-            {
-              "pattern": "^go\\s+vet(\\s|$)"
-            },
-            {
-              "pattern": "^true\\b"
-            },
-            {
-              "pattern": "^gofmt\\b"
-            },
-            {
-              "pattern": "^go\\s+get(\\s|$)"
-            },
-            {
-              "pattern": "^go\\s+run(\\s|$)"
-            },
-            {
-              "pattern": "^go\\s+mod(\\s|$)"
-            },
-            {
-              "pattern": "^head\\b"
-            },
-            {
-              "pattern": "^grep\\b"
-            },
-            {
-              "pattern": "^goreleaser\\s+jsonschema(\\s|$)"
-            },
-            {
-              "pattern": "^jq\\s+keys(\\s|$)"
-            },
-            {
-              "pattern": "^jq\\s+\\.\\[\\$defs\\]\\.Build\\.properties(\\s|$)"
-            },
-            {
-              "pattern": "^jq\\s+\\.\\[\\$defs\\](\\s|$)"
-            },
-            {
-              "pattern": "^jq\\s+\\.\\[\\$defs\\]\\.Archive\\.properties\\.meta(\\s|$)"
-            },
-            {
-              "pattern": "^goreleaser\\s+build(\\s|$)"
-            },
-            {
-              "pattern": "^brew\\s+list(\\s|$)"
-            },
-            {
-              "pattern": "^echo\\s+libusb(\\s|$)"
-            },
-            {
-              "pattern": "^ls\\b"
-            },
-            {
-              "pattern": "^echo\\s+not(\\s|$)"
-            },
-            {
-              "pattern": "^pkg-config\\b"
-            },
-            {
-              "pattern": "^go\\s+env(\\s|$)"
-            },
-            {
-              "pattern": "^gh\\s+run(\\s|$)"
-            },
-            {
-              "pattern": "^git-cliff\\b"
-            },
-            {
-              "pattern": "^tail\\b"
-            },
-            {
-              "pattern": "^awk\\b"
-            },
-            {
-              "pattern": "^find\\s+\\.(\\s|$)"
-            },
-            {
-              "pattern": "^sort\\b"
-            },
-            {
-              "pattern": "^cat\\b"
-            },
-            {
-              "pattern": "^zola\\s+build(\\s|$)"
-            },
-            {
-              "pattern": "^find\\s+public/blog/homebrew-top-ten/(\\s|$)"
-            },
-            {
-              "pattern": "^find\\s+public(\\s|$)"
-            },
-            {
-              "pattern": "^go\\s+tool(\\s|$)"
-            },
-            {
-              "pattern": "^cargo\\s+test(\\s|$)"
-            },
-            {
-              "pattern": "^cargo\\s+update(\\s|$)"
-            },
-            {
-              "pattern": "^cargo\\s+build(\\s|$)"
-            },
-            {
-              "pattern": "^cargo\\s+clippy(\\s|$)"
-            },
-            {
-              "pattern": "^cargo\\s+run(\\s|$)"
-            },
-            {
-              "pattern": "^wc\\b"
-            },
-            {
-              "pattern": "^git\\s+diff(\\s|$)"
-            },
-            {
-              "pattern": "^pre-commit\\s+run(\\s|$)"
-            },
-            {
-              "pattern": "^cargo\\s+check(\\s|$)"
-            },
-            {
-              "pattern": "^GIT_EDITOR=true\\s+git\\s+commit(\\s|$)"
-            },
-            {
-              "pattern": "^cd\\s+/Users/suhlig/workspace/rustomato/main(\\s|$)"
-            },
-            {
-              "pattern": "^git\\s+status(\\s|$)"
-            },
-            {
-              "pattern": "^mlr\\b"
-            },
-            {
-              "pattern": "^tinygo\\s+build(\\s|$)"
-            },
-            {
-              "pattern": "^tinygo\\s+flash(\\s|$)"
-            },
-            {
-              "pattern": "^cd\\s+/Users/suhlig/workspace/DSPi(\\s|$)"
-            },
-            {
-              "pattern": "^git\\b"
-            },
-            {
-              "pattern": "^tinygo\\s+info(\\s|$)"
-            },
-            {
-              "pattern": "^echo\\s+No(\\s|$)"
-            },
-            {
-              "pattern": "^cd\\s+/Users/suhlig/workspace/dspictl/refactor-commands(\\s|$)"
-            },
-            {
-              "pattern": "^echo\\s+BUILD(\\s|$)"
-            },
-            {
-              "pattern": "^chmod\\s+\\+x(\\s|$)"
-            },
-            {
-              "pattern": "^sed\\b"
-            },
-            {
-              "pattern": "^cd\\s+/Users/suhlig/workspace/dspictl/main(\\s|$)"
-            },
-            {
-              "pattern": "^git\\s+log(\\s|$)"
-            },
-            {
-              "pattern": "^echo\\b"
-            },
-            {
-              "pattern": "^MANPATH=/tmp/man-test\\s+man\\s+dspictl(\\s|$)"
-            },
-            {
-              "pattern": "^mkdir\\b"
-            },
-            {
-              "pattern": "^mv\\s+/tmp/man-test/dspictl\\.1(\\s|$)"
-            },
-            {
-              "pattern": "^man\\b"
-            },
-            {
-              "pattern": "^rm\\b"
-            },
-            {
-              "pattern": "^cp\\s+/tmp/man-test/dspictl\\.1(\\s|$)"
-            },
-            {
-              "pattern": "^go\\s+doc(\\s|$)"
-            },
-            {
-              "pattern": "^cp\\s+/tmp/test_md2man2\\.go(\\s|$)"
-            },
-            {
-              "pattern": "^rm\\s+test_md2man2\\.go(\\s|$)"
-            },
-            {
-              "pattern": "^typst\\s+compile(\\s|$)"
-            },
-            {
-              "pattern": "^sqlite3\\s+speisehof-rechnungen-dev\\.db(\\s|$)"
-            },
-            {
-              "pattern": "^cd\\s+/Users/suhlig/workspace/nowak/caterbill(\\s|$)"
-            },
-            {
-              "pattern": "^golangci-lint\\s+run(\\s|$)"
-            },
-            {
-              "pattern": "^sqlite3\\s+/Users/suhlig/workspace/nowak/caterbill/caterbill/speisehof-rechnungen-dev\\.db(\\s|$)"
-            },
-            {
-              "pattern": "^sqlite3\\s+/Users/suhlig/workspace/nowak/caterbill/speisehof-rechnungen-dev\\.db(\\s|$)"
-            },
-            {
-              "pattern": "^curl\\b"
-            },
-            {
-              "pattern": "^python3\\b"
-            },
-            {
-              "pattern": "^GIT_EDITOR=true\\s+git\\s+add(\\s|$)"
-            },
-            {
-              "pattern": "^cd\\s+backend(\\s|$)"
-            },
-            {
-              "pattern": "^go\\s+generate(\\s|$)"
-            },
-            {
-              "pattern": "^make\\b"
-            },
-            {
-              "pattern": "^cd\\s+caterbill(\\s|$)"
-            },
-            {
-              "pattern": "^go\\s+version(\\s|$)"
-            },
-            {
-              "pattern": "^cd\\s+/Users/suhlig/workspace/DSPi-Console(\\s|$)"
-            },
-            {
-              "pattern": "^pwd\\b"
-            },
-            {
-              "pattern": "^which\\s+go(\\s|$)"
-            },
-            {
-              "pattern": "^cd\\s+/Users/suhlig/workspace/dspictl/release-v1\\.1\\.5(\\s|$)"
-            },
-            {
-              "pattern": "^GIT_EDITOR=true\\s+git(\\s|$)"
-            },
-            {
-              "pattern": "^strings\\s+/tmp/test_server(\\s|$)"
-            },
-            {
-              "pattern": "^go\\s+clean(\\s|$)"
-            },
-            {
-              "pattern": "^GOTOOLCHAIN=local\\s+go\\s+test(\\s|$)"
-            },
-            {
-              "pattern": "^pdftoppm\\b"
-            },
-            {
-              "pattern": "^cp\\s+/tmp/test-invoice-2-1\\.png(\\s|$)"
-            },
-            {
-              "pattern": "^cp\\s+/tmp/test-invoice-2-2\\.png(\\s|$)"
-            },
-            {
-              "pattern": "^cp\\s+/tmp/test-invoice-1\\.png(\\s|$)"
-            },
-            {
-              "pattern": "^cp\\s+/tmp/test-invoice-2\\.png(\\s|$)"
-            },
-            {
-              "pattern": "^cp\\s+speisehof-rechnungen-dev\\.db(\\s|$)"
-            },
-            {
-              "pattern": "^sqlite3\\s+/tmp/test-migration2\\.db(\\s|$)"
-            },
-            {
-              "pattern": "^echo\\s+MIGRATION(\\s|$)"
-            },
-            {
-              "pattern": "^sqlite3\\s+/tmp/fresh\\.db(\\s|$)"
-            },
-            {
-              "pattern": "^DATABASE_URL=postgres://localhost/rostfacto-dev\\s+sqlx\\s+migrate(\\s|$)"
-            },
-            {
-              "pattern": "^psql\\s+postgres://localhost/rostfacto-dev(\\s|$)"
-            },
-            {
-              "pattern": "^cat\\s+templates/retro\\.html(\\s|$)"
-            },
-            {
-              "pattern": "^cat\\s+templates/archive_modal\\.html(\\s|$)"
-            },
-            {
-              "pattern": "^env\\b"
-            },
-            {
-              "pattern": "^grep\\s+DATABASE_URL(\\s|$)"
-            },
-            {
-              "pattern": "^echo\\s+DATABASE_URL(\\s|$)"
-            },
-            {
-              "pattern": "^which\\s+psql(\\s|$)"
-            },
-            {
-              "pattern": "^psql\\b"
-            },
-            {
-              "pattern": "^pg_isready\\b"
-            },
-            {
-              "pattern": "^which\\s+cargo(\\s|$)"
-            },
-            {
-              "pattern": "^cargo\\b"
-            },
-            {
-              "pattern": "^which\\s+sqlx(\\s|$)"
-            },
-            {
-              "pattern": "^echo\\s+sqlx(\\s|$)"
-            },
-            {
-              "pattern": "^export\\b"
-            },
-            {
-              "pattern": "^sqlx\\s+migrate(\\s|$)"
-            },
-            {
-              "pattern": "^sh\\s+run_integration_tests\\.sh(\\s|$)"
-            },
-            {
-              "pattern": "^DATABASE_URL=postgres://rostfacto@localhost/rostfacto-dev\\s+cargo\\s+check(\\s|$)"
-            },
-            {
-              "pattern": "^lsof\\b"
-            },
-            {
-              "pattern": "^xargs\\b"
-            },
-            {
-              "pattern": "^DATABASE_URL=postgres://rostfacto@localhost/rostfacto-dev\\s+cargo\\s+run(\\s|$)"
-            },
-            {
-              "pattern": "^sleep\\s+3(\\s|$)"
-            },
-            {
-              "pattern": "^DATABASE_URL=postgres://rostfacto@localhost/rostfacto-dev\\s+cargo\\s+test(\\s|$)"
-            },
-            {
-              "pattern": "^cargo\\s+fmt(\\s|$)"
-            },
-            {
-              "pattern": "^SQLX_OFFLINE=true\\s+cargo\\s+clippy(\\s|$)"
-            },
-            {
-              "pattern": "^gh\\s+pr(\\s|$)"
-            },
-            {
-              "pattern": "^SQLX_OFFLINE=true\\s+cargo\\s+test(\\s|$)"
-            },
-            {
-              "pattern": "^gh\\s+api(\\s|$)"
-            },
-            {
-              "pattern": "^SQLX_OFFLINE=true\\s+cargo\\s+check(\\s|$)"
-            },
-            {
-              "pattern": "^DATABASE_URL=postgres://rostfacto@localhost/rostfacto-dev\\s+cargo\\s+sqlx(\\s|$)"
-            },
-            {
-              "pattern": "^DATABASE_URL=postgres://rostfacto@localhost/rostfacto-dev\\s+sqlx\\s+migrate(\\s|$)"
-            },
-            {
-              "pattern": "^touch\\s+tests/migration_test\\.rs(\\s|$)"
-            },
-            {
-              "pattern": "^perl\\b"
-            },
-            {
-              "pattern": "^go\\s+fix(\\s|$)"
-            },
-            {
-              "pattern": "^docker\\s+compose(\\s|$)"
-            },
-            {
-              "pattern": "^sleep\\s+5(\\s|$)"
-            },
-            {
-              "pattern": "^bash\\s+scripts/validate_html\\.sh(\\s|$)"
-            },
-            {
-              "pattern": "^bash\\s+scripts/manual_test_archive\\.sh(\\s|$)"
-            },
-            {
-              "pattern": "^pkill\\b"
-            },
-            {
-              "pattern": "^ps\\b"
-            },
-            {
-              "pattern": "^touch\\s+src/handlers\\.rs(\\s|$)"
-            },
-            {
-              "pattern": "^which\\s+geckodriver(\\s|$)"
-            },
-            {
-              "pattern": "^strings\\s+/tmp/rostfacto_debug\\.log(\\s|$)"
-            },
-            {
-              "pattern": "^GOCACHE=/Users/suhlig/workspace/dspictl/release-v1\\.1\\.5/\\.go-cache\\s+go\\s+test(\\s|$)"
-            },
-            {
-              "pattern": "^GOCACHE=/Users/suhlig/workspace/dspictl/release-v1\\.1\\.5/\\.go-cache\\s+go\\s+build(\\s|$)"
-            },
-            {
-              "pattern": "^GOCACHE=/Users/suhlig/workspace/dspictl/release-v1\\.1\\.5/\\.go-cache\\s+go\\s+vet(\\s|$)"
-            },
-            {
-              "pattern": "^GOCACHE=/Users/suhlig/workspace/dspictl/release-v1\\.1\\.5/\\.go-cache\\s+go\\s+run(\\s|$)"
-            },
-            {
-              "pattern": "^git\\s+add(\\s|$)"
-            },
-            {
-              "pattern": "^printf\\s+nnnnnnynnn(\\s|$)"
-            },
-            {
-              "pattern": "^GOCACHE=/Users/suhlig/workspace/dspictl/release-v1\\.1\\.5/\\.go-cache\\s+GIT_EDITOR=true\\s+git\\s+commit(\\s|$)"
-            },
-            {
-              "pattern": "^sleep\\s+1(\\s|$)"
-            },
-            {
-              "pattern": "^timeout\\s+240(\\s|$)"
-            },
-            {
-              "pattern": "^docker\\s+manifest(\\s|$)"
-            },
-            {
-              "pattern": "^docker\\s+buildx(\\s|$)"
-            },
-            {
-              "pattern": "^kill\\s+12221(\\s|$)"
-            },
-            {
-              "pattern": "^nohup\\s+env(\\s|$)"
-            },
-            {
-              "pattern": "^sleep\\s+2(\\s|$)"
-            },
-            {
-              "pattern": "^uniq\\b"
-            },
-            {
-              "pattern": "^kill\\s+23520(\\s|$)"
-            },
-            {
-              "pattern": "^nohup\\s+geckodriver(\\s|$)"
-            },
-            {
-              "pattern": "^kill\\s+92004(\\s|$)"
-            },
-            {
-              "pattern": "^kill\\s+55391(\\s|$)"
-            },
-            {
-              "pattern": "^echo\\s+geckodriver(\\s|$)"
-            },
-            {
-              "pattern": "^kill\\s+49641(\\s|$)"
-            },
-            {
-              "pattern": "^echo\\s+cleaned(\\s|$)"
-            },
-            {
-              "pattern": "^touch\\s+src/main\\.rs(\\s|$)"
-            },
-            {
-              "pattern": "^echo\\s+compose(\\s|$)"
-            },
-            {
-              "pattern": "^dropdb\\s+rostfacto-scratch(\\s|$)"
-            },
-            {
-              "pattern": "^echo\\s+scratch(\\s|$)"
-            },
-            {
-              "pattern": "^cat\\s+/Users/suhlig/workspace/dspictl/main/\\.pre-commit-config\\.yaml(\\s|$)"
-            },
-            {
-              "pattern": "^find\\s+/Users/suhlig/workspace/dspictl/main/\\.github(\\s|$)"
-            },
-            {
-              "pattern": "^find\\s+/Users/suhlig/workspace/DSPi/\\.github(\\s|$)"
-            },
-            {
-              "pattern": "^uptime\\b"
-            },
-            {
-              "pattern": "^sqlite3\\s+/tmp/caterbill-migration-check\\.db(\\s|$)"
-            },
-            {
-              "pattern": "^xxd\\b"
-            },
-            {
-              "pattern": "^sqlite3\\s+/tmp/cb-test\\.db(\\s|$)"
-            },
-            {
-              "pattern": "^which\\s+typst(\\s|$)"
-            },
-            {
-              "pattern": "^typst\\b"
-            },
-            {
-              "pattern": "^cp\\s+web/templates/main\\.typ(\\s|$)"
-            },
-            {
-              "pattern": "^cd\\s+/tmp/typst-check(\\s|$)"
-            },
-            {
-              "pattern": "^echo\\s+OK(\\s|$)"
-            },
-            {
-              "pattern": "^docker\\s+pull(\\s|$)"
-            },
-            {
-              "pattern": "^docker\\s+run(\\s|$)"
-            },
-            {
-              "pattern": "^printf\\s+ynnnynyn(\\s|$)"
-            },
-            {
-              "pattern": "^jq\\s+\\.(\\s|$)"
-            },
-            {
-              "pattern": "^gh\\s+issue(\\s|$)"
-            },
-            {
-              "pattern": "^jq\\b"
-            },
-            {
-              "pattern": "^ANSIBLE_COLLECTIONS_PATH=/Users/suhlig/\\.ansible/collections/ansible_collections\\s+ansible-playbook(\\s|$)"
-            },
-            {
-              "pattern": "^pgrep\\b"
-            },
-            {
-              "pattern": "^ps\\s+aux(\\s|$)"
-            },
-            {
-              "pattern": "^sleep\\s+20(\\s|$)"
-            },
-            {
-              "pattern": "^find\\s+\\~/workspace(\\s|$)"
-            },
-            {
-              "pattern": "^which\\s+wtg(\\s|$)"
-            },
-            {
-              "pattern": "^cat\\s+\\~/\\.wtg\\*(\\s|$)"
-            },
-            {
-              "pattern": "^awk\\s+\\{print(\\s|$)"
-            },
-            {
-              "pattern": "^tr\\s+n(\\s|$)"
-            },
-            {
-              "pattern": "^ls\\s+/tmp/tasmota-build/lib/libesp32/(\\s|$)"
-            },
-            {
-              "pattern": "^find\\s+/tmp/tasmota-build/lib(\\s|$)"
-            },
-            {
-              "pattern": "^find\\s+/tmp/pio-core(\\s|$)"
-            },
-            {
-              "pattern": "^cd\\s+/tmp/tasmota-src/Tasmota-15\\.6\\.0(\\s|$)"
-            },
-            {
-              "pattern": "^ls\\s+lib/(\\s|$)"
-            },
-            {
-              "pattern": "^cd\\s+/tmp(\\s|$)"
-            },
-            {
-              "pattern": "^unzip\\b"
-            },
-            {
-              "pattern": "^ls\\s+plat32(\\s|$)"
-            },
-            {
-              "pattern": "^echo\\s+COMPILE_OK(\\s|$)"
-            },
-            {
-              "pattern": "^pdfinfo\\s+\\.tmp_pdf_view/test1\\.pdf(\\s|$)"
-            },
-            {
-              "pattern": "^pdfinfo\\s+\\.tmp_pdf_view/test3\\.pdf(\\s|$)"
-            },
-            {
-              "pattern": "^pdftotext\\b"
-            },
-            {
-              "pattern": "^pdfinfo\\s+\\.tmp_pdf_view/wrapper_mock\\.pdf(\\s|$)"
-            },
-            {
-              "pattern": "^sqlite3\\b"
-            },
-            {
-              "pattern": "^ansible-playbook\\b"
-            },
-            {
-              "pattern": "^ANSIBLE_ROLES_PATH=/tmp/galaxy-test:roles\\s+ansible-playbook(\\s|$)"
-            },
-            {
-              "pattern": "^ANSIBLE_ROLES_PATH=/tmp/galaxy-test\\s+ansible-playbook(\\s|$)"
-            },
-            {
-              "pattern": "^ssh\\b"
-            },
-            {
-              "pattern": "^mosquitto_pub\\b"
-            },
-            {
-              "pattern": "^sleep\\s+30(\\s|$)"
-            },
-            {
-              "pattern": "^mosquitto_sub\\b"
-            },
-            {
-              "pattern": "^ansible\\b"
-            },
-            {
-              "pattern": "^sleep\\s+40(\\s|$)"
-            },
-            {
-              "pattern": "^sleep\\s+60(\\s|$)"
-            },
-            {
-              "pattern": "^tr\\s+,(\\s|$)"
-            },
-            {
-              "pattern": "^cd\\s+\\.\\./mqtt-gpio-binary-sensor(\\s|$)"
-            },
-            {
-              "pattern": "^wtg\\b"
-            },
-            {
-              "pattern": "^wtg\\s+delete(\\s|$)"
-            },
-            {
-              "pattern": "^wtg\\s+push(\\s|$)"
-            },
-            {
-              "pattern": "^sh\\s+/Users/suhlig/workspace/redesign-shop-alarm/probe2\\.sh(\\s|$)"
-            },
-            {
-              "pattern": "^fly\\b"
-            },
-            {
-              "pattern": "^tee\\s+/tmp/build126\\.log(\\s|$)"
-            },
-            {
-              "pattern": "^ruby\\b"
-            },
-            {
-              "pattern": "^nohup\\s+zola(\\s|$)"
-            },
-            {
-              "pattern": "^sleep\\s+4(\\s|$)"
-            },
-            {
-              "pattern": "^scp\\b"
-            },
-            {
-              "pattern": "^nc\\b"
-            },
-            {
-              "pattern": "^echo\\s+mqtt-port-check-done(\\s|$)"
-            },
-            {
-              "pattern": "^echo\\s+ha-port-check-done(\\s|$)"
-            },
-            {
-              "pattern": "^which\\s+mosquitto_sub(\\s|$)"
-            },
-            {
-              "pattern": "^ssh\\s+opus(\\s|$)"
-            },
-            {
-              "pattern": "^LC_ALL=C\\s+sort(\\s|$)"
-            },
-            {
-              "pattern": "^find\\s+/Users/suhlig/git/github\\.com/speisehof/www(\\s|$)"
-            },
-            {
-              "pattern": "^find\\s+kunakam(\\s|$)"
-            },
-            {
-              "pattern": "^deno\\s+lint(\\s|$)"
-            },
-            {
-              "pattern": "^deno\\s+fmt(\\s|$)"
-            },
-            {
-              "pattern": "^echo\\s+===(\\s|$)"
-            },
-            {
-              "pattern": "^SQLX_OFFLINE=true\\s+cargo\\s+build(\\s|$)"
-            },
-            {
-              "pattern": "^cut\\b"
-            },
-            {
-              "pattern": "^gh\\s+repo(\\s|$)"
-            },
-            {
-              "pattern": "^gh\\b"
-            },
-            {
-              "pattern": "^gh\\s+auth(\\s|$)"
-            },
-            {
-              "pattern": "^sleep\\s+45(\\s|$)"
-            },
-            {
-              "pattern": "^ssh\\s+soda(\\s|$)"
-            },
-            {
-              "pattern": "^tailscale\\s+status(\\s|$)"
-            },
-            {
-              "pattern": "^dig\\s+\\+short(\\s|$)"
-            },
-            {
-              "pattern": "^file\\s+/tmp/fu-archive/test\\.jpg(\\s|$)"
-            },
-            {
-              "pattern": "^osascript\\b"
-            },
-            {
-              "pattern": "^find\\s+\\~/Library(\\s|$)"
-            },
-            {
-              "pattern": "^strings\\b"
-            },
-            {
-              "pattern": "^ps\\s+eww(\\s|$)"
-            },
-            {
-              "pattern": "^find\\s+/Library/Application(\\s|$)"
-            },
-            {
-              "pattern": "^log\\s+show(\\s|$)"
-            },
-            {
-              "pattern": "^vmmap\\s+86938(\\s|$)"
-            },
-            {
-              "pattern": "^find\\s+\\~/Library/Application(\\s|$)"
-            },
-            {
-              "pattern": "^find\\s+\\~/Library/Preferences/3Dconnexion(\\s|$)"
-            },
-            {
-              "pattern": "^rsvg-convert\\b"
-            },
-            {
-              "pattern": "^magick\\s+v3\\.png(\\s|$)"
-            },
-            {
-              "pattern": "^magick\\s+t0\\.png(\\s|$)"
-            },
-            {
-              "pattern": "^echo\\s+done(\\s|$)"
-            },
-            {
-              "pattern": "^magick\\s+w2b\\.png(\\s|$)"
-            },
-            {
-              "pattern": "^magick\\s+u2\\.png(\\s|$)"
-            },
-            {
-              "pattern": "^magick\\s+f_0\\.png(\\s|$)"
-            },
-            {
-              "pattern": "^magick\\s+f_1\\.png(\\s|$)"
-            },
-            {
-              "pattern": "^magick\\s+f_2\\.png(\\s|$)"
-            },
-            {
-              "pattern": "^magick\\s+f_3\\.png(\\s|$)"
-            },
-            {
-              "pattern": "^magick\\s+f_0c\\.png(\\s|$)"
-            },
-            {
-              "pattern": "^magick\\s+h_0\\.png(\\s|$)"
-            },
-            {
-              "pattern": "^magick\\s+h_1\\.png(\\s|$)"
-            },
-            {
-              "pattern": "^magick\\s+h_2\\.png(\\s|$)"
-            },
-            {
-              "pattern": "^magick\\s+h_3\\.png(\\s|$)"
-            },
-            {
-              "pattern": "^magick\\s+h_0c\\.png(\\s|$)"
-            },
-            {
-              "pattern": "^magick\\s+bigRow\\.png(\\s|$)"
-            },
-            {
-              "pattern": "^magick\\s+identify(\\s|$)"
-            },
-            {
-              "pattern": "^esphome\\s+config(\\s|$)"
-            },
-            {
-              "pattern": "^ansible-vault\\s+view(\\s|$)"
-            },
-            {
-              "pattern": "^which\\s+ansible-vault(\\s|$)"
-            },
-            {
-              "pattern": "^ansible-vault\\b"
-            },
-            {
-              "pattern": "^PAGER=cat\\s+ansible-vault\\s+view(\\s|$)"
-            },
-            {
-              "pattern": "^echo\\s+==(\\s|$)"
-            },
-            {
-              "pattern": "^which\\s+python3(\\s|$)"
-            },
-            {
-              "pattern": "^pip3\\s+install(\\s|$)"
-            },
-            {
-              "pattern": "^brew\\s+install(\\s|$)"
-            },
-            {
-              "pattern": "^pipx\\s+install(\\s|$)"
-            },
-            {
-              "pattern": "^ffplay\\b"
-            },
-            {
-              "pattern": "^magick\\s+/tmp/card\\.png(\\s|$)"
-            },
-            {
-              "pattern": "^ffmpeg\\b"
-            },
-            {
-              "pattern": "^ffprobe\\b"
-            },
-            {
-              "pattern": "^python3\\s+github\\.com/uhlig-it/infrastructure/playbooks/services/files/analyze-recording\\.py(\\s|$)"
-            },
-            {
-              "pattern": "^base64\\b"
-            },
-            {
-              "pattern": "^sed\\s+s/:\\.\\*\\$//(\\s|$)"
-            },
-            {
-              "pattern": "^cat\\s+/tmp/infra_all_keys\\.txt(\\s|$)"
-            },
-            {
-              "pattern": "^comm\\b"
-            },
-            {
-              "pattern": "^cat\\s+/tmp/opus_keys\\.txt(\\s|$)"
-            },
-            {
-              "pattern": "^shasum\\b"
-            },
-            {
-              "pattern": "^cat\\s+/tmp/infra_all_secrets\\.yml(\\s|$)"
-            },
-            {
-              "pattern": "^openspec\\s+list(\\s|$)"
-            },
-            {
-              "pattern": "^which\\s+moli(\\s|$)"
-            },
-            {
-              "pattern": "^moli\\b"
-            },
-            {
-              "pattern": "^tail_lines\\s+80(\\s|$)"
-            },
-            {
-              "pattern": "^sleep\\s+15(\\s|$)"
-            },
-            {
-              "pattern": "^GOTOOLCHAIN=local\\s+go\\s+list(\\s|$)"
-            },
-            {
-              "pattern": "^sleep\\s+240(\\s|$)"
-            },
-            {
-              "pattern": "^sleep\\s+150(\\s|$)"
-            },
-            {
-              "pattern": "^sleep\\s+180(\\s|$)"
-            }
+            // shell basics / navigation
+            { "pattern": "^cd\\b" },
+            { "pattern": "^pwd\\b" },
+            { "pattern": "^true\\b" },
+            { "pattern": "^echo\\b" },
+            { "pattern": "^printf\\b" },
+            { "pattern": "^env\\b" },
+            { "pattern": "^export\\b" },
+            { "pattern": "^which\\b" },
+            { "pattern": "^type\\b" },
+            { "pattern": "^man\\b" },
+            { "pattern": "^sleep\\s+\\d+(\\s|$)" },
+            // commands with env-var prefixes (VAR=value cmd …); Zed does not strip
+            // env assignments before matching, so these need their own pattern
+            { "pattern": "^[A-Za-z_][A-Za-z0-9_]*=\\S+(\\s+[A-Za-z_][A-Za-z0-9_]*=\\S+)*\\s+(go|git|cargo|sqlx|ansible|sort)\\b" },
+            // file inspection & basic file ops
+            { "pattern": "^ls\\b" },
+            { "pattern": "^find\\b" },
+            { "pattern": "^grep\\b" },
+            { "pattern": "^rg\\b" },
+            { "pattern": "^cat\\b" },
+            { "pattern": "^head\\b" },
+            { "pattern": "^tail\\b" },
+            { "pattern": "^wc\\b" },
+            { "pattern": "^sort\\b" },
+            { "pattern": "^uniq\\b" },
+            { "pattern": "^comm\\b" },
+            { "pattern": "^cut\\b" },
+            { "pattern": "^diff\\b" },
+            { "pattern": "^file\\b" },
+            { "pattern": "^strings\\b" },
+            { "pattern": "^xxd\\b" },
+            { "pattern": "^base64\\b" },
+            { "pattern": "^sed\\b" },
+            { "pattern": "^awk\\b" },
+            { "pattern": "^perl\\b" },
+            { "pattern": "^jq\\b" },
+            { "pattern": "^mlr\\b" },
+            { "pattern": "^mkdir\\b" },
+            { "pattern": "^touch\\b" },
+            { "pattern": "^cp\\b" },
+            { "pattern": "^mv\\b" },
+            { "pattern": "^rm\\b" },
+            { "pattern": "^chmod\\s+\\+x" },
+            { "pattern": "^unzip\\b" },
+            { "pattern": "^tar\\b" },
+            { "pattern": "^tee\\b" },
+            { "pattern": "^xargs\\b" },
+            // Go toolchain
+            { "pattern": "^go\\b" },
+            { "pattern": "^gofmt\\b" },
+            { "pattern": "^goreleaser\\b" },
+            { "pattern": "^golangci-lint\\b" },
+            { "pattern": "^git-cliff\\b" },
+            // Rust toolchain
+            { "pattern": "^cargo\\b" },
+            { "pattern": "^sqlx\\b" },
+            { "pattern": "^psql\\b" },
+            { "pattern": "^pg_isready\\b" },
+            { "pattern": "^dropdb\\b" },
+            { "pattern": "^sqlite3\\b" },
+            // git & GitHub
+            { "pattern": "^git\\b" },
+            { "pattern": "^gh\\b" },
+            // web / docs / media
+            { "pattern": "^zola\\b" },
+            { "pattern": "^typst\\b" },
+            { "pattern": "^deno\\s+(lint|fmt)" },
+            { "pattern": "^rsvg-convert\\b" },
+            { "pattern": "^magick\\b" },
+            { "pattern": "^pdftoppm\\b" },
+            { "pattern": "^pdftotext\\b" },
+            { "pattern": "^pdfinfo\\b" },
+            { "pattern": "^ffmpeg\\b" },
+            { "pattern": "^ffprobe\\b" },
+            { "pattern": "^ffplay\\b" },
+            { "pattern": "^ruby\\b" },
+            // build systems / scripts
+            { "pattern": "^make\\b" },
+            { "pattern": "^pre-commit\\s+run\\b" },
+            { "pattern": "^sh\\s+\\S+\\.sh(\\s|$)" },
+            { "pattern": "^bash\\s+\\S+\\.sh(\\s|$)" },
+            { "pattern": "^nohup\\b" },
+            { "pattern": "^timeout\\b" },
+            // infra / IoT / network
+            { "pattern": "^docker\\s+(compose|build|buildx|run|pull|push|manifest|ps|logs|exec|inspect|images)" },
+            { "pattern": "^ansible\\b" },
+            { "pattern": "^ssh\\b" },
+            { "pattern": "^scp\\b" },
+            { "pattern": "^nc\\b" },
+            { "pattern": "^dig\\b" },
+            { "pattern": "^curl\\b" },
+            { "pattern": "^mosquitto_pub\\b" },
+            { "pattern": "^mosquitto_sub\\b" },
+            { "pattern": "^tailscale\\b" },
+            { "pattern": "^esphome\\b" },
+            { "pattern": "^fly\\b" },
+            // processes / system diagnostics
+            { "pattern": "^ps\\b" },
+            { "pattern": "^pgrep\\b" },
+            { "pattern": "^pkill\\b" },
+            { "pattern": "^kill\\b" },
+            { "pattern": "^lsof\\b" },
+            { "pattern": "^uptime\\b" },
+            { "pattern": "^log\\s+show\\b" },
+            { "pattern": "^vmmap\\b" },
+            { "pattern": "^osascript\\b" },
+            // package managers & misc dev tools
+            { "pattern": "^python3\\b" },
+            { "pattern": "^pip3\\s+(install|show|list)" },
+            { "pattern": "^pipx\\s+(install|list)" },
+            { "pattern": "^brew\\s+(list|install|info)" },
+            { "pattern": "^pkg-config\\b" },
+            { "pattern": "^wtg\\b" },
+            { "pattern": "^moli\\b" },
+            { "pattern": "^openspec\\b" }
           ]
-        },
-        "open": {
-          "default": "allow"
         }
       }
     },
     "dock": "right",
     "default_profile": "write",
     "default_model": {
-      "effort": "high",
-      "provider": "opencode",
-      "model": "go/glm-5.3-flash",
+      "effort": "max",
+      "provider": "openrouter",
+      "model": "z-ai/glm-5.3-flash",
       "enable_thinking": true
     },
     "favorite_models": [
       {
         "provider": "opencode",
-        "model": "go/kimi-k3",
-        "enable_thinking": true,
-        "effort": "max"
-      },
-      {
-        "provider": "openrouter",
-        "model": "z-ai/glm-5.3-flash",
-        "enable_thinking": true
-      },
-      {
-        "provider": "openrouter",
-        "model": "deepseek/deepseek-v4.1-flash",
-        "enable_thinking": true,
-        "effort": "high"
-      },
-      {
-        "provider": "openrouter",
-        "model": "anthropic/claude-sonnet-5.5",
+        "model": "go/deepseek-v4.1-flash",
         "enable_thinking": true,
         "effort": "high"
       },
       {
         "provider": "opencode",
-        "model": "go/deepseek-v4.1-flash",
+        "model": "go/glm-5.3",
         "enable_thinking": true,
         "effort": "high"
       }
