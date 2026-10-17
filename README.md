@@ -5,8 +5,8 @@
 One-off:
 
 ```shell
-git clone https://github.com/suhlig/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles && ./bootstrap.zsh
+git clone https://github.com/suhlig/dotfiles.git ~/git/github.com/suhlig/dotfiles
+cd ~/git/github.com/suhlig/dotfiles && ./bootstrap.zsh
 ```
 
 TODO For usage in an Ansible playbook, the dotfiles repo is a role itself, so that we can use it like this:
@@ -26,7 +26,7 @@ Part of the role is a task that clones the dotfiles repo and then calls bootstra
 - name: Setup environment
   shell: ./bootstrap.zsh
   args:
-    chdir: /home/suhlig/.dotfiles
+    chdir: /home/suhlig/git/github.com/suhlig/dotfiles
     creates: ~/.zshrc
 ```
 

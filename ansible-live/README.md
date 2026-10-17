@@ -53,8 +53,8 @@ alongside installed ones — handy for verification.
 ## Layout
 
 ```
-~/.dotfiles/common/bin/ansible-live   <- script (git)
-~/.dotfiles/ansible-live/README.md    <- this file (git)
+~/git/github.com/suhlig/dotfiles/common/bin/ansible-live   <- script (git)
+~/git/github.com/suhlig/dotfiles/ansible-live/README.md    <- this file (git)
 ~/.ansible/ansible-live               -> symlink to the script
 ~/.ansible/README.md                  -> symlink to this file
 ~/.ansible/roles/suhlig.*, uhlig-it.*   <- symlinks created by the script

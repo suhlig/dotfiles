@@ -81,7 +81,7 @@ remove-defaults() {
 stow-dotfiles() {
   local platform
   platform=$(detect-platform) || exit 1
-  stow common $platform
+  stow --target="$HOME" --ignore .DS_Store common $platform
 }
 
 detect-platform() {
