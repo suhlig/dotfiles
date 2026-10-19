@@ -12,12 +12,14 @@ RUN apt-get update \
  && chsh -s /usr/bin/zsh \
  && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /root
+# Same location as on a real machine, because other files refer to it
+WORKDIR /root/git/github.com/suhlig/dotfiles
 # Testing the dotfiles repo directory
-ADD . .dotfiles
+COPY . .
 # Alternatively, we can also test the published main branch
-# RUN git clone https://github.com/suhlig/dotfiles.git .dotfiles
+# RUN git clone https://github.com/suhlig/dotfiles.git .
 
-RUN cd /root/.dotfiles && ./bootstrap.zsh
+RUN DOTFILES_SKIP_UPDATE=1 ./bootstrap.zsh
 
+WORKDIR /root
 CMD ["zsh"]

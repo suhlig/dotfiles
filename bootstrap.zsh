@@ -12,6 +12,9 @@ main() {
 }
 
 update-repo() {
+  # Set by the Docker test image, which tests the copied working tree instead of the remote
+  [[ -n ${DOTFILES_SKIP_UPDATE:-} ]] && return 0
+
   git pull --rebase
 }
 
