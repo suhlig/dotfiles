@@ -1,6 +1,9 @@
 [ -f "$HOME/.profile.d/add-bin-to-path" ] && source "$HOME/.profile.d/add-bin-to-path"
 [ -f "$HOME/.atuin/bin/env" ] && source "$HOME/.atuin/bin/env"
 
+# atuin: point to XDG config dir (macOS platform default differs)
+export ATUIN_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/atuin"
+
 # Make Homebrew available to non-interactive shells (e.g. GUI apps)
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
