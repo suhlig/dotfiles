@@ -118,4 +118,5 @@
   "cSpell.enabled": false,
   "concertSecureCoder.autoScanOnSave": true,
   "concertSecureCoder.autoScanOnTypingStop": true,
+  "application.shellEnvironmentResolutionTimeout": 30,
 }
