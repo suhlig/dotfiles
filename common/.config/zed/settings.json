@@ -174,122 +174,333 @@
         "terminal": {
           "default": "confirm",
           "always_allow": [
-            // shell basics / navigation
-            { "pattern": "^cd\\b" },
-            { "pattern": "^pwd\\b" },
-            { "pattern": "^true\\b" },
-            { "pattern": "^echo\\b" },
-            { "pattern": "^printf\\b" },
-            { "pattern": "^env\\b" },
-            { "pattern": "^export\\b" },
-            { "pattern": "^which\\b" },
-            { "pattern": "^type\\b" },
-            { "pattern": "^man\\b" },
-            { "pattern": "^sleep\\s+\\d+(\\s|$)" },
-            // commands with env-var prefixes (VAR=value cmd …); Zed does not strip
-            // env assignments before matching, so these need their own pattern
-            { "pattern": "^[A-Za-z_][A-Za-z0-9_]*=\\S+(\\s+[A-Za-z_][A-Za-z0-9_]*=\\S+)*\\s+(go|git|cargo|sqlx|ansible|sort)\\b" },
-            // file inspection & basic file ops
-            { "pattern": "^ls\\b" },
-            { "pattern": "^find\\b" },
-            { "pattern": "^grep\\b" },
-            { "pattern": "^rg\\b" },
-            { "pattern": "^cat\\b" },
-            { "pattern": "^head\\b" },
-            { "pattern": "^tail\\b" },
-            { "pattern": "^wc\\b" },
-            { "pattern": "^sort\\b" },
-            { "pattern": "^uniq\\b" },
-            { "pattern": "^comm\\b" },
-            { "pattern": "^cut\\b" },
-            { "pattern": "^diff\\b" },
-            { "pattern": "^file\\b" },
-            { "pattern": "^strings\\b" },
-            { "pattern": "^xxd\\b" },
-            { "pattern": "^base64\\b" },
-            { "pattern": "^sed\\b" },
-            { "pattern": "^awk\\b" },
-            { "pattern": "^perl\\b" },
-            { "pattern": "^jq\\b" },
-            { "pattern": "^mlr\\b" },
-            { "pattern": "^mkdir\\b" },
-            { "pattern": "^touch\\b" },
-            { "pattern": "^cp\\b" },
-            { "pattern": "^mv\\b" },
-            { "pattern": "^rm\\b" },
-            { "pattern": "^chmod\\s+\\+x" },
-            { "pattern": "^unzip\\b" },
-            { "pattern": "^tar\\b" },
-            { "pattern": "^tee\\b" },
-            { "pattern": "^xargs\\b" },
-            // Go toolchain
-            { "pattern": "^go\\b" },
-            { "pattern": "^gofmt\\b" },
-            { "pattern": "^goreleaser\\b" },
-            { "pattern": "^golangci-lint\\b" },
-            { "pattern": "^git-cliff\\b" },
-            // Rust toolchain
-            { "pattern": "^cargo\\b" },
-            { "pattern": "^sqlx\\b" },
-            { "pattern": "^psql\\b" },
-            { "pattern": "^pg_isready\\b" },
-            { "pattern": "^dropdb\\b" },
-            { "pattern": "^sqlite3\\b" },
-            // git & GitHub
-            { "pattern": "^git\\b" },
-            { "pattern": "^gh\\b" },
-            // web / docs / media
-            { "pattern": "^zola\\b" },
-            { "pattern": "^typst\\b" },
-            { "pattern": "^deno\\s+(lint|fmt)" },
-            { "pattern": "^rsvg-convert\\b" },
-            { "pattern": "^magick\\b" },
-            { "pattern": "^pdftoppm\\b" },
-            { "pattern": "^pdftotext\\b" },
-            { "pattern": "^pdfinfo\\b" },
-            { "pattern": "^ffmpeg\\b" },
-            { "pattern": "^ffprobe\\b" },
-            { "pattern": "^ffplay\\b" },
-            { "pattern": "^ruby\\b" },
-            // build systems / scripts
-            { "pattern": "^make\\b" },
-            { "pattern": "^pre-commit\\s+run\\b" },
-            { "pattern": "^sh\\s+\\S+\\.sh(\\s|$)" },
-            { "pattern": "^bash\\s+\\S+\\.sh(\\s|$)" },
-            { "pattern": "^nohup\\b" },
-            { "pattern": "^timeout\\b" },
-            // infra / IoT / network
-            { "pattern": "^docker\\s+(compose|build|buildx|run|pull|push|manifest|ps|logs|exec|inspect|images)" },
-            { "pattern": "^ansible\\b" },
-            { "pattern": "^ssh\\b" },
-            { "pattern": "^scp\\b" },
-            { "pattern": "^nc\\b" },
-            { "pattern": "^dig\\b" },
-            { "pattern": "^curl\\b" },
-            { "pattern": "^mosquitto_pub\\b" },
-            { "pattern": "^mosquitto_sub\\b" },
-            { "pattern": "^tailscale\\b" },
-            { "pattern": "^esphome\\b" },
-            { "pattern": "^fly\\b" },
-            // processes / system diagnostics
-            { "pattern": "^ps\\b" },
-            { "pattern": "^pgrep\\b" },
-            { "pattern": "^pkill\\b" },
-            { "pattern": "^kill\\b" },
-            { "pattern": "^lsof\\b" },
-            { "pattern": "^uptime\\b" },
-            { "pattern": "^log\\s+show\\b" },
-            { "pattern": "^vmmap\\b" },
-            { "pattern": "^osascript\\b" },
-            // package managers & misc dev tools
-            { "pattern": "^python3\\b" },
-            { "pattern": "^pip3\\s+(install|show|list)" },
-            { "pattern": "^pipx\\s+(install|list)" },
-            { "pattern": "^brew\\s+(list|install|info)" },
-            { "pattern": "^pkg-config\\b" },
-            { "pattern": "^wtg\\b" },
-            { "pattern": "^moli\\b" },
-            { "pattern": "^openspec\\b" }
+            {
+              "pattern": "^cd\\b"
+            },
+            {
+              "pattern": "^pwd\\b"
+            },
+            {
+              "pattern": "^true\\b"
+            },
+            {
+              "pattern": "^echo\\b"
+            },
+            {
+              "pattern": "^printf\\b"
+            },
+            {
+              "pattern": "^env\\b"
+            },
+            {
+              "pattern": "^export\\b"
+            },
+            {
+              "pattern": "^which\\b"
+            },
+            {
+              "pattern": "^type\\b"
+            },
+            {
+              "pattern": "^man\\b"
+            },
+            {
+              "pattern": "^sleep\\s+\\d+(\\s|$)"
+            },
+            {
+              "pattern": "^[A-Za-z_][A-Za-z0-9_]*=\\S+(\\s+[A-Za-z_][A-Za-z0-9_]*=\\S+)*\\s+(go|git|cargo|sqlx|ansible|sort)\\b"
+            },
+            {
+              "pattern": "^ls\\b"
+            },
+            {
+              "pattern": "^find\\b"
+            },
+            {
+              "pattern": "^grep\\b"
+            },
+            {
+              "pattern": "^rg\\b"
+            },
+            {
+              "pattern": "^cat\\b"
+            },
+            {
+              "pattern": "^head\\b"
+            },
+            {
+              "pattern": "^tail\\b"
+            },
+            {
+              "pattern": "^wc\\b"
+            },
+            {
+              "pattern": "^sort\\b"
+            },
+            {
+              "pattern": "^uniq\\b"
+            },
+            {
+              "pattern": "^comm\\b"
+            },
+            {
+              "pattern": "^cut\\b"
+            },
+            {
+              "pattern": "^diff\\b"
+            },
+            {
+              "pattern": "^file\\b"
+            },
+            {
+              "pattern": "^strings\\b"
+            },
+            {
+              "pattern": "^xxd\\b"
+            },
+            {
+              "pattern": "^base64\\b"
+            },
+            {
+              "pattern": "^sed\\b"
+            },
+            {
+              "pattern": "^awk\\b"
+            },
+            {
+              "pattern": "^perl\\b"
+            },
+            {
+              "pattern": "^jq\\b"
+            },
+            {
+              "pattern": "^mlr\\b"
+            },
+            {
+              "pattern": "^mkdir\\b"
+            },
+            {
+              "pattern": "^touch\\b"
+            },
+            {
+              "pattern": "^cp\\b"
+            },
+            {
+              "pattern": "^mv\\b"
+            },
+            {
+              "pattern": "^rm\\b"
+            },
+            {
+              "pattern": "^chmod\\s+\\+x"
+            },
+            {
+              "pattern": "^unzip\\b"
+            },
+            {
+              "pattern": "^tar\\b"
+            },
+            {
+              "pattern": "^tee\\b"
+            },
+            {
+              "pattern": "^xargs\\b"
+            },
+            {
+              "pattern": "^go\\b"
+            },
+            {
+              "pattern": "^gofmt\\b"
+            },
+            {
+              "pattern": "^goreleaser\\b"
+            },
+            {
+              "pattern": "^golangci-lint\\b"
+            },
+            {
+              "pattern": "^git-cliff\\b"
+            },
+            {
+              "pattern": "^cargo\\b"
+            },
+            {
+              "pattern": "^sqlx\\b"
+            },
+            {
+              "pattern": "^psql\\b"
+            },
+            {
+              "pattern": "^pg_isready\\b"
+            },
+            {
+              "pattern": "^dropdb\\b"
+            },
+            {
+              "pattern": "^sqlite3\\b"
+            },
+            {
+              "pattern": "^git\\b"
+            },
+            {
+              "pattern": "^gh\\b"
+            },
+            {
+              "pattern": "^zola\\b"
+            },
+            {
+              "pattern": "^typst\\b"
+            },
+            {
+              "pattern": "^deno\\s+(lint|fmt)"
+            },
+            {
+              "pattern": "^rsvg-convert\\b"
+            },
+            {
+              "pattern": "^magick\\b"
+            },
+            {
+              "pattern": "^pdftoppm\\b"
+            },
+            {
+              "pattern": "^pdftotext\\b"
+            },
+            {
+              "pattern": "^pdfinfo\\b"
+            },
+            {
+              "pattern": "^ffmpeg\\b"
+            },
+            {
+              "pattern": "^ffprobe\\b"
+            },
+            {
+              "pattern": "^ffplay\\b"
+            },
+            {
+              "pattern": "^ruby\\b"
+            },
+            {
+              "pattern": "^make\\b"
+            },
+            {
+              "pattern": "^pre-commit\\s+run\\b"
+            },
+            {
+              "pattern": "^sh\\s+\\S+\\.sh(\\s|$)"
+            },
+            {
+              "pattern": "^bash\\s+\\S+\\.sh(\\s|$)"
+            },
+            {
+              "pattern": "^nohup\\b"
+            },
+            {
+              "pattern": "^timeout\\b"
+            },
+            {
+              "pattern": "^docker\\s+(compose|build|buildx|run|pull|push|manifest|ps|logs|exec|inspect|images)"
+            },
+            {
+              "pattern": "^ansible\\b"
+            },
+            {
+              "pattern": "^ssh\\b"
+            },
+            {
+              "pattern": "^scp\\b"
+            },
+            {
+              "pattern": "^nc\\b"
+            },
+            {
+              "pattern": "^dig\\b"
+            },
+            {
+              "pattern": "^curl\\b"
+            },
+            {
+              "pattern": "^mosquitto_pub\\b"
+            },
+            {
+              "pattern": "^mosquitto_sub\\b"
+            },
+            {
+              "pattern": "^tailscale\\b"
+            },
+            {
+              "pattern": "^esphome\\b"
+            },
+            {
+              "pattern": "^fly\\b"
+            },
+            {
+              "pattern": "^ps\\b"
+            },
+            {
+              "pattern": "^pgrep\\b"
+            },
+            {
+              "pattern": "^pkill\\b"
+            },
+            {
+              "pattern": "^kill\\b"
+            },
+            {
+              "pattern": "^lsof\\b"
+            },
+            {
+              "pattern": "^uptime\\b"
+            },
+            {
+              "pattern": "^log\\s+show\\b"
+            },
+            {
+              "pattern": "^vmmap\\b"
+            },
+            {
+              "pattern": "^osascript\\b"
+            },
+            {
+              "pattern": "^python3\\b"
+            },
+            {
+              "pattern": "^pip3\\s+(install|show|list)"
+            },
+            {
+              "pattern": "^pipx\\s+(install|list)"
+            },
+            {
+              "pattern": "^brew\\s+(list|install|info)"
+            },
+            {
+              "pattern": "^pkg-config\\b"
+            },
+            {
+              "pattern": "^wtg\\b"
+            },
+            {
+              "pattern": "^moli\\b"
+            },
+            {
+              "pattern": "^openspec\\b"
+            },
+            {
+              "pattern": "^nmap\\b"
+            },
+            {
+              "pattern": "^arp\\b"
+            },
+            {
+              "pattern": "^dns-sd\\b"
+            },
+            {
+              "pattern": "^speedport\\b"
+            },
+            {
+              "pattern": "^mosquitto_rr\\b"
+            }
           ]
         }
       }
@@ -299,7 +510,7 @@
     "default_model": {
       "effort": "high",
       "provider": "opencode",
-      "model": "go/deepseek-v4.1-flash",
+      "model": "go/minimax-m3.1-flash-free",
       "enable_thinking": true
     },
     "favorite_models": [
@@ -312,6 +523,24 @@
       {
         "provider": "opencode",
         "model": "go/glm-5.3",
+        "enable_thinking": true,
+        "effort": "high"
+      },
+      {
+        "provider": "opencode",
+        "model": "go/kimi-k3",
+        "enable_thinking": true,
+        "effort": "max"
+      },
+      {
+        "provider": "openrouter",
+        "model": "~deepseek/deepseek-v4-flash-latest",
+        "enable_thinking": true,
+        "effort": "high"
+      },
+      {
+        "provider": "opencode",
+        "model": "go/minimax-m3.1-flash-free",
         "enable_thinking": true,
         "effort": "high"
       }
