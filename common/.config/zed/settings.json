@@ -67,43 +67,7 @@
     },
     "opencode": {
       "show_go_models": true,
-      "show_zen_models": false,
-      // Workaround for zed#65710: catalog models with `provider.api` and no
-      // `npm` break model discovery, so the Go/Zen models are defined manually
-      // here. Remove this once the fix ships:
-      // https://github.com/zed-industries/zed/issues/65710
-      "available_models": [
-        {
-          "name": "kimi-k3",
-          "display_name": "Kimi K3",
-          "subscription": "go",
-          "protocol": "openai_chat",
-          "max_tokens": 1048576,
-          "max_output_tokens": 131072,
-          "reasoning_effort_levels": ["max"],
-          "interleaved_reasoning": true
-        },
-        {
-          "name": "deepseek-v4.1-flash",
-          "display_name": "DeepSeek V4.1 Flash",
-          "subscription": "go",
-          "protocol": "openai_chat",
-          "max_tokens": 1000000,
-          "max_output_tokens": 384000,
-          "reasoning_effort_levels": ["low", "high", "max"],
-          "interleaved_reasoning": true
-        },
-        {
-          "name": "glm-5.3",
-          "display_name": "GLM-5.3",
-          "subscription": "go",
-          "protocol": "openai_chat",
-          "max_tokens": 1000000,
-          "max_output_tokens": 131072,
-          "reasoning_effort_levels": ["low", "high", "max"],
-          "interleaved_reasoning": true
-        }
-      ]
+      "show_zen_models": false
     }
   },
   "remove_trailing_whitespace_on_save": true,
