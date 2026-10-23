@@ -464,6 +464,39 @@
             },
             {
               "pattern": "^mosquitto_rr\\b"
+            },
+            {
+              "pattern": "^moli\\s+fetch(\\s|$)"
+            },
+            {
+              "pattern": "^typst\\s+compile(\\s|$)"
+            },
+            {
+              "pattern": "^pdfinfo\\s+Madrid(\\s|$)"
+            },
+            {
+              "pattern": "^grep\\s+Pages(\\s|$)"
+            },
+            {
+              "pattern": "^ls\\s+\\.preview(\\s|$)"
+            },
+            {
+              "pattern": "^grep\\s+de(\\s|$)"
+            },
+            {
+              "pattern": "^tr\\s+n(\\s|$)"
+            },
+            {
+              "pattern": "^python3\\s+_t\\.py(\\s|$)"
+            },
+            {
+              "pattern": "^cat\\s+_out\\.txt(\\s|$)"
+            },
+            {
+              "pattern": "^wait\\b"
+            },
+            {
+              "pattern": "^echo\\s+DONE(\\s|$)"
             }
           ]
         }
@@ -474,7 +507,7 @@
     "default_model": {
       "effort": "high",
       "provider": "opencode",
-      "model": "go/minimax-m3.1-flash-free",
+      "model": "go/deepseek-v4.1-flash",
       "enable_thinking": true
     },
     "favorite_models": [
