@@ -1,0 +1,149 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+# Heartbeat for unattended dependency automation.
+#
+# Renovate merges most updates itself, so silence is normally good news. But
+# silence is indistinguishable from broken automation, and a pull request that
+# cannot auto-merge announces nothing at all. This reports only the exceptions.
+#
+# What counts as an exception:
+#   - any open Dependabot PR      (nothing auto-merges those; they always need you)
+#   - a Renovate PR that is conflicting, failing its checks, or older than N days
+#   - an open Dependabot alert
+#   - no Renovate activity anywhere for N days (the app may have stopped)
+#
+# Uses your existing `gh` login; no extra token required.
+# Exit status: 0 = nothing needs a human, 1 = something does.
+
+stuck_days=${STUCK_DAYS:-7}
+silent_days=${SILENT_DAYS:-21}
+
+repos=(
+  suhlig/rostfacto
+  suhlig/rustomato
+  suhlig/sqlite-vault
+  suhlig/euro-exchange-rates-resource
+  suhlig/concourse-resource-go
+  suhlig/fipe
+  suhlig/gosmos
+  suhlig/concourse-rss-resource
+  suhlig/httpspell
+  suhlig/pandoc-include-filter
+  suhlig/wordclock
+  suhlig/revealing
+  uhlig-it/kehrkraft
+  uhlig-it/shop-alarm
+  uhlig-it/shorts
+  uhlig-it/mqtt-gpio-binary-sensor
+  uhlig-it/mqtt-router
+  uhlig-it/mqtt-blink1
+  uhlig-it/speedtest-exporter
+  uhlig-it/tasmota-firmware-proxy
+)
+
+actions=()
+alerts=()
+unreadable=0
+last_activity=0
+
+for repo in "${repos[@]}"; do
+  while IFS=$'\t' read -r number reason title url; do
+    if [[ -n $number ]]; then
+      actions+=("$repo#$number  [$reason]  $title  $url")
+    fi
+  done < <(gh pr list --repo "$repo" --state open --limit 100 \
+             --json number,title,createdAt,url,author,mergeable,statusCheckRollup \
+             2>/dev/null |
+           jq -r --argjson days "$stuck_days" '
+             def failing:
+               (.conclusion // .state // "none") as $c
+               | ($c == "FAILURE" or $c == "ERROR" or $c == "TIMED_OUT"
+                  or $c == "ACTION_REQUIRED" or $c == "CANCELLED"
+                  or $c == "STARTUP_FAILURE");
+             .[]
+             | select(.author != null)
+             | select(.author.login | test("renovate|dependabot"))
+             | . as $pr
+             | ( if (.author.login | test("dependabot")) then "needs you"
+                 elif .mergeable == "CONFLICTING" then "conflict"
+                 elif ((.statusCheckRollup // []) | any(.[]; failing)) then "checks failing"
+                 elif (now - (.createdAt | fromdateiso8601)) > ($days * 86400)
+                   then "stale " + (((now - (.createdAt | fromdateiso8601)) / 86400) | floor | tostring) + "d"
+                 else empty
+                 end ) as $reason
+             | "\(.number)\t\($reason)\t\(.title)\t\(.url)"' || true)
+
+  # Renovate touches the Dependency Dashboard when it runs and finds changes,
+  # so the freshest dashboard across all repositories is the liveness signal.
+  # A single quiet repository proves nothing; all of them quiet does.
+  dashboard=$(gh api "repos/$repo/issues?state=open&per_page=100" \
+                --jq '[.[] | select(.title == "Dependency Dashboard")][0].updated_at // empty' \
+                2>/dev/null || true)
+  if [[ -n $dashboard ]]; then
+    ts=$(jq -nr --arg t "$dashboard" '$t | fromdateiso8601 | floor')
+    if (( ts > last_activity )); then
+      last_activity=$ts
+    fi
+  fi
+
+  # Open security alerts, where the repository has them enabled.
+  if alert_out=$(gh api --paginate --slurp "repos/$repo/dependabot/alerts?state=open&per_page=100" \
+                   2>&1); then
+    count=$(printf '%s' "$alert_out" | jq 'add | length')
+    if (( count > 0 )); then
+      alerts+=("$repo: $count open Dependabot alert(s)")
+    fi
+  else
+    case $alert_out in
+      *disabled*) ;;
+      *) unreadable=$((unreadable + 1)) ;;
+    esac
+  fi
+done
+
+silent=""
+now=$(date -u +%s)
+if (( last_activity > 0 )); then
+  idle=$(( (now - last_activity) / 86400 ))
+  if (( idle > silent_days )); then
+    silent=$(printf 'no Renovate activity in any repository since %s (%dd)' \
+               "$(jq -nr --argjson t "$last_activity" '$t | todate | split("T")[0]')" "$idle")
+  fi
+else
+  silent="no Dependency Dashboard found in any repository; cannot tell whether Renovate runs"
+fi
+
+printf 'dependency heartbeat %s\n\n' "$(date -u +%Y-%m-%d)"
+
+if (( ${#actions[@]} == 0 && ${#alerts[@]} == 0 )) && [[ -z $silent ]]; then
+  printf 'nothing needs you: %d repos checked, automation alive\n' "${#repos[@]}"
+  if (( unreadable > 0 )); then
+    printf 'note: Dependabot alerts unreadable for %d repo(s)\n' "$unreadable"
+  fi
+  exit 0
+fi
+
+if (( ${#actions[@]} > 0 )); then
+  printf 'NEEDS YOU (%d):\n' "${#actions[@]}"
+  printf '  %s\n' "${actions[@]}"
+  printf '\n'
+fi
+
+if (( ${#alerts[@]} > 0 )); then
+  printf 'SECURITY:\n'
+  printf '  %s\n' "${alerts[@]}"
+  printf '\n'
+fi
+
+if [[ -n $silent ]]; then
+  printf 'SILENT:\n  %s\n\n' "$silent"
+fi
+
+if (( unreadable > 0 )); then
+  printf 'note: Dependabot alerts unreadable for %d repo(s)\n\n' "$unreadable"
+fi
+
+exit 1
