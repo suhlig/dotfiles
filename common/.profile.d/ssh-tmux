@@ -1,11 +1,29 @@
 #
-# When ssh'ing with exactly one parameter (hostname), try to attach to an existing tmux
-# session, or create a new one.
+# Auto-attach tmux only for a plain interactive `ssh <host>`.
+#
+# Options, remote commands, pipes, and non-TTY invocations pass through
+# untouched, so `ssh -4 host`, `ssh -p 2222 host`, `ssh host command`,
+# `ssh -V`, `ssh -O ...`, Ansible, scp, and rsync are not rewritten.
+#
+# Use `sshtmux` when you need SSH options or a remote command but still want
+# tmux.
 #
 ssh() {
-  if [ $# -eq 1 ]; then
-    command ssh -t "$@" "tmux attach-session || tmux new-session"
+  if [ "$#" -eq 1 ] && [ "${1#-}" = "$1" ] && [ -t 0 ] && [ -t 1 ]; then
+    command ssh -t "$1" \
+      'tmux attach-session 2>/dev/null || tmux new-session 2>/dev/null || exec "${SHELL:-/bin/sh}" -l'
   else
     command ssh "$@"
   fi
+}
+
+#
+# Like `ssh`, but always requests a TTY and attaches/creates tmux. Use it with
+# options and a host, not with a remote command:
+#
+#   sshtmux -p 2222 host
+#
+sshtmux() {
+  command ssh -t "$@" \
+    'tmux attach-session 2>/dev/null || tmux new-session 2>/dev/null || exec "${SHELL:-/bin/sh}" -l'
 }
