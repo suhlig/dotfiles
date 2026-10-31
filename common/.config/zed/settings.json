@@ -25,6 +25,10 @@
       "args": [
         "-mcp"
       ]
+    },
+    "moneypenny": {
+      "command": "/Applications/Moneypenny.app/Contents/MacOS/moneypenny-mcp",
+      "args": []
     }
   },
   "language_models": {
