@@ -19,3 +19,15 @@ mkdir -p ~/.ssh/config.d
 ```
 
 Otherwise Stow folds the directory into a symlink to the checkout, and a machine-local fragment written there would end up inside the repo. Machine-local overrides belong in `~/.ssh/config.d/10-local.conf`, which sorts before the tracked `50-main.conf`; OpenSSH keeps the first value it obtains for a keyword, so the local file wins. Check the merged result with `ssh -G <host>`.
+
+## Git configuration
+
+`~/.gitconfig` is tracked and includes `~/.gitconfig.d/50-main.conf` (stowed from `common`), `~/.gitconfig.d/90-osx.conf` (stowed from `osx`) and the untracked `~/.gitconfig.local`, which is read last so machine-local overrides win. Per-repository identities live in `common/.gitconfig.d/orgs` and are pulled in by `includeIf` conditions in `50-main.conf`.
+
+Create `~/.gitconfig.d` and `~/.gitconfig.d/orgs` as real directories before stowing, for the same folding reason as `~/.ssh/config.d`:
+
+```
+mkdir -p ~/.gitconfig.d/orgs
+```
+
+Do not place these files under `~/git/github.com/<org>/`: Stow would then own a directory that is also used for checkouts. Identities in `.ssh/config.d/50-main.conf` are declared per host rather than in `Host *`, so a per-command `-i` never competes with a wildcard default. An org-level `core.sshCommand` additionally passes `-F /dev/null`, which keeps it independent of `~/.ssh/config` and of any machine-local fragment.

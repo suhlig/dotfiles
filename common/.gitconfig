@@ -41,4 +41,6 @@
   defaultBranch = main
 
 [include]
+  path = ~/.gitconfig.d/50-main.conf
+  path = ~/.gitconfig.d/90-osx.conf
   path = ~/.gitconfig.local
