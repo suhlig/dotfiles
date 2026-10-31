@@ -4,3 +4,7 @@
 font-family = IBM Plex Mono
 font-size = 15
 theme = Ayu
+
+# Close surfaces/windows (and quit) without the "terminal still has a
+# running process" confirmation.
+confirm-close-surface = false
