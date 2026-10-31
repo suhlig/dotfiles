@@ -497,6 +497,99 @@
             },
             {
               "pattern": "^echo\\s+DONE(\\s|$)"
+            },
+            {
+              "pattern": "^du\\b"
+            },
+            {
+              "pattern": "^ping\\b"
+            },
+            {
+              "pattern": "^ifconfig\\s+awdl0(\\s|$)"
+            },
+            {
+              "pattern": "^ipconfig\\s+getifaddr(\\s|$)"
+            },
+            {
+              "pattern": "^shellcheck\\b"
+            },
+            {
+              "pattern": "^echo\\s+BASH_SC_DONE(\\s|$)"
+            },
+            {
+              "pattern": "^echo\\s+SH_SC_DONE(\\s|$)"
+            },
+            {
+              "pattern": "^pdfinfo\\s+/tmp/phone-test\\.pdf(\\s|$)"
+            },
+            {
+              "pattern": "^printf\\s+Phone(\\s|$)"
+            },
+            {
+              "pattern": "^pdftotext\\s+/tmp/input-test\\.pdf(\\s|$)"
+            },
+            {
+              "pattern": "^esp-generate\\b"
+            },
+            {
+              "pattern": "^espflash\\s+flash(\\s|$)"
+            },
+            {
+              "pattern": "^espflash\\s+monitor(\\s|$)"
+            },
+            {
+              "pattern": "^echo\\s+pages:(\\s|$)"
+            },
+            {
+              "pattern": "^echo\\s+images:(\\s|$)"
+            },
+            {
+              "pattern": "^pdfimages\\b"
+            },
+            {
+              "pattern": "^echo\\s+jpeg:(\\s|$)"
+            },
+            {
+              "pattern": "^file\\s+map-madrid\\.jpg(\\s|$)"
+            },
+            {
+              "pattern": "^espflash\\s+save-image(\\s|$)"
+            },
+            {
+              "pattern": "^tr\\b"
+            },
+            {
+              "pattern": "^command\\b"
+            },
+            {
+              "pattern": "^ssh\\s+soda(\\s|$)"
+            },
+            {
+              "pattern": "^tmux\\s+list-panes(\\s|$)"
+            },
+            {
+              "pattern": "^sk\\b"
+            },
+            {
+              "pattern": "^echo\\s+===(\\s|$)"
+            },
+            {
+              "pattern": "^man\\s+sk(\\s|$)"
+            },
+            {
+              "pattern": "^col\\b"
+            },
+            {
+              "pattern": "^bash\\b"
+            },
+            {
+              "pattern": "^zsh\\b"
+            },
+            {
+              "pattern": "^echo\\s+syntax(\\s|$)"
+            },
+            {
+              "pattern": "^nm\\b"
             }
           ]
         }
