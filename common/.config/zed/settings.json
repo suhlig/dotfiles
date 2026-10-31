@@ -594,6 +594,12 @@
             },
             {
               "pattern": "^nm\\b"
+            },
+            {
+              "pattern": "^xmllint\\b"
+            },
+            {
+              "pattern": "^echo\\s+ok(\\s|$)"
             }
           ]
         }
