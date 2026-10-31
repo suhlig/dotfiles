@@ -18,3 +18,10 @@ Session.vim
 common/.config/nvim/plugin
 common/Gemfile.lock
 tags
+
+# common/.ssh carries configuration only. Keys, known_hosts and anything else
+# dropped next to it stay untracked, even if a stow fold ever put them there.
+/common/.ssh/*
+!/common/.ssh/config
+!/common/.ssh/config.d
+!/common/.ssh/git-signers
