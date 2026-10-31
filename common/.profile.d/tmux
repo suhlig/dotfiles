@@ -17,3 +17,32 @@ tmnw(){
     tmux new-window -c "$dir" -n "$(basename "$dir")"
   done
 }
+
+# Interactively select a pane by the process running in it and switch to it
+tmps(){
+  if [ -z "${TMUX:-}" ]; then
+    >&2 echo Error: Not running inside tmux
+    return 1
+  fi
+
+  local target
+  target=$(
+    tmux list-panes -a -F '#{pane_current_command}	#{window_name}	#{session_name}:#{window_index}.#{pane_index}	#{pane_current_path}' |
+      awk -F'\t' '
+        { proc[NR] = $1; name[NR] = $2; rest[NR] = $3 "\t" $4
+          if (length($1) > pw) pw = length($1)
+          if (length($2) > nw) nw = length($2) }
+        END { pw = pw > 8 ? pw : 8
+              nw = nw > 5 ? nw : 5
+              printf "%-*s\t%-*s\t%s\n", pw, "PROCESS", nw, "PANE", "WHERE"
+              for (i = 1; i <= NR; i++)
+                printf "%-*s\t%-*s\t%s\n", pw, proc[i], nw, name[i], rest[i] }
+      ' |
+      sk --header-lines=1 --layout=reverse --delimiter='\t' --nth=1 --hide-nth=4 \
+        --preview='printf "pane:    %s\nprocess: %s\nwhere:   %s\n" {2} {1} {3}' \
+        --preview-window=up:6:wrap |
+      cut -f3
+  )
+
+  [ -n "$target" ] && tmux switch-client -t "$target"
+}
