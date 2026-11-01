@@ -8,6 +8,8 @@ case $WTG_SPACE_EVENT in
       tmux new-window -t "$WTG_SPACE_NAME" -c "$dir" -n "${dir:t}"
     done
 
+    tmux select-window -t "$WTG_SPACE_NAME:0"
+
     echo "tmux session \"$WTG_SPACE_NAME\" created at $WTG_SPACE_ROOT"
     ;;
   delete)
