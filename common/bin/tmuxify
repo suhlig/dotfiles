@@ -2,6 +2,7 @@
 #
 # https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/bin/tmux-sessionizer
 
+# TODO Accept any number of projects and create a window for each
 if [[ $# -eq 1 ]]; then
   selected=$(zoxide query "$1")
 else
