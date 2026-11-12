@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# post-merge hook (see .pre-commit-config.yaml): re-stows after a merge or pull.
+#
+# Keep in sync with stow-dotfiles in bootstrap.zsh and with AGENTS.md:
+# --target is required because stow otherwise targets the parent of the checkout,
+# --ignore .DS_Store because Finder-created files make stow abort with a conflict.
+set -euo pipefail
+
+cd "$(git rev-parse --show-toplevel)"
+
+case "$(uname -s)" in
+  Linux) platform=linux ;;
+  Darwin) platform=osx ;;
+  MINGW* | MSYS* | CYGWIN*) platform=windows ;;
+  *)
+    echo "Unsupported platform '$(uname -s)'. Must be Linux, Darwin or Windows." >&2
+    exit 1
+    ;;
+esac
+
+exec stow --target="$HOME" --ignore .DS_Store --restow common "$platform"

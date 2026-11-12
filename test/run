@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Builds the Debian test image from the working tree. The build fails if any check in
+# test/debian/trixie/verify.sh fails. Used by the pre-commit pre-push hook.
+#
+# For the full image (atuin, zoxide, tmux plugins; needs network), use `docker buildx bake`.
+set -euo pipefail
+
+here="$(cd "$(dirname "$0")/.." && pwd)"
+
+docker buildx build --load -f "$here/test/debian/trixie/Dockerfile.slim" -t dotfiles-debian-trixie:slim "$here"
+
+echo "OK. Explore with: docker run -it --rm dotfiles-debian-trixie:slim"

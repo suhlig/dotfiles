@@ -76,7 +76,12 @@ Identities in `50-main.conf` are declared per host, never in `Host *`, so a per-
 
 # Test
 
+The slim image stows the dotfiles in a fresh Debian trixie container as an unprivileged user and runs `test/debian/trixie/verify.sh`; the build fails if a check fails. The checks cover shell start-up, ssh and git identity resolution (`ssh -G`, `git config` for each org and URL form) and the OpenSSH options in every `core.sshCommand`.
+
 ```command
-docker buildx bake
+test/run                                     # slim image only, fails on any broken check
+docker buildx bake                           # slim and full image (full needs network)
 docker run -it --rm dotfiles-debian-trixie-full
 ```
+
+[pre-commit](https://pre-commit.com) runs the hooks in `.pre-commit-config.yaml`: a trailing-whitespace check on commit, `test/run` before every push (`.git-hooks/docker-test`; it only warns if Docker is not running) and a re-stow after every merge or pull (`.git-hooks/re-stow`). Install it with `brew install pre-commit` (or `pipx install pre-commit`), then run `pre-commit install --overwrite` in the checkout; `--overwrite` is needed because the git template in `common/.git-template` already installs a `pre-commit` shim. All hooks are local, so nothing is fetched from a remote (which would go through the `url.insteadOf` rewrite to ssh and need a key). [dotfiles-ibm](https://github.ibm.com/Steffen-Uhlig/dotfiles-ibm) builds on the slim image and reuses `test/lib.sh`.

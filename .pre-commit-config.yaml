@@ -1,0 +1,31 @@
+# Install with `pre-commit install`; the hook types below are installed by default.
+# All hooks are local: they need nothing fetched from a remote repository (which
+# would go through the url.insteadOf rewrite to ssh and need a key).
+default_install_hook_types: [pre-commit, pre-push, post-merge]
+
+repos:
+  - repo: local
+    hooks:
+      - id: trailing-whitespace
+        name: Trailing whitespace
+        language: pygrep
+        entry: '[ \t]+$'
+        types: [text]
+
+      - id: docker-test
+        name: Docker tests (test/run)
+        language: unsupported
+        entry: .git-hooks/docker-test
+        pass_filenames: false
+        always_run: true
+        verbose: true
+        stages: [pre-push]
+
+      - id: re-stow
+        name: Re-stow all files
+        language: unsupported
+        entry: .git-hooks/re-stow
+        pass_filenames: false
+        always_run: true
+        verbose: true
+        stages: [post-merge]

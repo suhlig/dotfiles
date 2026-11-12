@@ -4,8 +4,9 @@
 # atuin: point to XDG config dir (macOS platform default differs)
 export ATUIN_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/atuin"
 
-# Make Homebrew available to non-interactive shells (e.g. GUI apps)
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Make Homebrew available to non-interactive shells (e.g. GUI apps).
+# Apple Silicon path only; Linux gets its PATH from linux/.bash_profile.d/01-linuxbrew.
+[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Make nvm-managed Node available to non-interactive shells (e.g. GUI apps)
 () {

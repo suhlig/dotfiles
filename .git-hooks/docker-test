@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# pre-push hook (see .pre-commit-config.yaml): builds the Docker test image via test/run.
+#
+# A stopped Docker daemon must not make pushing impossible, but it must be visible,
+# so that case warns and succeeds. A failing build fails the hook with the last lines
+# of the output.
+set -euo pipefail
+
+cd "$(git rev-parse --show-toplevel)"
+
+if ! docker info > /dev/null 2>&1; then
+  echo "WARNING: Docker is not available or not running, so test/run was skipped." >&2
+  echo "         Start it (e.g. 'colima start') and run test/run before relying on this push." >&2
+  exit 0
+fi
+
+log=$(mktemp)
+trap 'rm -f "$log"' EXIT
+
+if test/run > "$log" 2>&1; then
+  echo "Docker tests passed."
+else
+  tail -n 40 "$log" >&2
+  exit 1
+fi

@@ -1,16 +1,21 @@
 FROM dotfiles-debian-trixie:slim
 
+USER root
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
       curl \
       starship \
       tmux \
  && rm -rf /var/lib/apt/lists/*
+USER tester
 
 RUN curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
 RUN curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
-RUN git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# The dotfiles rewrite https://github.com/ to ssh (url.insteadOf), and the container has no
+# key. Ignore the global config for clones of public repositories.
+RUN GIT_CONFIG_GLOBAL=/dev/null git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # TODO Once tpm was installed, press `<prefix>I` to install all plugins.
 
-RUN cd ~/git/github.com/suhlig/dotfiles && DOTFILES_SKIP_UPDATE=1 ./bootstrap.zsh
+# bootstrap.zsh runs again here and pulls antidote; that URL is rewritten to ssh too
+RUN cd ~/git/github.com/suhlig/dotfiles && GIT_CONFIG_GLOBAL=/dev/null DOTFILES_SKIP_UPDATE=1 ./bootstrap.zsh

@@ -5,21 +5,31 @@ RUN apt-get update \
       ca-certificates \
       git \
       locales \
+      openssh-client \
       stow \
       zsh \
  && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
  && locale-gen \
- && chsh -s /usr/bin/zsh \
+ && useradd --create-home --shell /usr/bin/zsh --uid 1001 tester \
  && rm -rf /var/lib/apt/lists/*
 
-# Same location as on a real machine, because other files refer to it
-WORKDIR /root/git/github.com/suhlig/dotfiles
+# Same location as on a real machine, because other files refer to it. Created
+# here, because WORKDIR and COPY would create the parent directories owned by root.
+RUN mkdir -p /home/tester/git/github.com/suhlig/dotfiles \
+ && chown -R tester:tester /home/tester/git
+
+# Never run as root: the dotfiles must work for an unprivileged user.
+USER tester
+WORKDIR /home/tester/git/github.com/suhlig/dotfiles
 # Testing the dotfiles repo directory
-COPY . .
+COPY --chown=tester:tester . .
 # Alternatively, we can also test the published main branch
 # RUN git clone https://github.com/suhlig/dotfiles.git .
 
 RUN DOTFILES_SKIP_UPDATE=1 ./bootstrap.zsh
 
-WORKDIR /root
+# Fails the build if the stowed configuration does not behave as intended
+RUN bash test/debian/trixie/verify.sh
+
+WORKDIR /home/tester
 CMD ["zsh"]

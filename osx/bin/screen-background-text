@@ -6,7 +6,7 @@ IFS=$'\n\t'
 readonly text="$1"
 readonly file=~/Pictures/background-"$RANDOM".png
 
-resolution=$(displayplacer list | grep -E '^displayplacer ' | awk '{print $3}' | awk -F':' '{print $2}')
+resolution=$(system_profiler SPDisplaysDataType | awk '/UI Looks like:/ { ui = $4 "x" $6 } /Resolution:/ { if (!res) res = $2 "x" $4 } END { if (ui) print ui; else print res }')
 fontSize=$(awk -F'x' '{print $2/40}' <<< "$resolution")
 
 gm convert \
