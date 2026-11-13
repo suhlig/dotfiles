@@ -3,9 +3,9 @@
 # https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/bin/tmux-sessionizer
 
 if [[ $# -eq 1 ]]; then
-  selected=$1
+  selected=$(zoxide query "$1")
 else
-  selected=$(find ~/workspace -type d -exec test -d {}/.git \; -prune -print | fzf)
+  selected=$(fd --glob '.git' --hidden ~/git ~/workspace --format '{//}' | sk)
 fi
 
 if [[ -z $selected ]]; then
