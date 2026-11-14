@@ -1,0 +1,83 @@
+# Native zsh completion for smug.
+#
+# Upstream ships only completion/smug.bash and completion/smug.fish, and the
+# Homebrew formula installs exactly those two, so there is nothing for zsh to
+# pick up. The bash script is also out of date: it completes "list print rm
+# start stop switch" but knows nothing about new, edit, the aliases, or
+# --worktree. This file follows smug's current CLI (options.go, main.go).
+#
+# Sourced from ~/.zsh_completion.d/ by ~/.zshrc, hence compdef at the bottom
+# instead of a #compdef line at the top.
+
+# Project configurations, as listed by "smug list". Nested configs come back
+# prefixed with "|--", which is stripped so the plain name is completed.
+_smug_projects() {
+  local -a projects
+  projects=(${(f)"$(smug list 2>/dev/null | sed 's/^|--//')"})
+  compadd -a projects
+}
+
+# Branch names of the current repository's worktrees, for --worktree.
+_smug_worktrees() {
+  local -a worktrees
+  worktrees=(${(f)"$(git worktree list --porcelain 2>/dev/null |
+    sed -n 's|^branch refs/heads/||p')"})
+  compadd -a worktrees
+}
+
+_smug() {
+  local state
+
+  _arguments -C \
+    '(-h --help)'{-h,--help}'[show usage]' \
+    '(-f --file)'{-f,--file}'[use a custom config file]:file:_files' \
+    '--worktree[use a git worktree as the session root]:worktree:->worktrees' \
+    '(-w --windows)'{-w,--windows}'[start only these windows]:window:_nothing' \
+    '(-a --attach)'{-a,--attach}'[attach the client once the session exists]' \
+    '(-i --inside-current-session)'{-i,--inside-current-session}'[create the windows inside the current session]' \
+    '(-d --debug)'{-d,--debug}'[log tmux commands to ~/.config/smug/smug.log]' \
+    '--detach[detach the session after creating it]' \
+    '1:command:->command' \
+    '*::argument:->argument'
+
+  case $state in
+    command)
+      local -a commands
+      commands=(
+        'start:start a project session (default when only a project is given)'
+        'stop:stop a project session'
+        's:alias for stop'
+        'st:alias for stop'
+        'new:create a project configuration'
+        'n:alias for new'
+        'edit:edit a project configuration in your editor'
+        'e:alias for edit'
+        'list:list project configurations'
+        'l:alias for list'
+        'ls:alias for list'
+        'print:print the configuration of a running session'
+        'p:alias for print'
+        'rm:remove a project configuration'
+        'r:alias for rm'
+        'switch:start and attach, i.e. start -a'
+        'sw:alias for switch'
+      )
+      _describe -t commands 'smug command' commands
+      _smug_projects
+      ;;
+    argument)
+      # "smug <project>" starts the project, so a bare first argument is a
+      # project name rather than an unknown command.
+      case $words[1] in
+        start|stop|s|st|edit|e|print|p|rm|r|switch|sw) _smug_projects ;;
+      esac
+      ;;
+    worktrees)
+      _smug_worktrees
+      ;;
+  esac
+}
+
+if type smug &>/dev/null; then
+  compdef _smug smug
+fi

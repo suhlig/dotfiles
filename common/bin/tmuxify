@@ -16,10 +16,11 @@ if [ "$selected" = . ]; then
   selected="$PWD"
 fi
 
-if [ -r "$selected"/.tmuxinator.yml ]; then
+if [ -r "$selected"/.smug.yml ]; then
   cd "$selected" || exit 1
-  tmuxinator local
-  exit 0
+  # -f is required: flags given before the project argument are parsed as the
+  # project name, so "smug start -a" would look for a project called "-a".
+  exec smug start -f .smug.yml -a
 fi
 
 selected_name=$(basename "$selected" | tr . _)

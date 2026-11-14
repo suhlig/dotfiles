@@ -10,5 +10,4 @@ gem 'overcommit'
 gem 'pg'
 gem 'solargraph'
 gem 'terminal-notifier'
-gem 'tmuxinator'
 

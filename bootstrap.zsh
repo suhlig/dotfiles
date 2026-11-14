@@ -42,6 +42,7 @@ check-prerequisites() {
 check-suggestions() {
   local suggestions=(
     atuin
+    smug
     starship
     tmux
   )
