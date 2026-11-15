@@ -7,6 +7,12 @@
 # Note that push access does not guarantee a merge: branch protection, required
 # reviews and CODEOWNERS may still block you.
 #
+# Pull requests that Renovate is still holding back because of its minimum
+# release age (formerly "stability days") are not mergeable yet, so they are
+# listed in a second table below the mergeable ones, introduced by a caption.
+# Renovate keeps a `renovate/stability-days` commit status pending on them until
+# the release is old enough to be merged.
+#
 # Extra arguments are passed on to `gh search prs`, e.g.
 #
 #   gh-prs-i-can-merge --review-requested=@me --no-draft
@@ -83,23 +89,73 @@ gh-prs-i-can-merge() {
         "$@" >> "$tmp"
     fi
 
-    jq -s -r --argjson hyperlink "$hyperlink" '
+    # Renovate parks updates that are still inside the configured minimum
+    # release age behind a `renovate/stability-days` commit status. The status
+    # stays pending until the release has aged enough, so those pull requests
+    # cannot be merged yet. The search result carries no status checks, hence
+    # the lookup per repository that produced a hit.
+    local -a pending
+    for repo in ${(u)${(f)"$(jq -r '.[].repository.nameWithOwner' "$tmp")"}}; do
+      pending+=(${(f)"$(
+        gh pr list --repo "$repo" --state open --limit 1000 \
+          --json url,statusCheckRollup \
+          --jq '.[] | select(any(.statusCheckRollup[]?;
+                                .__typename == "StatusContext"
+                                and (.context | test("^renovate/(stability-days|minimum-release-age)$"))
+                                and .state == "PENDING"))
+                | .url'
+      )"})
+    done
+
+    # Only pull requests the search actually produced may be listed, so
+    # restrict the lookup's result to those.
+    local -a found
+    found=(${(f)"$(jq -r '.[].url' "$tmp")"})
+    pending=(${pending:*found})
+
+    # One filter renders both tables; `--arg section` selects the mergeable or
+    # the waiting pull requests.
+    local table_program='
       # OSC 8 hyperlink: ESC ] 8 ; ; URI, then ESC followed by a backslash,
       # the visible text, and ESC ] 8 ; ; plus that same ESC-backslash again.
       def link: "\u001b]8;;" + . + "\u001b\\" + . + "\u001b]8;;\u001b\\";
 
+      def waiting: .url as $url | ($pending | split("\n") | index($url)) != null;
+
+      def row: ([.repository.nameWithOwner,
+                 .title,
+                 (.author.login // "ghost")
+                ] | @tsv)
+               # @tsv doubles backslashes, which would corrupt the escape
+               # sequences, so the URL is appended after escaping instead of
+               # escaped itself.
+               + "\t" + (if $hyperlink then (.url | link) else .url end);
+
       (add // []) | unique_by(.url)
       | sort_by(.repository.nameWithOwner, .number)
-      | (["REPO", "TITLE", "AUTHOR", "URL"] | @tsv),
-        (.[] as $pr
-         | ([$pr.repository.nameWithOwner,
-            $pr.title,
-            ($pr.author.login // "ghost")
-           ] | @tsv)
-           # @tsv doubles backslashes, which would corrupt the escape sequences,
-           # so the URL is appended after escaping instead of escaped itself.
-           + "\t" + (if $hyperlink then ($pr.url | link) else $pr.url end))
-    ' "$tmp" | column -t -s $'\t'
+      | map(select(if $section == "waiting" then waiting else (waiting | not) end))
+      | . as $rows
+      # An empty waiting list prints nothing at all, so it leaves neither a
+      # stray caption nor an empty table behind.
+      | if $section == "waiting" and ($rows | length) == 0 then empty
+        else (["REPO", "TITLE", "AUTHOR", "URL"] | @tsv), ($rows[] | row) end
+    '
+
+    local -a jq_common
+    jq_common=(--argjson hyperlink "$hyperlink" --arg pending "${(pj:\n:)pending}")
+
+    jq -s -r "${(@)jq_common}" --arg section ready "$table_program" "$tmp" \
+      | column -t -s $'\t'
+
+    local waiting_table
+    waiting_table=$(jq -s -r "${(@)jq_common}" --arg section waiting \
+                      "$table_program" "$tmp" | column -t -s $'\t') || return 1
+
+    if [[ -n $waiting_table ]]; then
+      print
+      print "WAITING FOR RENOVATE'S MINIMUM RELEASE AGE"
+      print -r -- "$waiting_table"
+    fi
   } always {
     rm -f "$tmp"
   }
