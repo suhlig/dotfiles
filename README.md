@@ -52,7 +52,7 @@ $ tree ~/.ssh/
 └── known_hosts
 ```
 
-Identities are selected per repository, not switched globally. Shared settings are stowed as fragments (`common/.gitconfig.d/50-main.conf` and `osx/.gitconfig.d/90-osx.conf`) and included from the tracked `~/.gitconfig`; the untracked `~/.gitconfig.local` is read last, so machine-local overrides win. `50-main.conf` sets a default `core.sshCommand` and uses `includeIf` to pull in one of the org files under `common/.gitconfig.d/orgs`:
+Identities are selected per repository, not switched globally. The tracked `~/.gitconfig` includes `osx/.gitconfig.d/90-osx.conf` and the untracked `~/.gitconfig.local`, so machine-local overrides win over the shared settings. It then uses `includeIf` to pull in one of the org files under `common/.gitconfig.d/orgs`:
 
 ```ini
 [includeIf "hasconfig:remote.*.url:git@github.com:nowak-reisen/**"]
@@ -61,7 +61,7 @@ Identities are selected per repository, not switched globally. Shared settings a
 
 Every `core.sshCommand` names its key explicitly, so whatever sits at `~/.ssh/id_ed25519` is never consulted.
 
-Identities in `50-main.conf` are declared per host, never in `Host *`, so a per-command `-i` never competes with a wildcard default. An overriding `core.sshCommand` also passes `-F /dev/null`, which keeps it independent of `~/.ssh/config` — including any machine-local fragment — so only the named key can be offered:
+An overriding `core.sshCommand` also passes `-F /dev/null`, which keeps it independent of `~/.ssh/config`, so only the named key can be offered:
 
 ```ini
 [core]

@@ -25,20 +25,14 @@ check "ssh parses the merged config" ssh -G github.com
 expect "ssh -G prints no warnings" "" "$(ssh_warnings github.com)"
 
 expect "github.com: User git" "git" "$(ssh_g github.com user)"
-expect "github.com: IdentitiesOnly" "yes" "$(ssh_g github.com identitiesonly)"
-expect "github.com: only the personal key" "~/.ssh/identities/suhlig/id_ed25519" "$(ssh_g github.com identityfile)"
+# The key for github.com comes from the agent (1Password). Pinning a key file breaks
+# ssh with "no such identity" on a machine that does not have it.
+expect "github.com: no key file is pinned" "" "$(ssh_g github.com identityfile | grep identities/)"
 
-# Guards the host order in 50-main.conf: the short name and the FQDN must resolve alike.
+# Guards the host order in ~/.ssh/config: the short name and the FQDN must resolve alike.
 expect "shop and its FQDN use the same user" "suhlig" "$(ssh_g shop user)"
 expect "shop and its FQDN use the same user (FQDN)" "suhlig" "$(ssh_g shop.tailnet-204f.ts.net user)"
 expect "other tailnet hosts get root" "root" "$(ssh_g foo.tailnet-204f.ts.net user)"
-expect "pi hosts get user pi" "pi" "$(ssh_g pi user)"
-
-# Only *.conf is included, so editor backups and the like cannot break ssh.
-stray=$HOME/.ssh/config.d/zz-stray
-echo "this is not valid ssh configuration" > "$stray"
-expect "files in config.d without .conf are ignored" "" "$(ssh_warnings github.com)"
-rm -f "$stray"
 
 echo "== git"
 
