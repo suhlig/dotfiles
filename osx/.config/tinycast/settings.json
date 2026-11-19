@@ -155,8 +155,8 @@
     "shortcuts": {
       "left-half": "option+cmd+left",
       "right-half": "option+cmd+right",
-      "top-half": "option+cmd+up",
-      "bottom-half": "option+cmd+down",
+      "top-half": null,
+      "bottom-half": null,
       "top-left-quarter": null,
       "top-right-quarter": null,
       "bottom-left-quarter": null,
