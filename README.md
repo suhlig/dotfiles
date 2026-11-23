@@ -45,7 +45,19 @@ gh auth status
 
 The account is chosen by where the checkout lives (`~/git/<host>/<org>/<repo>`): `~/.gitconfig` includes `common/.gitconfig.d/orgs/*.conf` for `~/git/github.com/nerab/`, `nowak-reisen/` and `speisehof/`, which set name, e-mail and `credential.https://github.com.username`. Everything else uses `suhlig`.
 
-On a personal machine, log in as the other accounts too (`nerab` and `aidrechs`); `gh auth status` then lists all three, and nothing needs to be switched. These two accounts are never used on the work machine.
+On a personal machine, log in as the other accounts too, once each, in the browser flow as the respective user; `gh auth status` then lists all three, and nothing needs to be switched. These two accounts are never used on the work machine.
+
+```sh
+gh auth login -h github.com -p https -w   # as nerab
+gh auth login -h github.com -p https -w   # as aidrechs
+gh auth status
+```
+
+When moving a machine from the old setup (osxkeychain as credential helper), remove the cached credentials once after re-stowing, so no stale token is left behind (repeat with `host=github.ibm.com` and `host=gist.github.ibm.com` where applicable):
+
+```sh
+printf 'protocol=https\nhost=github.com\n\n' | git credential-osxkeychain erase
+```
 
 ssh is used for servers only; see `common/.ssh/config`.
 
