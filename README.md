@@ -34,39 +34,20 @@ Part of the role is a task that clones the dotfiles repo and then calls bootstra
 
 TODO
 
-# SSH identities
+# GitHub access
 
-Separate identities live in their own directories under `.ssh/identities`:
+Git talks to GitHub over https; `gh` supplies the credentials, so no ssh key is needed. Log in once per account:
 
 ```sh
-$ tree ~/.ssh/
-/home/suhlig/.ssh/
-├── authorized_keys
-├── identities
-│   ├── other
-│   │   ├── id_ed25519
-│   │   └── id_ed25519.pub
-│   └── suhlig
-│       ├── id_ed25519
-│       └── id_ed25519.pub
-└── known_hosts
+gh auth login -h github.com -p https -w
+gh auth status
 ```
 
-Identities are selected per repository, not switched globally. The tracked `~/.gitconfig` includes `osx/.gitconfig.d/90-osx.conf` and the untracked `~/.gitconfig.local`, so machine-local overrides win over the shared settings. It then uses `includeIf` to pull in one of the org files under `common/.gitconfig.d/orgs`:
+The account is chosen by where the checkout lives (`~/git/<host>/<org>/<repo>`): `~/.gitconfig` includes `common/.gitconfig.d/orgs/*.conf` for `~/git/github.com/nerab/`, `nowak-reisen/` and `speisehof/`, which set name, e-mail and `credential.https://github.com.username`. Everything else uses `suhlig`.
 
-```ini
-[includeIf "hasconfig:remote.*.url:git@github.com:nowak-reisen/**"]
-  path = ~/.gitconfig.d/orgs/nowak-reisen.conf
-```
+On a personal machine, log in as the other accounts too (`nerab` and `aidrechs`); `gh auth status` then lists all three, and nothing needs to be switched. These two accounts are never used on the work machine.
 
-Every `core.sshCommand` names its key explicitly, so whatever sits at `~/.ssh/id_ed25519` is never consulted.
-
-An overriding `core.sshCommand` also passes `-F /dev/null`, which keeps it independent of `~/.ssh/config`, so only the named key can be offered:
-
-```ini
-[core]
-  sshCommand = "ssh -F /dev/null -o IdentitiesOnly=yes -o UseKeychain=yes -o AddKeysToAgent=yes -o StrictHostKeyChecking=accept-new -i ~/.ssh/identities/aidrex/id_ed25519"
-```
+ssh is used for servers only; see `common/.ssh/config`.
 
 # Issues
 
@@ -76,7 +57,7 @@ An overriding `core.sshCommand` also passes `-F /dev/null`, which keeps it indep
 
 # Test
 
-The slim image stows the dotfiles in a fresh Debian trixie container as an unprivileged user and runs `test/debian/trixie/verify.sh`; the build fails if a check fails. The checks cover shell start-up, ssh and git identity resolution (`ssh -G`, `git config` for each org and URL form) and the OpenSSH options in every `core.sshCommand`.
+The slim image stows the dotfiles in a fresh Debian trixie container as an unprivileged user and runs `test/debian/trixie/verify.sh`; the build fails if a check fails. The checks cover shell start-up, the ssh host config (`ssh -G`), the ssh-to-https rewrites, `gh` as the only credential helper, and identity and gh account per organisation directory (`git config`).
 
 ```command
 test/run                                     # slim image only, fails on any broken check
@@ -84,4 +65,4 @@ docker buildx bake                           # slim and full image (full needs n
 docker run -it --rm dotfiles-debian-trixie-full
 ```
 
-[pre-commit](https://pre-commit.com) runs the hooks in `.pre-commit-config.yaml`: a trailing-whitespace check on commit, `test/run` before every push (`.git-hooks/docker-test`; it only warns if Docker is not running) and a re-stow after every merge or pull (`.git-hooks/re-stow`). Install it with `brew install pre-commit` (or `pipx install pre-commit`), then run `pre-commit install --overwrite` in the checkout; `--overwrite` is needed because the git template in `common/.git-template` already installs a `pre-commit` shim. All hooks are local, so nothing is fetched from a remote (which would go through the `url.insteadOf` rewrite to ssh and need a key). [dotfiles-ibm](https://github.ibm.com/Steffen-Uhlig/dotfiles-ibm) builds on the slim image and reuses `test/lib.sh`.
+[pre-commit](https://pre-commit.com) runs the hooks in `.pre-commit-config.yaml`: a trailing-whitespace check on commit, `test/run` before every push (`.git-hooks/docker-test`; it only warns if Docker is not running) and a re-stow after every merge or pull (`.git-hooks/re-stow`). Install it with `brew install pre-commit` (or `pipx install pre-commit`), then run `pre-commit install --overwrite` in the checkout; `--overwrite` is needed because the git template in `common/.git-template` already installs a `pre-commit` shim. All hooks are local, so nothing is fetched from a remote (which would need credentials). [dotfiles-ibm](https://github.ibm.com/Steffen-Uhlig/dotfiles-ibm) builds on the slim image and reuses `test/lib.sh`.

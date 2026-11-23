@@ -10,29 +10,30 @@ The `--target="$HOME"` flag is required: GNU Stow defaults to the parent of the 
 
 ## SSH configuration
 
-`common/.ssh` tracks configuration only: `config` and `git-signers` (public key material). Private keys, `known_hosts` and `authorized_keys` stay in `~/.ssh` untracked; the whitelist at the bottom of `.gitignore` keeps it that way, so a key that ever lands inside `common/.ssh` cannot be committed. Runtime files such as `agent/` sockets, `known_hosts` or `identities/` must not exist inside `common/.ssh` in the checkout either: Stow would link them into `~/.ssh`. Delete them if they show up there.
+ssh is for servers only; git never uses it for GitHub. `common/.ssh` tracks configuration only: `config` and `git-signers` (public key material). Private keys, `known_hosts` and `authorized_keys` stay in `~/.ssh` untracked; the whitelist at the bottom of `.gitignore` keeps it that way, so a key that ever lands inside `common/.ssh` cannot be committed. Runtime files such as `agent/` sockets, `known_hosts` or `identities/` must not exist inside `common/.ssh` in the checkout either: Stow would link them into `~/.ssh`. Delete them if they show up there.
 
-`~/.ssh/config` sets `IgnoreUnknown UseKeychain` in `Host *` so the same file works on Linux. Order matters in it: the first value wins, so `Host shop` has to stay above the `*.tailnet-204f.ts.net` wildcard. Check the merged result with `ssh -G <host>`.
+`~/.ssh/config` sets `IgnoreUnknown UseKeychain` in `Host *` so the same file works on Linux. Order matters in it: the first value wins, so `Host shop` has to stay above the `*.tailnet-204f.ts.net` wildcard. Check the merged result with `ssh -G <host>`. Hosts that pin an `IdentityFile` need at least its `.pub` on disk (`~/.ssh/identities/<name>/id_ed25519.pub`): with `IdentitiesOnly yes` and an agent such as 1Password, ssh offers only agent keys that match such a file; without it no key is offered and the login fails.
 
-`github.com` and `gist.github.com` name no `IdentityFile`: the key comes from the agent (1Password), and a pinned key file that does not exist on a machine makes ssh fail with "no such identity". Hosts that do pin an `IdentityFile` need at least its `.pub` on disk (`~/.ssh/identities/<name>/id_ed25519.pub`): with `IdentitiesOnly yes` and an agent such as 1Password, ssh offers only agent keys that match such a file; without it no key is offered and the login fails.
-
-The last thing `~/.ssh/config` does at the top is `Include ~/.ssh/config.work`, an optional overlay that `dotfiles-ibm` provides. ssh skips it silently if it is missing.
+The first thing `~/.ssh/config` does is `Include ~/.ssh/config.work`, an optional overlay that `dotfiles-ibm` provides. ssh skips it silently if it is missing.
 
 ## Git configuration
 
-`~/.gitconfig` is tracked. Near its end it includes `~/.gitconfig.d/90-osx.conf` (stowed from `osx`) and the untracked `~/.gitconfig.local` (machine-local defaults, e.g. a work identity), and after those the `includeIf` conditions for the per-repository identities in `common/.gitconfig.d/orgs`. The `includeIf` blocks come after `.gitconfig.local` on purpose, because git lets the later value win and a repository-specific identity must beat a machine-wide default.
+GitHub is reached over https only, and `gh` is the only credential helper. Do not add `core.sshCommand`, `url.*.insteadOf` rewrites to ssh, or another credential helper.
 
-`hasconfig:remote.*.url:` compares the URL as written in the repo, before `url.*.insteadOf` rewriting, so `.gitconfig` lists both the `git@github.com:` and the `https://github.com/` form of each org.
+* `common/.gitconfig` rewrites `git@github.com:` and `ssh://git@github.com/` (and the gist hosts) to https, so old clones and tools with ssh URLs keep working.
+* It resets `credential.helper` with an empty value first, because the system gitconfig (Homebrew) sets `osxkeychain`, which would otherwise run before `gh` and could hand out another account's token. Then `credential."https://github.com".helper` is `!gh auth git-credential`.
+* `gh auth git-credential` returns a token only for the account named in `username`; it never falls back to the active account. So `credential."https://github.com".username` selects the account: `suhlig` by default, overridden by the org files.
+* Identity (name, e-mail, signing) and gh account follow the checkout location: `includeIf "gitdir:~/git/github.com/<org>/"` pulls in `common/.gitconfig.d/orgs/*.conf` (`nerab.conf`, `aishe.conf` for `nowak-reisen` and `speisehof`). There is no matching on remote URLs. Clones and worktrees therefore have to live below `~/git/<host>/<org>/`. The `includeIf` blocks come after `~/.gitconfig.local` on purpose, because git lets the later value win and an organisation's identity must beat a machine-wide default.
 
-There is no default `core.sshCommand`: SSH identities come from `~/.ssh/config`. Only the org files set one, with `-F /dev/null` and `-o IgnoreUnknown=UseKeychain` (the latter because `-F /dev/null` drops the `IgnoreUnknown` from `~/.ssh/config`).
+The tokens of Aishe (`aidrechs`) and nerab (`nerab`) never exist on the work machine. They are created on a personal machine with `gh auth login -h github.com -p https -w`, once per account, which adds them next to `suhlig`. This repo only ships the configuration; the tests only look at that.
 
-Create `~/.gitconfig.d` and `~/.gitconfig.d/orgs` as real directories before stowing, because the `dotfiles-ibm` overlay puts files into them too and Stow would otherwise fold them into a symlink to one checkout:
+`~/.gitconfig` includes the untracked `~/.gitconfig.local` (machine-local defaults, e.g. a work identity). Create `~/.gitconfig.d` and `~/.gitconfig.d/orgs` as real directories before stowing, because the `dotfiles-ibm` overlay puts files into them too and Stow would otherwise fold them into a symlink to one checkout:
 
 ```
 mkdir -p ~/.gitconfig.d/orgs
 ```
 
-Do not place these files under `~/git/github.com/<org>/`: Stow would then own a directory that is also used for checkouts. An org-level `core.sshCommand` passes `-F /dev/null`, which keeps it independent of `~/.ssh/config` and of any machine-local setting, so only the named key can be offered.
+Do not place these files under `~/git/github.com/<org>/`: Stow would then own a directory that is also used for checkouts.
 
 `git-signers` lists every key whose signatures should verify, including the work key from `dotfiles-ibm`. `user.useConfigOnly` is deliberately not set: the base config has a default name and e-mail, so it would have no effect.
 

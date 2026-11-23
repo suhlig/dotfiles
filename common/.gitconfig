@@ -40,15 +40,29 @@
 [gpg "ssh"]
   allowedsignersfile = ~/.ssh/git-signers
 
-[url "git@github.com:"]
-  insteadOf = https://github.com/
+# GitHub is reached over https only. Old clones and tools that still use ssh URLs
+# are rewritten, so no ssh key is ever needed for git.
+[url "https://github.com/"]
+  insteadOf = git@github.com:
+  insteadOf = ssh://git@github.com/
 
-[url "git@gist.github.com:"]
-  insteadOf = https://gist.github.com/
+[url "https://gist.github.com/"]
+  insteadOf = git@gist.github.com:
+  insteadOf = ssh://git@gist.github.com/
 
-# https://dev-notes.eu/2022/06/Cargo-Add-for-Dependency-Management/
-[url "https://github.com/rust-lang/crates.io-index"]
-  insteadOf = https://github.com/rust-lang/crates.io-index
+# Credentials come from `gh` (log in with `gh auth login -h github.com -p https`).
+# The empty helper first drops helpers set at system level (e.g. Homebrew's osxkeychain).
+# `username` selects the gh account; the org files in ~/.gitconfig.d/orgs override it.
+[credential]
+  helper =
+
+[credential "https://github.com"]
+  helper = !gh auth git-credential
+  username = suhlig
+
+[credential "https://gist.github.com"]
+  helper = !gh auth git-credential
+  username = suhlig
 
 [diff]
   tool = vimdiff
@@ -63,25 +77,16 @@
 # Includes. Order matters: later imports/settings win.
 # Machine-local / work overlay overrides are loaded from ~/.gitconfig.local
 [include]
-  path = ~/.gitconfig.d/90-osx.conf
   path = ~/.gitconfig.local
 
-# Org-level overrides (formerly in 95-orgs.conf).
-# Matched by gitdir or hasconfig, they win over ~/.gitconfig.local.
-
-# Pairing with nerab
-[includeIf "gitdir:~/git/github.com/nerab/**"]
+# Identity per organisation, selected by where the checkout lives. They come after
+# ~/.gitconfig.local, so they win over it. Worktrees must therefore live below the
+# organisation's directory too.
+[includeIf "gitdir:~/git/github.com/nerab/"]
   path = ~/.gitconfig.d/orgs/nerab.conf
 
-# Aishe (nowak-reisen & speisehof)
-[includeIf "hasconfig:remote.*.url:git@github.com:nowak-reisen/**"]
-  path = ~/.gitconfig.d/orgs/nowak-reisen.conf
+[includeIf "gitdir:~/git/github.com/nowak-reisen/"]
+  path = ~/.gitconfig.d/orgs/aishe.conf
 
-[includeIf "hasconfig:remote.*.url:https://github.com/nowak-reisen/**"]
-  path = ~/.gitconfig.d/orgs/nowak-reisen.conf
-
-[includeIf "hasconfig:remote.*.url:git@github.com:speisehof/**"]
-  path = ~/.gitconfig.d/orgs/nowak-reisen.conf
-
-[includeIf "hasconfig:remote.*.url:https://github.com/speisehof/**"]
-  path = ~/.gitconfig.d/orgs/nowak-reisen.conf
+[includeIf "gitdir:~/git/github.com/speisehof/"]
+  path = ~/.gitconfig.d/orgs/aishe.conf
