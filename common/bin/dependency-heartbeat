@@ -10,8 +10,9 @@ IFS=$'\n\t'
 # cannot auto-merge announces nothing at all. This reports only the exceptions.
 #
 # What counts as an exception:
-#   - any open Dependabot PR      (nothing auto-merges those; they always need you)
+#   - any open Dependabot PR      (auto-merge is configured, so an open one is blocked)
 #   - a Renovate PR that is conflicting, failing its checks, or older than N days
+#     (unless it is parked behind Renovate's minimum release age; that is in flight)
 #   - an open Dependabot alert
 #   - no Renovate activity anywhere for N days (the app may have stopped)
 #
@@ -63,6 +64,12 @@ for repo in "${repos[@]}"; do
                | ($c == "FAILURE" or $c == "ERROR" or $c == "TIMED_OUT"
                   or $c == "ACTION_REQUIRED" or $c == "CANCELLED"
                   or $c == "STARTUP_FAILURE");
+             def waiting_for_release_age:
+               (.statusCheckRollup // [])
+               | any(.[];
+                   (.__typename == "StatusContext")
+                   and ((.context // "") | test("^renovate/(stability-days|minimum-release-age)$"))
+                   and (.state == "PENDING"));
              .[]
              | select(.author != null)
              | select(.author.login | test("renovate|dependabot"))
@@ -70,6 +77,7 @@ for repo in "${repos[@]}"; do
              | ( if (.author.login | test("dependabot")) then "needs you"
                  elif .mergeable == "CONFLICTING" then "conflict"
                  elif ((.statusCheckRollup // []) | any(.[]; failing)) then "checks failing"
+                 elif waiting_for_release_age then empty
                  elif (now - (.createdAt | fromdateiso8601)) > ($days * 86400)
                    then "stale " + (((now - (.createdAt | fromdateiso8601)) / 86400) | floor | tostring) + "d"
                  else empty
