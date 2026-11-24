@@ -18,11 +18,11 @@ The first thing `~/.ssh/config` does is `Include ~/.ssh/config.work`, an optiona
 
 ## Git configuration
 
-GitHub is reached over https only, and `gh` is the only credential helper. Do not add `core.sshCommand`, `url.*.insteadOf` rewrites to ssh, or another credential helper.
+GitHub is reached over https only, and `gh` is the only source of credentials. Do not add `core.sshCommand`, `url.*.insteadOf` rewrites to ssh, or another credential store.
 
 * `common/.gitconfig` rewrites `git@github.com:` and `ssh://git@github.com/` (and the gist hosts) to https, so old clones and tools with ssh URLs keep working.
-* It resets `credential.helper` with an empty value first, because the system gitconfig (Homebrew) sets `osxkeychain`, which would otherwise run before `gh` and could hand out another account's token. Then `credential."https://github.com".helper` is `!gh auth git-credential`.
-* `gh auth git-credential` returns a token only for the account named in `username`; it never falls back to the active account. So `credential."https://github.com".username` selects the account: `suhlig` by default, overridden by the org files.
+* It resets `credential.helper` with an empty value first, because the system gitconfig (Homebrew) sets `osxkeychain`, which would otherwise run before `gh` and could hand out another account's token. Then `credential."https://github.com".helper` is `!gh-git-credential`.
+* `gh auth git-credential` serves only the active account: since gh 2.105 it reads `ActiveTokenWithRefresh` and hands back nothing when the request names another account. So the helper is the wrapper `common/bin/gh-git-credential`, stowed to `~/bin`: it asks `gh auth git-credential` first and, if that returns nothing, runs `gh auth token --user` for the account git asked for (and maps `gist.github.com` to `github.com`). `credential."https://github.com".username` selects that account: `suhlig` by default, overridden by the org files.
 * Identity (name, e-mail, signing) and gh account follow the checkout location: `includeIf "gitdir:~/git/github.com/<org>/"` pulls in `common/.gitconfig.d/orgs/*.conf` (`nerab.conf`, `aishe.conf` for `nowak-reisen` and `speisehof`). There is no matching on remote URLs. Clones and worktrees therefore have to live below `~/git/<host>/<org>/`. The `includeIf` blocks come after `~/.gitconfig.local` on purpose, because git lets the later value win and an organisation's identity must beat a machine-wide default.
 
 The tokens of Aishe (`aidrechs`) and nerab (`nerab`) never exist on the work machine. They are created on a personal machine with `gh auth login -h github.com -p https -w`, once per account, which adds them next to `suhlig`. This repo only ships the configuration; the tests only look at that.

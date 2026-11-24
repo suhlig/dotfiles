@@ -56,15 +56,60 @@ done
 # Guards the helper chain: only gh may supply credentials. An osxkeychain helper from
 # the system gitconfig would run first and could hand out the wrong account's token.
 for host in github.com gist.github.com; do
-  expect "$host credentials come from gh only" "!gh auth git-credential" \
+  expect "$host credentials come from gh only" "!gh-git-credential" \
     "$(git -C "$TEST_TMP/r-default" config --get-urlmatch credential.helper "https://$host")"
   expect "$host: the default gh account is suhlig" "suhlig" \
     "$(git -C "$TEST_TMP/r-default" config --get-urlmatch credential.username "https://$host")"
 done
+check "the gh credential helper is stowed and executable" test -x "$HOME/bin/gh-git-credential"
+
+# Guards gh 2.105+: `gh auth git-credential` serves only the active account and exits
+# silently for any other username. The helper must then fall back to `gh auth token
+# --user`. A stub stands in for gh: nerab is active, suhlig is logged in but not active.
+stub=$TEST_TMP/stub
+mkdir -p "$stub"
+cat > "$stub/gh" <<'STUB'
+#!/bin/sh
+case "$1 $2" in
+  "auth git-credential")
+    request=$(cat)
+    case $request in
+      *username=*)
+        case $request in
+          *username=nerab*) printf 'username=nerab\npassword=active-token\n' ;;
+          *) exit 1 ;;
+        esac ;;
+      *) printf 'username=nerab\npassword=active-token\n' ;;
+    esac ;;
+  "auth token")
+    user= host=
+    shift 2
+    while [ $# -gt 0 ]; do
+      case $1 in
+        --user) user=$2; shift 2 ;;
+        --hostname) host=$2; shift 2 ;;
+        *) shift ;;
+      esac
+    done
+    [ "$host" = github.com ] || exit 1
+    printf '%s-token\n' "$user" ;;
+esac
+STUB
+chmod +x "$stub/gh"
+
+helper() { PATH="$stub:$PATH" "$HOME/bin/gh-git-credential" get; }
+
+expect "helper uses gh's answer for the active account" $'username=nerab\npassword=active-token' \
+  "$(printf 'protocol=https\nhost=github.com\nusername=nerab\n\n' | helper)"
+expect "helper serves the requested non-active account" $'username=suhlig\npassword=suhlig-token' \
+  "$(printf 'protocol=https\nhost=github.com\nusername=suhlig\n\n' | helper)"
+expect "helper authenticates gists against the API host" $'username=suhlig\npassword=suhlig-token' \
+  "$(printf 'protocol=https\nhost=gist.github.com\nusername=suhlig\n\n' | helper)"
+check "helper stays quiet for store and erase" sh -c "\"$HOME/bin/gh-git-credential\" store && \"$HOME/bin/gh-git-credential\" erase"
 # The container has no system-level osxkeychain, so simulate one: it must not run.
 printf '[credential]\n  helper = !echo SYSTEM-HELPER-RAN >&2; true\n' > "$TEST_TMP/system-gitconfig"
 out=$(cd "$TEST_TMP/r-default" && printf 'protocol=https\nhost=github.com\n\n' \
-  | GIT_CONFIG_SYSTEM="$TEST_TMP/system-gitconfig" GIT_TERMINAL_PROMPT=0 git credential fill 2>&1)
+  | PATH="$HOME/bin:$PATH" GIT_CONFIG_SYSTEM="$TEST_TMP/system-gitconfig" GIT_TERMINAL_PROMPT=0 git credential fill 2>&1)
 case $out in
   *SYSTEM-HELPER-RAN*) fail "a system-level credential helper does not run before gh" "$out" ;;
   *) pass "a system-level credential helper does not run before gh" ;;
@@ -83,7 +128,7 @@ org_check() {
   expect "$dir: e-mail" "$email" "$(git -C "$dir" config user.email)"
   expect "$dir: gh account" "$account" "$(git -C "$dir" config --get-urlmatch credential.username https://github.com)"
   expect "$dir: gpgsign" "$gpgsign" "$(git -C "$dir" config commit.gpgsign)"
-  expect "$dir: gh is the only credential helper" "!gh auth git-credential" "$(git -C "$dir" config --get-urlmatch credential.helper https://github.com)"
+  expect "$dir: gh is the only credential helper" "!gh-git-credential" "$(git -C "$dir" config --get-urlmatch credential.helper https://github.com)"
 }
 
 org_check ~/git/github.com/nerab/pairing "nerab@gmx.at" nerab true

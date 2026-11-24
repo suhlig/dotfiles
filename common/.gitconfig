@@ -53,15 +53,17 @@
 # Credentials come from `gh` (log in with `gh auth login -h github.com -p https`).
 # The empty helper first drops helpers set at system level (e.g. Homebrew's osxkeychain).
 # `username` selects the gh account; the org files in ~/.gitconfig.d/orgs override it.
+# The helper is a wrapper in ~/bin because `gh auth git-credential` serves only the
+# active account; it falls back to `gh auth token --user` for the requested one.
 [credential]
   helper =
 
 [credential "https://github.com"]
-  helper = !gh auth git-credential
+  helper = !gh-git-credential
   username = suhlig
 
 [credential "https://gist.github.com"]
-  helper = !gh auth git-credential
+  helper = !gh-git-credential
   username = suhlig
 
 [diff]

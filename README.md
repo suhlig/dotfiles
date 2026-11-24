@@ -45,6 +45,8 @@ gh auth status
 
 The account is chosen by where the checkout lives (`~/git/<host>/<org>/<repo>`): `~/.gitconfig` includes `common/.gitconfig.d/orgs/*.conf` for `~/git/github.com/nerab/`, `nowak-reisen/` and `speisehof/`, which set name, e-mail and `credential.https://github.com.username`. Everything else uses `suhlig`.
 
+git gets its credentials from `~/bin/gh-git-credential` (`common/bin/gh-git-credential`). Calling `gh auth git-credential` directly is not enough: since gh 2.105 it serves only the active account and hands back nothing when git asks for another one. The wrapper asks it first and then falls back to `gh auth token --user` for the account named in `credential.https://github.com.username`, so no account has to be switched.
+
 On a personal machine, log in as the other accounts too, once each, in the browser flow as the respective user; `gh auth status` then lists all three, and nothing needs to be switched. These two accounts are never used on the work machine.
 
 ```sh
@@ -69,7 +71,7 @@ ssh is used for servers only; see `common/.ssh/config`.
 
 # Test
 
-The slim image stows the dotfiles in a fresh Debian trixie container as an unprivileged user and runs `test/debian/trixie/verify.sh`; the build fails if a check fails. The checks cover shell start-up, the ssh host config (`ssh -G`), the ssh-to-https rewrites, `gh` as the only credential helper, and identity and gh account per organisation directory (`git config`).
+The slim image stows the dotfiles in a fresh Debian trixie container as an unprivileged user and runs `test/debian/trixie/verify.sh`; the build fails if a check fails. The checks cover shell start-up, the ssh host config (`ssh -G`), the ssh-to-https rewrites, the `gh` credential helper (including its fallback to a non-active account), and identity and gh account per organisation directory (`git config`).
 
 ```command
 test/run                                     # slim image only, fails on any broken check
