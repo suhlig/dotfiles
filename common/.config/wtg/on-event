@@ -12,6 +12,32 @@ case $WTG_SPACE_EVENT in
 
     echo "tmux session \"$WTG_SPACE_NAME\" created at $WTG_SPACE_ROOT"
     ;;
+  add)
+    tmux has-session -t "=$WTG_SPACE_NAME" 2>/dev/null || exit 0
+
+    repos=(${(f)WTG_REPOS})
+    paths=(${(f)WTG_REPO_PATHS})
+    windows=(${(f)"$(tmux list-windows -t "=$WTG_SPACE_NAME" -F '#{window_name}')"})
+
+    for repo in ${(f)WTG_EVENT_REPOS}; do
+      dir=${paths[${repos[(i)$repo]}]}
+
+      if (( ${windows[(Ie)${dir:t}]} )); then
+        continue
+      fi
+
+      tmux new-window -t "$WTG_SPACE_NAME" -c "$dir" -n "${dir:t}"
+      echo "tmux window \"${dir:t}\" added to session \"$WTG_SPACE_NAME\""
+    done
+    ;;
+  remove)
+    tmux has-session -t "=$WTG_SPACE_NAME" 2>/dev/null || exit 0
+
+    for repo in ${(f)WTG_EVENT_REPOS}; do
+      tmux kill-window -t "=$WTG_SPACE_NAME:=${repo:t}" 2>/dev/null \
+        && echo "tmux window \"${repo:t}\" removed from session \"$WTG_SPACE_NAME\""
+    done
+    ;;
   delete)
     tmux kill-session -t "$WTG_SPACE_NAME" && echo "tmux session \"$WTG_SPACE_NAME\" killed"
     ;;
